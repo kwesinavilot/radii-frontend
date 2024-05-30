@@ -25,11 +25,11 @@ const Register = () => {
   //   retypePassword: "",
   //   agreeTerms: false,
   // });
-  // const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  // const togglePasswordVisibility = () => {
-  //   setIsPasswordVisible(!isPasswordVisible);
-  // };
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
 
   // const handleChange = (e) => {
   //   const { name, value, type, checked } = e.target;
@@ -179,7 +179,7 @@ const Register = () => {
                     </label>
                     <div className="relative">
                       <input
-                        // type={isPasswordVisible ? "text" : "password"}
+                        type={isPasswordVisible ? "text" : "password"}
                         name="password"
                         id="password"
                         // value={formData.password}
@@ -190,10 +190,10 @@ const Register = () => {
                       />
                       <button
                         type="button"
-                        // onClick={togglePasswordVisibility}
+                        onClick={togglePasswordVisibility}
                         className="absolute top-3 right-3 text-gray-400"
                       >
-                        {/* {isPasswordVisible ? <IoIosEye /> : <IoIosEyeOff />} */}
+                        {isPasswordVisible ? <IoIosEye /> : <IoIosEyeOff />}
                       </button>
                     </div>
                   </div>
@@ -217,10 +217,10 @@ const Register = () => {
                       />
                       <button
                         type="button"
-                        // onClick={togglePasswordVisibility}
+                        onClick={togglePasswordVisibility}
                         className="absolute top-3 right-3 text-gray-400"
                       >
-                        {/* {isPasswordVisible ? <IoIosEye /> : <IoIosEyeOff />} */}
+                        {isPasswordVisible ? <IoIosEye /> : <IoIosEyeOff />}
                       </button>
                     </div>
                   </div>
