@@ -1,0 +1,170 @@
+.reg {
+  /* background-image: url("../../../assets/register.png"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* .container {
+      width: var(--container-width-lg);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+    } */
+
+.regWrapper {
+  display: grid;
+  grid-template-columns: 40% 70%;
+  /* grid-template-columns: repeat(2, 1fr); */
+  gap: 1.5rem;
+  padding: 0 4rem;
+}
+
+.regLogo {
+  width: 200px;
+  margin-left: -1rem;
+}
+
+.regContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.regContent h1 {
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 4rem;
+  color: #fff;
+}
+
+.regContent p {
+  /* margin: 0.5rem; */
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.regIcons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3rem;
+  gap: 0.5rem;
+}
+
+/* ===============================  MEDIA QUERY (MEDIUM DEVICES) ========================== */
+@media screen and (max-width: 1024px) {
+  .regWrapper {
+    display: grid;
+    /* grid-template-columns: 50% 50%; */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .regLogo {
+    width: 200px;
+  }
+
+  .regContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  }
+  .regContent h1 {
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 3rem;
+    color: #fff;
+  }
+
+  .regContent p {
+    /* margin: 0.5rem; */
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  .regIcons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    gap: 0.5rem;
+  }
+}
+
+/* ===============================  MEDIA QUERY (SMALL DEVICES) ========================== */
+@media screen and (max-width: 600px) {
+  /* .regContent {
+        background-image: url("../../assets/rightpanel.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        width: 100vw;
+      } */
+
+  .regWrapper {
+    display: grid;
+    /* grid-template-columns: 40% 70%; */
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0rem;
+  }
+
+  .regLogo {
+    width: 150px;
+  }
+
+  .regContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 1rem;
+    display: none;
+  }
+  .regContent h1 {
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 3rem;
+    color: #fff;
+  }
+
+  .regContent p {
+    /* margin: 0.5rem; */
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  .regIcons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    gap: 0.5rem;
+  }
+
+  .reg {
+    background-image: none;
+  }
+
+  .formBackground {
+    /* background-image: url("../../../assets/rightpanel.png"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 2.5rem;
+  }
+}
+
+/* @media screen and (max-width: 768px) {
+      .homeContainer {
+        display: flex;
+        flex-direction: column;
+      }
+    
+      .homeRight {
+        order: -1;
+      }
+    } */
