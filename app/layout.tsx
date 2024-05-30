@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Radii",
   description: "Unify siloed data and get actionable insight",
   icons: {
-    icon: "/icons/logo.svg",
+    icon: "/favicon.ico",
   },
 };
 
