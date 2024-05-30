@@ -1,5 +1,5 @@
 .reg {
-  /* background-image: url("../../../assets/register.png"); */
+  background-image: url("/register.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -8,11 +8,11 @@
 }
 
 /* .container {
-      width: var(--container-width-lg);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-    } */
+    width: var(--container-width-lg);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  } */
 
 .regWrapper {
   display: grid;
@@ -97,13 +97,13 @@
 /* ===============================  MEDIA QUERY (SMALL DEVICES) ========================== */
 @media screen and (max-width: 600px) {
   /* .regContent {
-        background-image: url("../../assets/rightpanel.png");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 100vh;
-        width: 100vw;
-      } */
+      background-image: url("../../assets/rightpanel.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100vh;
+      width: 100vw;
+    } */
 
   .regWrapper {
     display: grid;
@@ -150,7 +150,7 @@
   }
 
   .formBackground {
-    /* background-image: url("../../../assets/rightpanel.png"); */
+    background-image: url("/right-panel.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -159,12 +159,12 @@
 }
 
 /* @media screen and (max-width: 768px) {
-      .homeContainer {
-        display: flex;
-        flex-direction: column;
-      }
-    
-      .homeRight {
-        order: -1;
-      }
-    } */
+    .homeContainer {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .homeRight {
+      order: -1;
+    }
+  } */
