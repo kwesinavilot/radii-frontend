@@ -244,7 +244,7 @@ const Register = () => {
                       >
                         I agree to all the{" "}
                         <a
-                          className="font-medium text-primary-600 text-blue-500 hover:underline dark:text-primary-500"
+                          className="font-medium text-primary-600 text-[#038C7F] hover:underline dark:text-[#038C7F]"
                           href="#"
                         >
                           Terms, Privacy Policy and Fees.
@@ -254,7 +254,7 @@ const Register = () => {
                   </div>
                   <button
                     type="submit"
-                    className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="w-full text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  bg-[#038C7F] hover:bg-[#1e5852]  dark:focus:ring-[#33a79c]"
                   >
                     Create an account
                   </button>
@@ -270,11 +270,13 @@ const Register = () => {
                     </div>
                   </div>
                   <button
-                    className="--btn --btn-block"
+                    className="--btn --btn-block "
                     // onClick={() => handleGoogleSignUp()}
                   >
-                    <FcGoogle style={{ marginRight: 15 }} /> Continue with
-                    Google
+                    <FcGoogle style={{ marginRight: 15 }} />{" "}
+                    <span className="text-[#038C7F] text-[14px]">
+                      Sign up with Google
+                    </span>
                   </button>
                   <p className="text-sm font-light text-gray-900 dark:text-gray-900">
                     Have an account?{" "}
