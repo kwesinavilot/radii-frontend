@@ -121,8 +121,8 @@ const Register = () => {
               className={`w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-white dark:bg-white-700 ${style.formBackground}`}
             >
               <div className="p-6 sm:p-8">
-                <h1 className="mb-5 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray-800">
-                  Create account
+                <h1 className="mb-5 text-xl font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-[#038C7F]">
+                  Register below
                 </h1>
                 <form
                   className="space-y-8 md:space-y-4"
