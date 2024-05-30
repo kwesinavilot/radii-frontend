@@ -77,7 +77,7 @@ const Interest = () => {
               className={`w-full rounded-xl shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 bg-white dark:bg-white-700  ${style.formBackground}`}
             >
               <div className="p-4 space-y-4 md:space-y-2 sm:p-4">
-                <h1 className="text-xl font-medium leading-tight tracking-tight text-blue-700 md:text-3xl dark:text-blue-500 py-8">
+                <h1 className="text-xl font-medium leading-tight tracking-tight text-[#038C7F] md:text-3xl dark:text-[#038C7F] py-8">
                   What is your interest?
                 </h1>
 
@@ -128,7 +128,7 @@ const Interest = () => {
               </div>
 
               <div className="p-6 space-y-4 md:space-y-2 sm:p-4">
-                <h1 className="text-xl font-medium leading-tight tracking-tight text-blue-700 md:text-3xl dark:text-blue-500 pb-4">
+                <h1 className="text-xl font-medium leading-tight tracking-tight text-[#038C7F] md:text-3xl dark:text-[#038C7F] pb-4">
                   How did you hear about us?
                 </h1>
                 <div>
@@ -215,7 +215,7 @@ const Interest = () => {
                   type="submit"
                   //   onClick={handleSubmit}
                   //   disabled={!formData.interests || !formData.referrer}
-                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-lx px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-80 my-8"
+                  className="w-full text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-lx px-5 py-2.5 text-center bg-[#038C7F] hover:bg-[#1e5852]  dark:focus:ring-[#33a79c] my-8"
                 >
                   Complete
                 </button>
