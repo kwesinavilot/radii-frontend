@@ -144,7 +144,7 @@ const Login = () => {
               className={`w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-white dark:bg-white-700  ${style.formBackground}`}
             >
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 className="text-xl font-bold leading-tight tracking-tight text-blue-900 md:text-2xl dark:text-blue-800">
+                <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-[#038C7F] ">
                   Login
                 </h1>
                 <form className="space-y-4 md:space-y-6">
@@ -199,7 +199,7 @@ const Login = () => {
                     <div className="text-right">
                       <Link
                         href="/forgotPassword" // Update this with the appropriate route
-                        className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-500"
+                        className="text-sm text-[#038C7F] hover:text-[#33766f] dark:text-[#038C7F]"
                       >
                         Forgot password?
                       </Link>
@@ -208,7 +208,7 @@ const Login = () => {
 
                   <button
                     type="submit"
-                    className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="w-full text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-[#038C7F] hover:bg-[#1e5852]  dark:focus:ring-[#33a79c]"
                   >
                     Login
                   </button>
@@ -227,7 +227,10 @@ const Login = () => {
                     className="--btn --btn-block"
                     // onClick={() => signInWithGoogle()}
                   >
-                    <FcGoogle style={{ marginRight: 15 }} /> Login with Google
+                    <FcGoogle style={{ marginRight: 15 }} />{" "}
+                    <span className="text-[#038C7F] text-[14px]">
+                      Login with Google
+                    </span>
                   </button>
                   <p className="text-sm font-light text-gray-900 dark:text-gray-900">
                     Don’t Have an Account?{" "}
