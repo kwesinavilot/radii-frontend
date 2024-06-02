@@ -1,0 +1,7 @@
+.link-text {
+  transition-delay: 0ms !important;
+}
+
+.link-item:hover .link-text {
+  transition-delay: 0ms !important;
+}
