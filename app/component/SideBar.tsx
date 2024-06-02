@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import {
   FaBars,
@@ -23,10 +24,11 @@ const Sidebar = () => {
       } transition-width duration-300`}
     >
       <div className="flex items-center justify-between p-4">
-        <span className={`text-white text-lg font-bold ${!isOpen && "hidden"}`}>
-          URUbytes
-        </span>
-        <FaBars className="text-white cursor-pointer" onClick={toggleSidebar} />
+        {isOpen ? (
+          <span className="text-white text-lg font-bold">URUbytes</span>
+        ) : (
+          <Image src="/u-logo.png" alt="Logo" className="w-8 h-8" />
+        )}
       </div>
       <nav className="flex-1 mt-10">
         <ul>
@@ -46,17 +48,28 @@ const Sidebar = () => {
             <FaFileInvoiceDollar className="text-white" />
             {isOpen && <span className="ml-4 text-white">Billing</span>}
           </li>
+          <hr className="border-teal-600 my-2 mx-4" />
         </ul>
       </nav>
-      <div className="p-4">
+      <div className="px-4">
+        <hr className="border-teal-600 my-2" />
+        <div
+          className="flex items-center cursor-pointer hover:bg-teal-700 p-2 rounded"
+          onClick={toggleSidebar}
+        >
+          <FaBars className="text-white" />
+          {isOpen && <span className="ml-4 text-white">Collapse</span>}
+        </div>
+        <hr className="border-teal-600 my-2" />
         <div className="flex items-center cursor-pointer hover:bg-teal-700 p-2 rounded">
           <MdHelp className="text-white" />
           {isOpen && <span className="ml-4 text-white">Get Help</span>}
         </div>
+        <hr className="border-teal-600 my-2" />
       </div>
       <div className="p-4 flex items-center">
         <img
-          src="/path/to/profile.jpg"
+          src="/bright.png"
           alt="Profile"
           className="rounded-full w-10 h-10"
         />
