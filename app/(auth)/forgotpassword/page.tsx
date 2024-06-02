@@ -103,7 +103,7 @@ const ForgotPassword: React.FC = () => {
                   <p className="text-sm font-light text-gray-900 dark:text-gray-900">
                     Don’t Have an Account?{" "}
                     <Link
-                      href="/register"
+                      href="/signup"
                       className="font-medium text-orange-600 hover:underline dark:text-orange-500"
                     >
                       Register here
