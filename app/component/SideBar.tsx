@@ -19,33 +19,33 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`flex flex-col h-screen bg-teal-800 ${
+      className={`flex flex-col h-screen bg-[#038C7F] ${
         isOpen ? "w-64" : "w-20"
       } transition-width duration-300`}
     >
       <div className="flex items-center justify-between p-4">
         {isOpen ? (
-          <span className="text-white text-lg font-bold">URUbytes</span>
+          <span className="text-white text-lg font-bold  ">URUbytes</span>
         ) : (
-          <Image src="/u-logo.png" alt="Logo" className="w-8 h-8" />
+          <Image src="/u-logo.png" alt="Logo" width={20} height={20} />
         )}
       </div>
       <nav className="flex-1 mt-10">
         <ul>
           <li className="flex items-center p-4 cursor-pointer hover:bg-teal-700">
-            <MdDashboard className="text-white" />
+            <MdDashboard className="text-white" size={20} />
             {isOpen && <span className="ml-4 text-white">Dashboard</span>}
           </li>
           <li className="flex items-center p-4 cursor-pointer hover:bg-teal-700">
-            <FaChartLine className="text-white" />
+            <FaChartLine className="text-white" size={20} />
             {isOpen && <span className="ml-4 text-white">Get Insight</span>}
           </li>
           <li className="flex items-center p-4 cursor-pointer hover:bg-teal-700">
-            <FaDatabase className="text-white" />
+            <FaDatabase className="text-white" size={20} />
             {isOpen && <span className="ml-4 text-white">Data Sources</span>}
           </li>
           <li className="flex items-center p-4 cursor-pointer hover:bg-teal-700">
-            <FaFileInvoiceDollar className="text-white" />
+            <FaFileInvoiceDollar className="text-white" size={20} />
             {isOpen && <span className="ml-4 text-white">Billing</span>}
           </li>
           <hr className="border-teal-600 my-2 mx-4" />
@@ -57,12 +57,17 @@ const Sidebar = () => {
           className="flex items-center cursor-pointer hover:bg-teal-700 p-2 rounded"
           onClick={toggleSidebar}
         >
-          <FaBars className="text-white" />
+          <Image
+            src="/collapse.png"
+            alt="collapse-icon"
+            width={20}
+            height={20}
+          />
           {isOpen && <span className="ml-4 text-white">Collapse</span>}
         </div>
         <hr className="border-teal-600 my-2" />
         <div className="flex items-center cursor-pointer hover:bg-teal-700 p-2 rounded">
-          <MdHelp className="text-white" />
+          <MdHelp className="text-white" size={20} />
           {isOpen && <span className="ml-4 text-white">Get Help</span>}
         </div>
         <hr className="border-teal-600 my-2" />
