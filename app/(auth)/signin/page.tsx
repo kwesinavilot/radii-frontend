@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import style from "./Login.module.css";
 import Image from "next/image";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa";
@@ -14,12 +14,17 @@ import { FcGoogle } from "react-icons/fc";
 // import { updateLoginData } from "../../../reducer/action";
 // import { useGoogleLogin } from "@react-oauth/google";
 
-const Login = () => {
-  const [formData, setFormData] = useState({
+interface FormData {
+  email: string;
+  password: string;
+}
+
+const Login: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   // const router = useRouter();
   // const dispatch = useDispatch();
 
@@ -27,7 +32,7 @@ const Login = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -45,7 +50,7 @@ const Login = () => {
     setIsPasswordVisible(false);
   }, []);
 
-  // const handleSubmit = async (e) => {
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
   //   try {
   //     const response = await axios.post(
