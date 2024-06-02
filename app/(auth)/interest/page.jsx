@@ -85,7 +85,7 @@ const Interest = () => {
                   <button
                     className={`text-sm text-gray-700 border border-gray-400 rounded-2xl p-4 inline-block mb-2 ${
                       selectedInterest === "Explore"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-[#038C7F] text-white"
                         : ""
                     }`}
                     // onClick={() =>
@@ -99,7 +99,7 @@ const Interest = () => {
                   <button
                     className={`text-sm text-gray-700 border border-gray-400 rounded-2xl p-4 inline-block mb-2 ${
                       selectedInterest === "competitors"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-[#038C7F] text-white"
                         : ""
                     }`}
                     // onClick={() =>
@@ -113,7 +113,7 @@ const Interest = () => {
                   <button
                     className={`text-sm text-gray-700 border border-gray-400 rounded-2xl p-4 inline-block mb-2 ${
                       selectedInterest === "insights"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-[#038C7F] text-white"
                         : ""
                     }`}
                     // onClick={() =>
@@ -135,7 +135,7 @@ const Interest = () => {
                   <button
                     className={`mr-2 text-sm text-gray-700 border border-gray-400 rounded-xl py-3 px-3 inline-block mb-2 ${
                       selectedReferrer === "friend/colleague"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-[#038C7F] text-white"
                         : ""
                     }`}
                     // onClick={() =>
@@ -149,7 +149,7 @@ const Interest = () => {
                   <button
                     className={` text-sm text-gray-700 border border-gray-400 rounded-xl py-3 px-3 inline-block mb-2 ${
                       selectedReferrer === "publication/conference"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-[#038C7F] text-white"
                         : ""
                     }`}
                     // onClick={() =>
@@ -166,7 +166,7 @@ const Interest = () => {
                   <button
                     className={`mr-2 text-sm text-gray-700 border border-gray-400 rounded-xl py-3 px-3 inline-block mb-2 ${
                       selectedReferrer === "socialmedia"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-[#038C7F] text-white"
                         : ""
                     }`}
                     // onClick={() =>
@@ -180,7 +180,7 @@ const Interest = () => {
                   <button
                     className={`mr-2 text-sm text-gray-700 border border-gray-400 rounded-xl py-3 px-3 inline-block mb-2 ${
                       selectedReferrer === "onlinesearch"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-[#038C7F] text-white"
                         : ""
                     }`}
                     // onClick={() =>
@@ -194,7 +194,7 @@ const Interest = () => {
                   <button
                     className={`text-sm text-gray-700 border border-gray-400 rounded-xl py-3 px-3 inline-block mb-2 ${
                       selectedReferrer === "webinar/networking"
-                        ? "bg-blue-600 text-white"
+                        ? "bg-[#038C7F] text-white"
                         : ""
                     }`}
                     // onClick={() =>
