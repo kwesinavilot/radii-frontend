@@ -37,7 +37,7 @@ const Sidebar = () => {
 
   const linkClasses = (index: number) =>
     clsx(
-      "relative flex items-center py-4  px-2 cursor-pointer hover:bg-[#fff] hover:text-teal-800 mx-2 transition-all duration-200 rounded",
+      "relative flex items-center py-4  px-4 cursor-pointer hover:bg-[#fff] hover:text-teal-800 mx-2 transition-all duration-200 rounded",
       {
         "bg-white text-teal-800 my-2 border-l-4 border-teal-800 rounded":
           activeIndex === index,
@@ -46,15 +46,14 @@ const Sidebar = () => {
     );
 
   const collapseClasses = clsx(
-    "flex items-center p-2 cursor-pointer hover:bg-[#fff] hover:text-teal-800 mx-2 transition-all duration-200 rounded",
+    "flex items-center p-4 cursor-pointer hover:text-teal-800 mx-2 transition-all duration-200 rounded px-4",
     {
-      "bg-white text-teal-800 my-2 border-l-4 border-white rounded":
-        isCollapseActive,
+      "text-teal-800 my-2 border-l-4 border-white rounded": isCollapseActive,
     }
   );
 
   const userClasses = clsx(
-    "px-2 py-4 flex items-center cursor-pointer  text-white hover:bg-[#fff] hover:text-teal-800 mx-2 transition-all duration-200 rounded",
+    "px-2 py-4 flex items-center cursor-pointer px-4 mb-2 text-white hover:bg-[#fff] hover:text-teal-800 mx-2 transition-all duration-200 rounded",
     {
       "bg-white text-teal-800 my-2 border-l-4 border-white rounded":
         isUserActive,
@@ -116,11 +115,11 @@ const Sidebar = () => {
               )}
             </li>
           ))}
-          <hr className="border-teal-600 my-2 mx-4" />
+          <hr className="border-[#fff] my-4" />
         </ul>
       </nav>
-      <div className="px-4">
-        <hr className="border-teal-600 my-2" />
+      <div className="">
+        <hr className="border-[#fff] my-2" />
         <div onClick={toggleSidebar} className={collapseClasses}>
           {isOpen ? (
             <>
@@ -133,10 +132,10 @@ const Sidebar = () => {
               <span className="ml-4 text-white">Collapse</span>
             </>
           ) : (
-            <Image src="/collapse.png" alt="Collapse" width={32} height={32} />
+            <Image src="/collapse.png" alt="Collapse" width={24} height={24} />
           )}
         </div>
-        <hr className="border-teal-600 my-2" />
+        <hr className="border-[#fff] my-2" />
         {links.slice(4).map((link, index) => (
           <div
             key={index + 4}
@@ -158,13 +157,15 @@ const Sidebar = () => {
             )}
           </div>
         ))}
-        <hr className="border-teal-600 my-2" />
+        <hr className="border-[#fff] my-2" />
 
         <div className={userClasses} onClick={handleUserClick}>
-          <img
+          <Image
             src="/bright.png"
             alt="Profile"
-            className="rounded-full w-10 h-10"
+            className="rounded-full"
+            width={36}
+            height={36}
           />
           {isOpen && (
             <div className="ml-4 ">
