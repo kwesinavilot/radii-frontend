@@ -39,11 +39,12 @@ const NewUser: React.FC = () => {
             <div className="flex flex-grow flex-col items-start justify-start py-4 pl-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-100 transition-transform transform hover:scale-105">
               <div className="flex items-center gap-2">
                 <Image
-                  src="/ic_baseline-insights.png"
+                  src="/insights.png"
                   alt="internal insight"
-                  width={12}
-                  height={12}
+                  width={24}
+                  height={24}
                 />
+
                 <h5 className="mb-2 text-xl font-bold tracking-tight dark:text-gray-700 flex mt-2">
                   Get Insight
                 </h5>
