@@ -217,20 +217,29 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
   return (
     <div className="bg-grey-bg h-screen overflow-y-auto">
       <Navbar />
-      <div className="grid grid-cols-1 sm:grid-cols-4 p-2  overflow-y-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-4 p-2 py-4 overflow-y-auto">
         <div className="sm:col-span-3 py-4 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
-          <div className="my-6">
-            <h1 className="text-3xl font-semibold">Welcome To Urubytes</h1>
-          </div>
-          <div>
+          <div className="mt-4">
             <h2 className="text-2xl font-semibold">Insight Today</h2>
-            <div className="flex flex-col mt-2 justify-start py-4 px-6 border border-gradient rounded-xl hover:bg-gray-100 dark:border-gray-100 transition-transform transform hover:scale-105">
-              <p>
-                Your operational costs have risen by 12% from yesterday to
-                today, with the comparison spanning the last two weeks. This
-                increase highlights a notable uptick in expenses over this
-                timeframe, which may warrant further investigation into the
-                factors....
+            <div className="flex flex-col mt-2 justify-start py-4 px-6 border border-gradient rounded-xl hover:bg-gray-100 dark:border-gray-100 transition-transform transform">
+              <h2 className="font-bold text-[18px] mb-2">Insights</h2>
+              <ul className="text-[14px] list-disc px-4 ">
+                <li>
+                  The orders from Company XYZ has increased by 150% in the last
+                  2 weeks.
+                </li>
+                <li>Sales has dropped drastically in June.</li>
+                <li>
+                  Company XYZ has seen a remarkable surge in orders, showing a
+                  growth rate of 150% within the past two weeks.
+                </li>
+              </ul>
+              <h2 className="font-bold text-[18px] py-2">
+                Key Recommendations
+              </h2>
+              <p className="text-[14px]">
+                Increased by your orders by 150% in the next 2 weeks, which
+                should extend to a growth rate of 300% within the next month.
               </p>
               <div className="flex items-center gap-2">
                 <h3 className="text-[#3788E5] font-bold">Reference:</h3>
@@ -258,14 +267,14 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
                 </div>
 
                 <Link href="/addSource" className="flex border-gray-400">
-                  <button className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow bg-yellow-color hover:bg-yellow-600">
-                    <Image
+                  <button className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow  bg-[#E58A13]">
+                    {/* <Image
                       src="/insights.png"
                       alt="internal insight"
                       width={8}
                       height={8}
-                    />
-                    Explore Insight
+                    /> */}
+                    My Views
                   </button>
                 </Link>
               </div>

@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${ibmPlexSerif.variable}`}>
-        <div className="flex">
+        <div className="flex bg-[#F5F6FA]">
           <Sidebar />
           <div className="flex-1">{children}</div>
         </div>
