@@ -241,12 +241,7 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
                 Increased by your orders by 150% in the next 2 weeks, which
                 should extend to a growth rate of 300% within the next month.
               </p>
-              <div className="flex items-center gap-2">
-                <h3 className="text-[#3788E5] font-bold">Reference:</h3>
-                <span className="text-[13px]">
-                  Fuel consumption for picking up...
-                </span>
-              </div>
+
               <div className="flex items-center justify-between mt-6">
                 <div className="flex gap-2">
                   <p className="border border-gray-200 rounded-sm px-2 py-1">
@@ -268,12 +263,6 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
 
                 <Link href="/addSource" className="flex border-gray-400">
                   <button className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow  bg-[#E58A13]">
-                    {/* <Image
-                      src="/insights.png"
-                      alt="internal insight"
-                      width={8}
-                      height={8}
-                    /> */}
                     My Views
                   </button>
                 </Link>
