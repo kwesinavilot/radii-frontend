@@ -394,7 +394,6 @@
 // };
 
 // export default Sidebar;
-
 "use client";
 
 import { useState } from "react";
@@ -531,7 +530,6 @@ const Sidebar = () => {
         </ul>
       </nav>
       <div className="">
-        <hr className="border-[#fff] my-2" />
         <div onClick={toggleSidebar} className={collapseClasses}>
           {isOpen ? (
             <>
@@ -551,27 +549,30 @@ const Sidebar = () => {
         <nav className="flex-1">
           <ul>
             {bottomLinks.map((link, index) => (
-              <li
-                key={`bottom-link-${index}`}
-                onClick={() => handleLinkClick(index + links.length)}
-              >
-                <Link
-                  href={link.route}
-                  className={linkClasses(index + links.length)}
+              <div key={`bottom-link-wrapper-${index}`}>
+                <li
+                  key={`bottom-link-${index}`}
+                  onClick={() => handleLinkClick(index + links.length)}
                 >
-                  <div className="text-inherit text-2xl">{link.icon}</div>
-                  <span
-                    className={`ml-4 origin-left duration-200 ${
-                      !isOpen && "opacity-0 translate-x-28 overflow-hidden"
-                    }`}
+                  <Link
+                    href={link.route}
+                    className={linkClasses(index + links.length)}
                   >
-                    {link.text}
-                  </span>
-                </Link>
-                {isActive(link.route) && (
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-teal-800"></div>
-                )}
-              </li>
+                    <div className="text-inherit text-2xl">{link.icon}</div>
+                    <span
+                      className={`ml-4 origin-left duration-200 ${
+                        !isOpen && "opacity-0 translate-x-28 overflow-hidden"
+                      }`}
+                    >
+                      {link.text}
+                    </span>
+                  </Link>
+                  {isActive(link.route) && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-teal-800"></div>
+                  )}
+                </li>
+                {index === 0 && <hr className="border-[#fff] my-2" />}
+              </div>
             ))}
           </ul>
         </nav>
