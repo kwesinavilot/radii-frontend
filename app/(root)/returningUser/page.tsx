@@ -216,7 +216,7 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
 
   return (
     <div className="bg-grey-bg h-screen overflow-y-auto">
-      <Navbar />
+      <Navbar title="Dashboard" icon="" />
       <div className="grid grid-cols-1 sm:grid-cols-4 p-2 py-4 overflow-y-auto">
         <div className="sm:col-span-3 py-4 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
           <div className="mt-4">
