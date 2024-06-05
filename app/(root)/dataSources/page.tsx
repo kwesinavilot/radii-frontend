@@ -10,7 +10,7 @@
 // const DataSourceTable: React.FC = () => {
 //   return (
 //     <div className="bg-grey-bg h-screen overflow-y-auto">
-//       <Navbar title="Data Source" icon="" />
+// <Navbar title="Data Source" icon="" />
 //       <div className="bg-white h-screen px-6 py-8 m-4 overflow-hidden rounded shadow">
 //         <div className="flex justify-between items-center mb-4">
 //           <h2 className="text-xl font-semibold">All Sources</h2>
@@ -97,14 +97,13 @@
 
 "use client";
 
+import Navbar from "@/app/component/NavBar";
 import { setCurrentFolder } from "@/app/store/navigationSlice";
 import { RootState } from "@/app/store/store";
 import React from "react";
 import { FaRegTrashAlt, FaPlus } from "react-icons/fa";
 import { MdFolder } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-// import { RootState } from '../store/store';
-// import { setCurrentFolder } from '../store/navigationSlice';
 
 const DataSourceTable: React.FC = () => {
   const dispatch = useDispatch();
@@ -118,6 +117,7 @@ const DataSourceTable: React.FC = () => {
 
   return (
     <div className="bg-grey-bg h-screen overflow-y-auto">
+      <Navbar title="Data Source" icon="" />
       <div className="bg-white h-screen px-6 py-8 m-4 overflow-hidden rounded shadow">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">{currentFolder}</h2>
