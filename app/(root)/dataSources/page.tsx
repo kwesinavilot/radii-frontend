@@ -1,7 +1,10 @@
 "use client";
 import Navbar from "@/app/component/NavBar";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt, FaPlus } from "react-icons/fa";
+
 import { MdFolder } from "react-icons/md";
 
 const DataSourceTable: React.FC = () => {
@@ -11,9 +14,26 @@ const DataSourceTable: React.FC = () => {
       <div className="bg-white h-screen px-6 py-8 m-4 overflow-hidden rounded shadow">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">All Sources</h2>
-          <button className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-700">
-            + Add Source
-          </button>
+          <div className="flex justify-between gap-2">
+            <Link href="/internalInsight" className="">
+              <button className=" px-4 py-2 text-dark font-semi-bold rounded-lg hover:bg-gray-100 border flex items-center gap-2 shadow">
+                <Image
+                  src="/insights.png"
+                  alt="internal insight"
+                  width={18}
+                  height={18}
+                />{" "}
+                Explore Insight
+              </button>
+            </Link>
+
+            <Link href="/addSource">
+              <button className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600 flex items-center gap-2">
+                <FaPlus />
+                Add Source
+              </button>
+            </Link>
+          </div>
         </div>
         <p className="text-sm text-gray-500 mb-4">Radii Hosted Documents</p>
         <div className="overflow-x-auto">
