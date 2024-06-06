@@ -174,7 +174,7 @@ const DataSourceTable: React.FC = () => {
           <div>
             <button
               onClick={() => dispatch(setCurrentFolder("All Sources"))}
-              className="text-blue-500 mb-4"
+              className="text-[#038C7F] mb-4"
             >
               &larr; Back to All Sources
             </button>
@@ -184,7 +184,7 @@ const DataSourceTable: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="min-w-full table-auto">
                 <thead>
-                  <tr>
+                  <tr className="bg-[#1D1D1D] text-white">
                     <th className="px-4 py-2 text-left">Type</th>
                     <th className="px-4 py-2 text-left">Title</th>
                     <th className="px-4 py-2 text-left">Status</th>
