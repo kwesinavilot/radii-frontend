@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaSearch, FaArrowRight } from "react-icons/fa";
+import { FaSearch, FaArrowRight, FaArrowUp } from "react-icons/fa";
 import FolderDropdown from "./FolderDropdown";
 
 interface SearchBarProps {
@@ -46,11 +46,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
         />
         <button
           onClick={handleSearchSubmit}
-          className={`ml-2 h-10 w-10 rounded-full flex items-center justify-center ${
+          className={`ml-2 h-12 w-10 rounded-lg flex items-center justify-center ${
             isSubmitted ? "bg-green-500 text-white" : "bg-gray-500 text-white"
           }`}
         >
-          <FaArrowRight />
+          <FaArrowUp size={22} />
         </button>
       </div>
       <div className="flex justify-between items-center">
