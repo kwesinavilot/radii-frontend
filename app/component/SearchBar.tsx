@@ -1,40 +1,4 @@
-// import { FC, useState } from "react";
-// import Button from "./Button";
-// import { FaSearch } from "react-icons/fa";
-
-// interface SearchBarProps {
-//   value: string;
-//   onChange: (value: string) => void;
-//   onSubmit: () => void;
-// }
-
-// const SearchBar: FC<SearchBarProps> = ({ value, onChange, onSubmit }) => {
-//   const [isActive, setIsActive] = useState(false);
-
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     onChange(e.target.value);
-//     setIsActive(e.target.value.length > 0);
-//   };
-
-//   return (
-//     <div className="flex items-center space-x-2 border p-2 rounded-lg">
-//       <FaSearch />
-//       <input
-//         type="text"
-//         value={value}
-//         onChange={handleChange}
-//         className="flex-grow outline-none"
-//         placeholder="Ask a question"
-//       />
-//       <Button onClick={onSubmit} isActive={isActive} />
-//     </div>
-//   );
-// };
-
-// export default SearchBar;
-
-// components/SearchBar.tsx
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch, FaArrowRight } from "react-icons/fa";
 import FolderDropdown from "./FolderDropdown";
 
@@ -55,8 +19,18 @@ const SearchBar: React.FC<SearchBarProps> = ({
   onFolderChange,
   remainingPrompts,
 }) => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    setIsSubmitted(true);
+    onSubmit();
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 2000); // Reset the button color after 2 seconds
   };
 
   return (
@@ -71,8 +45,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
           placeholder="I want to see the trends on my order"
         />
         <button
-          onClick={onSubmit}
-          className="ml-2 h-10 w-10 bg-green-500 text-white rounded-full flex items-center justify-center"
+          onClick={handleSearchSubmit}
+          className={`ml-2 h-10 w-10 rounded-full flex items-center justify-center ${
+            isSubmitted ? "bg-green-500 text-white" : "bg-gray-500 text-white"
+          }`}
         >
           <FaArrowRight />
         </button>
