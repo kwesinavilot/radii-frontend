@@ -3,10 +3,18 @@
 import Navbar from "@/app/component/NavBar";
 import { setCurrentFolder } from "@/app/store/navigationSlice";
 import { RootState } from "@/app/store/store";
-import React from "react";
+import React, { useState } from "react";
 import { FaRegTrashAlt, FaPlus } from "react-icons/fa";
 import { MdFolder } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+
+interface DataItem {
+  type: string;
+  title: string;
+  status: string;
+  dateAdded: string;
+  lastUpdated: string;
+}
 
 const DataSourceTable: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,9 +22,49 @@ const DataSourceTable: React.FC = () => {
     (state: RootState) => state.navigation.currentFolder
   );
 
+  const [selectAll, setSelectAll] = useState(false);
+  const [selectedRows, setSelectedRows] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+
   const handleFolderClick = (folderName: string) => {
     dispatch(setCurrentFolder(folderName));
   };
+
+  const handleSelectAll = () => {
+    setSelectAll(!selectAll);
+    const newSelectedRows: { [key: string]: boolean } = {};
+    if (!selectAll) {
+      data.forEach((item) => {
+        newSelectedRows[item.title] = true;
+      });
+    }
+    setSelectedRows(newSelectedRows);
+  };
+
+  const handleCheckboxChange = (title: string) => {
+    setSelectedRows({
+      ...selectedRows,
+      [title]: !selectedRows[title],
+    });
+  };
+
+  const data: DataItem[] = [
+    {
+      type: "PDF",
+      title: "Customer Movement Q1",
+      status: "Complete",
+      dateAdded: "05/03/2024",
+      lastUpdated: "05/03/2024",
+    },
+    {
+      type: "PDF",
+      title: "Customer Movement Q2",
+      status: "Complete",
+      dateAdded: "05/03/2024",
+      lastUpdated: "05/03/2024",
+    },
+  ];
 
   return (
     <div className="bg-grey-bg h-screen overflow-y-auto">
@@ -88,6 +136,13 @@ const DataSourceTable: React.FC = () => {
               <table className="min-w-full table-auto">
                 <thead>
                   <tr className="bg-[#1D1D1D] text-white">
+                    <th className="px-4 py-2 text-left">
+                      <input
+                        type="checkbox"
+                        checked={selectAll}
+                        onChange={handleSelectAll}
+                      />
+                    </th>
                     <th className="px-4 py-2 text-left">Type</th>
                     <th className="px-4 py-2 text-left">Title</th>
                     <th className="px-4 py-2 text-left">Status</th>
@@ -97,30 +152,27 @@ const DataSourceTable: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t">
-                    <td className="px-4 py-2">PDF</td>
-                    <td className="px-4 py-2">Customer Movement Q1</td>
-                    <td className="px-4 py-2">Complete</td>
-                    <td className="px-4 py-2">05/03/2024</td>
-                    <td className="px-4 py-2">05/03/2024</td>
-                    <td className="px-4 py-2">
-                      <button className="text-red-600 hover:text-red-800">
-                        <FaRegTrashAlt />
-                      </button>
-                    </td>
-                  </tr>
-                  <tr className="border-t">
-                    <td className="px-4 py-2">PDF</td>
-                    <td className="px-4 py-2">Customer Movement Q2</td>
-                    <td className="px-4 py-2">Complete</td>
-                    <td className="px-4 py-2">05/03/2024</td>
-                    <td className="px-4 py-2">05/03/2024</td>
-                    <td className="px-4 py-2">
-                      <button className="text-red-600 hover:text-red-800">
-                        <FaRegTrashAlt />
-                      </button>
-                    </td>
-                  </tr>
+                  {data.map((item) => (
+                    <tr key={item.title} className="border-t">
+                      <td className="px-4 py-2">
+                        <input
+                          type="checkbox"
+                          checked={selectedRows[item.title] || false}
+                          onChange={() => handleCheckboxChange(item.title)}
+                        />
+                      </td>
+                      <td className="px-4 py-2">{item.type}</td>
+                      <td className="px-4 py-2">{item.title}</td>
+                      <td className="px-4 py-2">{item.status}</td>
+                      <td className="px-4 py-2">{item.dateAdded}</td>
+                      <td className="px-4 py-2">{item.lastUpdated}</td>
+                      <td className="px-4 py-2">
+                        <button className="text-red-600 hover:text-red-800">
+                          <FaRegTrashAlt />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
