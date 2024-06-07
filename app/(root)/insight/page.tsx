@@ -68,7 +68,7 @@
 //               remainingPrompts={remainingPrompts}
 //             />
 //             {isLoading && (
-//               <div className="absolute left-0 top-16 transform -translate-y-1/2 ml-2 flex items-center gap-2">
+//               <div className="absolute left-0 top-[45] transform -translate-y-1/2 ml-2 flex items-center gap-2">
 //                 <Image
 //                   src="/u-logo.png"
 //                   alt="Urubytes logo"
@@ -155,14 +155,16 @@ export default function Insight() {
               remainingPrompts={remainingPrompts}
             />
             {isLoading && (
-              <div className="absolute left-0 top-[45] transform -translate-y-1/2 ml-2 flex items-center gap-2">
-                <Image
-                  src="/u-logo.png"
-                  alt="Urubytes logo"
-                  width={16}
-                  height={16}
-                />
-                <Loader />
+              <div className="flex mt-4">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src="/u-logo.png"
+                    alt="Urubytes logo"
+                    width={22}
+                    height={22}
+                  />
+                  <Loader />
+                </div>
               </div>
             )}
           </div>
