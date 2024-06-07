@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { FaArrowUp } from "react-icons/fa";
-import { cn } from "shadcn";
+import { classNames } from "../utils/ClassName";
 
 interface ButtonProps {
   onClick: () => void;
@@ -11,8 +11,8 @@ const Button: FC<ButtonProps> = ({ onClick, isActive }) => {
   return (
     <button
       onClick={onClick}
-      className={cn(
-        "flex items-center justify-center px-4 py-2 rounded-full transition-all",
+      className={classNames(
+        "flex items-center justify-center px-4 py-2 rounded transition-all",
         isActive ? "bg-green-500 text-white" : "bg-gray-400 text-gray-600"
       )}
     >
