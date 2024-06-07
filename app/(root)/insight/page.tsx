@@ -68,14 +68,16 @@
 //               remainingPrompts={remainingPrompts}
 //             />
 //             {isLoading && (
-//               <div className="absolute left-0 top-[45] transform -translate-y-1/2 ml-2 flex items-center gap-2">
-//                 <Image
-//                   src="/u-logo.png"
-//                   alt="Urubytes logo"
-//                   width={16}
-//                   height={16}
-//                 />
-//                 <Loader />
+//               <div className="flex mt-4">
+//                 <div className="flex items-center gap-2">
+//                   <Image
+//                     src="/u-logo.png"
+//                     alt="Urubytes logo"
+//                     width={22}
+//                     height={22}
+//                   />
+//                   <Loader />
+//                 </div>
 //               </div>
 //             )}
 //           </div>
@@ -91,6 +93,7 @@ import Card from "@/app/component/Card";
 import Loader from "@/app/component/Loader";
 import Navbar from "@/app/component/NavBar";
 import SearchBar from "@/app/component/SearchBar";
+import SearchResult from "@/app/component/SearchResult";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -101,11 +104,20 @@ const questions = [
   "Give me some insight about Order Volume and Trends",
 ];
 
+const dummyResult = {
+  type: "PDF",
+  title: "Total Customer Movement in Quarter 1 of 2023",
+  status: "Complete",
+  dateAdded: "05/03/2024",
+  lastUpdated: "05/03/2024",
+};
+
 export default function Insight() {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFolder, setSelectedFolder] = useState("Movement DS");
   const [remainingPrompts, setRemainingPrompts] = useState(10);
+  const [showResult, setShowResult] = useState(false);
 
   const handleCardClick = (question: string) => {
     setInputValue(question);
@@ -117,6 +129,7 @@ export default function Insight() {
       setRemainingPrompts((prev) => (prev > 0 ? prev - 1 : 0));
       setTimeout(() => {
         setIsLoading(false);
+        setShowResult(true);
       }, 2000);
     }
   };
@@ -168,6 +181,7 @@ export default function Insight() {
               </div>
             )}
           </div>
+          {!isLoading && showResult && <SearchResult result={dummyResult} />}
         </main>
       </div>
     </div>
