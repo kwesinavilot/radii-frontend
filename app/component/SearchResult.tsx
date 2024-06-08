@@ -1,5 +1,5 @@
-import React from "react";
-import { Bar } from "react-chartjs-2";
+import React, { useState } from "react";
+import { Bar, Line } from "react-chartjs-2";
 import "chart.js/auto";
 
 interface Result {
@@ -15,6 +15,8 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
+  const [viewType, setViewType] = useState("Bar");
+
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
     datasets: [
@@ -34,14 +36,42 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
     },
   };
 
+  const renderChart = () => {
+    switch (viewType) {
+      case "Bar":
+        return <Bar data={data} options={options} />;
+      case "Line":
+        return <Line data={data} options={options} />;
+      case "Text":
+        return (
+          <div className="text-lg">
+            <p>January: 10</p>
+            <p>February: 20</p>
+            <p>March: 30</p>
+            <p>April: 40</p>
+            <p>May: 25</p>
+            <p>June: 35</p>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4">{result.title}</h2>
       <div className="flex justify-between items-center mb-4">
         <div>
-          <button className="px-4 py-2 bg-gray-200 rounded shadow mr-2">
-            Bar Charts
-          </button>
+          <select
+            className="px-4 py-2 bg-gray-200 rounded shadow mr-2"
+            value={viewType}
+            onChange={(e) => setViewType(e.target.value)}
+          >
+            <option value="Bar">Bar Charts</option>
+            <option value="Line">Line Charts</option>
+            <option value="Text">Text View</option>
+          </select>
         </div>
         <div className="text-right">
           <button className="px-4 py-2 bg-gray-200 rounded shadow mr-2">
@@ -55,11 +85,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
           </button>
         </div>
       </div>
-      <div className="w-4/6  border border-gray-200 rounded-lg shadow">
-        <div className="flex justify-between items-center mb-4 ">
-          <div style={{ width: "100%" }}>
-            <Bar data={data} options={options} />
-          </div>
+      <div className="w-4/6 border border-gray-200 rounded-lg shadow">
+        <div className="flex justify-between items-center mb-4">
+          <div style={{ width: "100%" }}>{renderChart()}</div>
         </div>
         <div className="p-4 bg-white border border-gray-200 rounded-lg shadow">
           <div className="flex justify-between items-center">
