@@ -90,13 +90,9 @@ import {
   IoCreateOutline,
   IoSearchOutline,
 } from "react-icons/io5";
-import {
-  FaChartPie,
-  FaChartBar,
-  FaChartLine,
-  FaRulerCombined,
-  FaUsers,
-} from "react-icons/fa";
+import { CiGrid42 } from "react-icons/ci";
+
+import { FaChartPie, FaChartBar, FaChartLine } from "react-icons/fa";
 
 interface ViewItem {
   title: string;
@@ -114,12 +110,22 @@ const views: ViewItem[] = [
   {
     title: "Views by Radii",
     updated: "4 days ago",
-    icon: <FaRulerCombined className="text-2xl mr-4" />,
+    icon: (
+      <CiGrid42
+        className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+        size={34}
+      />
+    ),
   },
   {
     title: "Customer Movement",
     updated: "1 day ago",
-    icon: <FaUsers className="text-2xl mr-4" />,
+    icon: (
+      <CiGrid42
+        className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+        size={34}
+      />
+    ),
   },
 ];
 
@@ -134,7 +140,7 @@ const MyViews: React.FC = () => {
       <h1 className="text-2xl font-bold mb-6">My Views</h1>
 
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 w-4/5">
           <h2 className="text-xl font-semibold">Views</h2>
           <button className="flex items-center px-4 py-2 bg-green-500 text-white rounded">
             <IoCreateOutline className="mr-2" />
@@ -145,12 +151,12 @@ const MyViews: React.FC = () => {
           {views.map((view, index) => (
             <div
               key={index}
-              className="border p-4 rounded shadow-sm flex justify-between items-center"
+              className="border p-4 rounded shadow-sm flex justify-between items-center py-6"
             >
               <div className="flex items-center">
                 {view.icon}
                 <div>
-                  <h3 className="font-bold">{view.title}</h3>
+                  <h3 className="font-bold mb-4">{view.title}</h3>
                   <p className="text-gray-500">Updated {view.updated}</p>
                 </div>
               </div>
@@ -184,32 +190,46 @@ const MyViews: React.FC = () => {
               placeholder="Search"
               className="border p-2 rounded-lg w-full pl-10"
             />
-            <IoSearchOutline className="absolute top-2 left-2 text-gray-500" />
+            <IoSearchOutline className="absolute top-[13px] left-3 text-gray-500" />
           </div>
         </div>
         <div className="grid grid-cols-1 w-3/5 sm:grid-cols-2 gap-4">
           {charts.map((chart, index) => (
             <div
               key={index}
-              className="border p-4 rounded shadow-sm flex justify-between items-center"
+              className="border p-4 rounded shadow-sm flex justify-between items-center py-6"
             >
               <div className="flex items-center">
                 {chart.type === "Doughnut" && (
-                  <FaChartPie className="text-2xl mr-4" />
+                  <FaChartPie
+                    className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+                    size={34}
+                  />
                 )}
                 {chart.type === "Pie" && (
-                  <FaChartPie className="text-2xl mr-4" />
+                  <FaChartPie
+                    className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+                    size={34}
+                  />
                 )}
                 {chart.type === "Bar" && (
-                  <FaChartBar className="text-2xl mr-4" />
+                  <FaChartBar
+                    className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+                    size={44}
+                  />
                 )}
                 {chart.type === "Line" && (
-                  <FaChartLine className="text-2xl mr-4" />
+                  <FaChartLine
+                    className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+                    size={44}
+                  />
                 )}
                 <div>
                   <h3 className="font-bold">{chart.title}</h3>
-                  <p className="text-gray-500">{chart.type}</p>
-                  <p className="text-gray-500">Updated {chart.updated}</p>
+                  <div className="flex justify-between gap-4 items-center mt-4">
+                    <p className="text-gray-500">{chart.type}</p>
+                    <p className="text-gray-500">Updated {chart.updated}</p>
+                  </div>
                 </div>
               </div>
               <IoEllipsisVerticalOutline className="text-gray-500 cursor-pointer" />
