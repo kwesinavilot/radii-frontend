@@ -23,7 +23,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
       {
         label: "Customer Movement",
         data: [10, 20, 30, 40, 25, 35],
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        backgroundColor: "#038C7F",
       },
     ],
   };
@@ -64,7 +64,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
       <div className="flex justify-between items-center mb-4">
         <div>
           <select
-            className="px-4 py-2 bg-gray-200 rounded shadow mr-2"
+            className="px-4 py-2 bg-gray-200 rounded shadow mr-8"
             value={viewType}
             onChange={(e) => setViewType(e.target.value)}
           >
