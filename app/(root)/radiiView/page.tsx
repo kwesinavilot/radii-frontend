@@ -6,6 +6,7 @@ import { FaDollarSign, FaClock } from "react-icons/fa";
 import { PiUsersFill } from "react-icons/pi";
 import { SlGraph } from "react-icons/sl";
 import { RiBox3Fill } from "react-icons/ri";
+import { BsGraphUp } from "react-icons/bs";
 
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
@@ -194,12 +195,24 @@ const ViewsByRadii: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="border p-4 rounded-lg shadow-sm flex items-center">
-          <FaDollarSign className="text-2xl mr-4 text-[#038C7F]" />
-          <div>
-            <h2 className="text-[13.67] font-semibold mb-4">Total Sales</h2>
-            <p className="text-2xl font-bold">$89,000</p>
-            <p className="text-red-500">4.3% Down from yesterday</p>
+        <div className="border p-4 rounded-lg shadow-sm px-6 ">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="text-[13.67] font-semibold mb-4 text-[#606060]">
+                Total Sales
+              </h2>
+              <p className="text-2xl font-bold">$89,000</p>
+            </div>
+            <div className="bg-[#4ad99243] rounded-xl p-2 text-center flex items-center">
+              {" "}
+              <BsGraphUp className="text-2xl text-[#4AD991]" />
+            </div>
+          </div>
+          <div className="flex gap-4 items-center">
+            <SlGraph className="text-[#00B69B]" />
+            <p className="text-[#606060]">
+              <span className="text-[#F93C65]">4.3% </span> Down from yesterday
+            </p>
           </div>
         </div>
 
