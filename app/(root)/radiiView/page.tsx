@@ -27,12 +27,14 @@
 
 // const ViewsByRadii: React.FC = () => {
 //   const doughnutData = {
-//     // labels: ["Completed", "Pending"],
 //     datasets: [
 //       {
 //         data: [60, 40],
-//         backgroundColor: ["#038C7F", "#FFCD56"],
-//         hoverBackgroundColor: ["#038C7F", "#FFCD56"],
+//         backgroundColor: ["#FF8C00", "#e9ecef"],
+//         hoverBackgroundColor: ["#FF8C00", "#e9ecef"],
+//         borderWidth: 0,
+//         cutout: "80%",
+//         rotation: 360,
 //       },
 //     ],
 //   };
@@ -41,19 +43,25 @@
 //     labels: ["M", "T", "W", "T", "F", "S", "S"],
 //     datasets: [
 //       {
-//         label: "News",
-//         data: [2, 2, 2, 2, 2, 2, 2],
-//         backgroundColor: "#038C7F",
+//         label: "Social Media",
+//         data: [2, 3, 2, 2, 2, 2, 2],
+//         backgroundColor: "#FFCD56",
+//         borderRadius: 20,
+//         barThickness: 12,
 //       },
 //       {
 //         label: "Games",
-//         data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
-//         backgroundColor: "#FFCD56",
+//         data: [3.5, 5, 3.5, 4, 3.5, 4, 3.5],
+//         backgroundColor: "#FF6384",
+//         borderRadius: 20,
+//         barThickness: 12,
 //       },
 //       {
-//         label: "Social Media",
-//         data: [5, 5, 5, 5, 5, 5, 5],
-//         backgroundColor: "#FF6384",
+//         label: "News",
+//         data: [5, 2, 5, 5, 5, 2, 5],
+//         backgroundColor: "#038C7F",
+//         borderRadius: 20,
+//         barThickness: 12,
 //       },
 //     ],
 //   };
@@ -61,7 +69,12 @@
 //   const barOptions = {
 //     plugins: {
 //       legend: {
-//         display: true,
+//         display: false,
+//         labels: {
+//           boxWidth: 10,
+//           boxHeight: 10,
+//           borderRadius: 5,
+//         },
 //       },
 //     },
 //     scales: {
@@ -70,6 +83,11 @@
 //       },
 //       y: {
 //         stacked: true,
+//         ticks: {
+//           callback: function (tickValue: string | number) {
+//             return `${tickValue} hrs`;
+//           },
+//         },
 //       },
 //     },
 //   };
@@ -111,10 +129,31 @@
 //           </div>
 //         </div>
 //         <div className="border p-4 rounded-lg shadow-sm row-span-2">
-//           <h2 className="text-lg font-semibold mb-4">Daily Average</h2>
-//           <p className="text-2xl font-bold">2h 20m</p>
-//           <p className="text-red-500">+30m this week</p>
+//           <div className="flex justify-between items-center p-2">
+//             <div>
+//               <h2 className="text-lg font-semibold mb-2">Daily Average</h2>
+//               <p className="text-2xl font-bold">2h 20m</p>
+//             </div>
+//             <p className="text-red-500">+30m this week</p>
+//           </div>
 //           <Bar data={barData} options={barOptions} />
+//           <div className="flex mt-4 space-x-4 flex-wrap items-center mx-auto justify-center">
+//             <div className="flex items-center">
+//               <div className="w-4 h-4 rounded-full bg-[#038C7F] mr-2"></div>
+//               <span className="mr-2">News</span>
+//               <span> 2hrs</span>
+//             </div>
+//             <div className="flex items-center">
+//               <div className="w-4 h-4 rounded-full bg-[#FF6384] mr-2"></div>
+//               <span className="mr-2">Games</span>
+//               <span> 30mins</span>
+//             </div>
+//             <div className="flex items-center mt-2">
+//               <div className="w-4 h-4 rounded-full bg-[#FFCD56] mr-2"></div>
+//               <span className="mr-2">Social Media</span>
+//               <span> 5hrs</span>
+//             </div>
+//           </div>
 //         </div>
 //         <div className="border p-4 rounded-lg shadow-sm flex items-center">
 //           <FaDollarSign className="text-2xl mr-4 text-[#038C7F]" />
@@ -141,12 +180,12 @@
 //               </h2>
 //               <p className="text-2xl font-bold">2,040</p>
 //             </div>
-//             <div className="w-32 h-32 ">
+//             <div className="w-32 h-32">
 //               <Doughnut data={doughnutData} />
 //             </div>
 //           </div>
 
-//           <p className="text-green-500 ">1.8% Up from yesterday</p>
+//           <p className="text-green-500">1.8% Up from yesterday</p>
 //         </div>
 //         <div className="border p-4 rounded-lg shadow-sm flex items-center">
 //           <FaClock className="text-2xl mr-4 text-[#038C7F]" />
@@ -194,10 +233,22 @@ const ViewsByRadii: React.FC = () => {
   const doughnutData = {
     datasets: [
       {
-        data: [60, 40],
-        backgroundColor: ["#FF8C00", "#FFCD56"],
-        hoverBackgroundColor: ["#FF8C00", "#FFCD56"],
+        data: [70, 30],
+        backgroundColor: ["#FF8C00", "transparent"],
+        hoverBackgroundColor: ["#FF8C00", "transparent"],
         borderWidth: 0,
+        cutout: "70%",
+
+        rotation: 360,
+      },
+      {
+        data: [30],
+        backgroundColor: ["#e9ecef"],
+        hoverBackgroundColor: ["#e9ecef"],
+        borderWidth: 0,
+        cutout: "80%",
+
+        rotation: 360,
       },
     ],
   };
@@ -219,10 +270,8 @@ const ViewsByRadii: React.FC = () => {
         borderRadius: 20,
         barThickness: 12,
       },
-
       {
         label: "News",
-
         data: [5, 2, 5, 5, 5, 2, 5],
         backgroundColor: "#038C7F",
         borderRadius: 20,
