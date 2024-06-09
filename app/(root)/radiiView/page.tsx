@@ -214,7 +214,7 @@ const ViewsByRadii: React.FC = () => {
       },
       {
         label: "Games",
-        data: [3.5, 5, 3.5, 6, 3.5, 4, 3.5],
+        data: [3.5, 5, 3.5, 4, 3.5, 4, 3.5],
         backgroundColor: "#FF6384",
         borderRadius: 20,
         barThickness: 12,
@@ -223,7 +223,7 @@ const ViewsByRadii: React.FC = () => {
       {
         label: "News",
 
-        data: [5, 2, 5, 3, 5, 2, 5],
+        data: [5, 2, 5, 5, 5, 2, 5],
         backgroundColor: "#038C7F",
         borderRadius: 20,
         barThickness: 12,
@@ -305,15 +305,18 @@ const ViewsByRadii: React.FC = () => {
           <div className="flex mt-4 space-x-4 flex-wrap items-center mx-auto justify-center">
             <div className="flex items-center">
               <div className="w-4 h-4 rounded-full bg-[#038C7F] mr-2"></div>
-              <span>News 2hrs</span>
+              <span className="mr-2">News</span>
+              <span> 2hrs</span>
             </div>
             <div className="flex items-center">
               <div className="w-4 h-4 rounded-full bg-[#FF6384] mr-2"></div>
-              <span>Games 30mins</span>
+              <span className="mr-2">Games</span>
+              <span> 30mins</span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center mt-2">
               <div className="w-4 h-4 rounded-full bg-[#FFCD56] mr-2"></div>
-              <span>Social Media 5hrs</span>
+              <span className="mr-2">Social Media</span>
+              <span> 5hrs</span>
             </div>
           </div>
         </div>
