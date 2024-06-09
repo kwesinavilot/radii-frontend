@@ -2,9 +2,10 @@
 
 import React from "react";
 import { IoRefreshOutline, IoEllipsisVerticalOutline } from "react-icons/io5";
-import { FaUser, FaBoxOpen, FaDollarSign, FaClock } from "react-icons/fa";
+import { FaDollarSign, FaClock } from "react-icons/fa";
 import { PiUsersFill } from "react-icons/pi";
 import { SlGraph } from "react-icons/sl";
+import { RiBox3Fill } from "react-icons/ri";
 
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
@@ -145,14 +146,27 @@ const ViewsByRadii: React.FC = () => {
             </p>
           </div>
         </div>
-        <div className="border p-4 rounded-lg shadow-sm flex items-center">
-          <FaBoxOpen className="text-2xl mr-4 text-[#038C7F]" />
-          <div>
-            <h2 className="text-[13.67] font-semibold mb-4">Total Order</h2>
-            <p className="text-2xl font-bold">10,293</p>
-            <p className="text-[#00B69B]">1.3% Up from past week</p>
+        <div className="border p-4 rounded-lg shadow-sm px-6 ">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="text-[13.67] font-semibold mb-4 text-[#606060]">
+                Total Order
+              </h2>
+              <p className="text-2xl font-bold">10,293</p>
+            </div>
+            <div className="bg-[#fec43d5f] rounded-xl p-2 text-center flex items-center">
+              {" "}
+              <RiBox3Fill className="text-2xl text-[#FEC53D]" />
+            </div>
+          </div>
+          <div className="flex gap-4 items-center">
+            <SlGraph className="text-[#00B69B]" />
+            <p className="text-[#606060]">
+              <span className="text-[#00B69B]">1.3% </span> Up from past week
+            </p>
           </div>
         </div>
+
         <div className="border p-4 rounded-lg shadow-sm row-span-2">
           <div className="flex justify-between items-center p-2">
             <div>
