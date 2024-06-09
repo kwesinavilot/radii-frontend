@@ -7,6 +7,7 @@ import { PiUsersFill } from "react-icons/pi";
 import { SlGraph } from "react-icons/sl";
 import { RiBox3Fill } from "react-icons/ri";
 import { BsGraphUp } from "react-icons/bs";
+import { FaClockRotateLeft } from "react-icons/fa6";
 
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
@@ -215,13 +216,24 @@ const ViewsByRadii: React.FC = () => {
             </p>
           </div>
         </div>
-
-        <div className="border p-4 rounded-lg shadow-sm flex items-center">
-          <FaClock className="text-2xl mr-4 text-[#038C7F]" />
-          <div>
-            <h2 className="text-[13.67] font-semibold mb-4">Total Pending</h2>
-            <p className="text-2xl font-bold">2,040</p>
-            <p className="text-[#00B69B]">1.8% Up from yesterday</p>
+        <div className="border p-4 rounded-lg shadow-sm px-6 ">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="text-[13.67] font-semibold mb-4 text-[#606060]">
+                Total Pending
+              </h2>
+              <p className="text-2xl font-bold">2,040</p>
+            </div>
+            <div className="bg-[#ff8f6676] rounded-xl p-2 text-center flex items-center">
+              {" "}
+              <FaClockRotateLeft className="text-2xl text-[#FF9066]" />
+            </div>
+          </div>
+          <div className="flex gap-4 items-center">
+            <SlGraph className="text-[#00B69B]" />
+            <p className="text-[#606060]">
+              <span className="text-[#00B69B]">1.8% </span> Up from yesterday
+            </p>
           </div>
         </div>
         <div className="border p-8 rounded-lg shadow-sm col-span-2">
@@ -239,12 +251,24 @@ const ViewsByRadii: React.FC = () => {
 
           <p className="text-[#00B69B]">1.8% Up from yesterday</p>
         </div>
-        <div className="border p-4 rounded-lg shadow-sm flex items-center">
-          <FaClock className="text-2xl mr-4 text-[#038C7F]" />
-          <div>
-            <h2 className="text-[13.67] font-semibold mb-4">Total Pending</h2>
-            <p className="text-2xl font-bold">2,040</p>
-            <p className="text-[#00B69B]">1.8% Up from yesterday</p>
+        <div className="border p-4 rounded-lg shadow-sm px-6 ">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="text-[13.67] font-semibold mb-4 text-[#606060]">
+                Total Pending
+              </h2>
+              <p className="text-2xl font-bold">2,040</p>
+            </div>
+            <div className="bg-[#ff8f6676] rounded-xl p-2 text-center flex items-center">
+              {" "}
+              <FaClockRotateLeft className="text-2xl text-[#FF9066]" />
+            </div>
+          </div>
+          <div className="flex gap-4 items-center">
+            <SlGraph className="text-[#00B69B]" />
+            <p className="text-[#606060]">
+              <span className="text-[#00B69B]">1.8% </span> Up from yesterday
+            </p>
           </div>
         </div>
       </div>
