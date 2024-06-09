@@ -294,9 +294,13 @@ const ViewsByRadii: React.FC = () => {
           </div>
         </div>
         <div className="border p-4 rounded-lg shadow-sm row-span-2">
-          <h2 className="text-lg font-semibold mb-4">Daily Average</h2>
-          <p className="text-2xl font-bold">2h 20m</p>
-          <p className="text-red-500">+30m this week</p>
+          <div className="flex justify-between items-center p-2">
+            <div>
+              <h2 className="text-lg font-semibold mb-2">Daily Average</h2>
+              <p className="text-2xl font-bold">2h 20m</p>
+            </div>
+            <p className="text-red-500">+30m this week</p>
+          </div>
           <Bar data={barData} options={barOptions} />
           <div className="flex mt-4 space-x-4 flex-wrap items-center mx-auto justify-center">
             <div className="flex items-center">
