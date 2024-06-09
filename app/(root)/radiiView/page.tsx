@@ -2,13 +2,13 @@
 
 import React from "react";
 import { IoRefreshOutline, IoEllipsisVerticalOutline } from "react-icons/io5";
-import { FaDollarSign, FaClock } from "react-icons/fa";
 import { PiUsersFill } from "react-icons/pi";
 import { SlGraph } from "react-icons/sl";
 import { RiBox3Fill } from "react-icons/ri";
 import { BsGraphUp } from "react-icons/bs";
 import { FaClockRotateLeft } from "react-icons/fa6";
-
+import { TbRefresh } from "react-icons/tb";
+import { HiDotsVertical } from "react-icons/hi";
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
   Chart,
@@ -110,20 +110,20 @@ const ViewsByRadii: React.FC = () => {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-6 px-8">
+      <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
+      <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-sm px-8 mx-8">
         <h1 className="text-2xl font-bold">Views by Radii</h1>
-        <div className="flex items-center space-x-4">
-          <button className="flex items-center px-4 py-2 bg-green-500 text-white rounded">
-            <IoRefreshOutline className="mr-2" />
-            Refresh
+        <div className="flex items-center space-x-4 ">
+          <button className="flex items-center p-1 text-black border border-[#000] rounded">
+            <TbRefresh className="size-8" />
           </button>
-          <button className="flex items-center px-4 py-2 bg-green-500 text-white rounded">
+          <button className="flex items-center px-4 py-2 border border-[#000] text-[#000] rounded">
             Edit
           </button>
-          <button className="flex items-center px-4 py-2 bg-green-500 text-white rounded">
+          <button className="flex items-center px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
             View Insights
           </button>
-          <IoEllipsisVerticalOutline className="text-gray-500 cursor-pointer" />
+          <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
         </div>
       </div>
 
