@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { IoRefreshOutline, IoEllipsisVerticalOutline } from "react-icons/io5";
 import { PiUsersFill } from "react-icons/pi";
 import { SlGraph } from "react-icons/sl";
 import { RiBox3Fill } from "react-icons/ri";

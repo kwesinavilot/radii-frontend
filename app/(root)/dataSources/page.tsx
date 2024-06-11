@@ -3,6 +3,7 @@
 import Navbar from "@/app/component/NavBar";
 import { setCurrentFolder } from "@/app/store/navigationSlice";
 import { RootState } from "@/app/store/store";
+import Link from "next/link";
 import React, { useState } from "react";
 import { FaRegTrashAlt, FaPlus } from "react-icons/fa";
 import { MdFolder } from "react-icons/md";
@@ -74,11 +75,11 @@ const DataSourceTable: React.FC = () => {
           <h2 className="text-xl font-semibold">{currentFolder}</h2>
           <div className="flex justify-between gap-2">
             <button className="px-4 py-2 text-dark font-semi-bold rounded-lg hover:bg-gray-100 border flex items-center gap-2 shadow">
-              Explore Insight
+              <Link href="/insight">Explore Insight</Link>
             </button>
             <button className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600 flex items-center gap-2">
               <FaPlus />
-              Add Source
+              <Link href="/connectDataSources"> Add Source</Link>
             </button>
           </div>
         </div>
