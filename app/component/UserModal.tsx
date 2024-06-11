@@ -25,7 +25,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose }) => {
 
         <div>
           <Link
-            href=""
+            href="/team"
             className="flex items-center gap-3 text-[18px] cursor-pointer"
           >
             <RiTeamFill />
