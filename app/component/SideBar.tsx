@@ -257,7 +257,7 @@ const Sidebar = () => {
   ];
 
   const bottomLinks = [
-    { icon: <MdHelp />, text: "Get Help", route: "/help" },
+    { icon: <MdHelp />, text: "Get Help", route: "/getHelp" },
     {
       icon: (
         <Image
