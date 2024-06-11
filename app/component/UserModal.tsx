@@ -1,76 +1,63 @@
-// import React from "react";
-
-// interface UserModalProps {
-//   onClose: () => void;
-// }
-
-// const UserModal: React.FC<UserModalProps> = ({ onClose }) => {
-//   return (
-//     <div className="fixed inset-0 flex items-center justify-center z-50">
-//       <div className="bg-white rounded-lg shadow-lg p-4 w-64">
-//         <div className="flex items-center justify-between">
-//           <span className="text-lg font-bold">Account</span>
-//           <button
-//             onClick={onClose}
-//             className="text-gray-500 hover:text-gray-700"
-//           >
-//             &times;
-//           </button>
-//         </div>
-//         <ul className="mt-4">
-//           <li className="flex items-center py-2 cursor-pointer">
-//             <div className="text-xl mr-2">⚙️</div> Account Setting
-//           </li>
-//           <li className="flex items-center py-2 cursor-pointer">
-//             <div className="text-xl mr-2">👥</div> Team
-//           </li>
-//           <li className="flex items-center py-2 cursor-pointer">
-//             <div className="text-xl mr-2">🚪</div> Logout
-//           </li>
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default UserModal;
-
 import React from "react";
-import { createPortal } from "react-dom";
+import { RiTeamFill } from "react-icons/ri";
+import { IoIosLogOut } from "react-icons/io";
 
-interface ModalProps {
+import { CiSettings } from "react-icons/ci";
+import { FaFileInvoiceDollar } from "react-icons/fa";
+import Link from "next/link";
+
+interface UserModalProps {
   onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
-  return createPortal(
-    <div
-      className="fixed z-50 w-48 bg-white rounded shadow-lg"
-      style={{ bottom: "70px", left: "20px" }}
-    >
-      <div className="px-4 py-2">
-        <h2 className="text-lg font-bold">Account</h2>
-        <ul>
-          <li className="py-2 flex items-center">
-            <span className="mr-2">⚙️</span> Account Setting
-          </li>
-          <li className="py-2 flex items-center">
-            <span className="mr-2">👥</span> Team
-          </li>
-          <li className="py-2 flex items-center">
-            <span className="mr-2">↩️</span> Logout
-          </li>
-        </ul>
+const UserModal: React.FC<UserModalProps> = ({ onClose }) => {
+  return (
+    <div className="fixed bottom-4 left-32  w-full p-4 z-50 ml-28">
+      <div className="bg-white p-8 relative  max-w-lg w-[350px] border-gray-200 rounded-lg shadow  dark:bg-white dark:border-gray-300">
+        <button
+          className="absolute top-9 right-8 hover:translate-x-2 transform transition duration-200"
+          onClick={onClose}
+        >
+          Close
+        </button>
+
+        <h3 className="text-xl font-semibold mb-4">Organizations</h3>
+
+        <div>
+          <Link
+            href=""
+            className="flex items-center gap-3 text-[18px] cursor-pointer"
+          >
+            <RiTeamFill />
+            <span> Team</span>
+          </Link>
+
+          <Link
+            href=""
+            className="flex items-center gap-4 text-[18px] cursor-pointer"
+          >
+            <FaFileInvoiceDollar />
+            <span>Billing</span>
+          </Link>
+          <hr className="border-t border-gray-400 my-4" />
+          <Link
+            href="/accountSetting"
+            className="flex items-center gap-3 text-[18px] cursor-pointer mb-2"
+          >
+            <CiSettings />
+            <span> Account Setting</span>
+          </Link>
+          <Link
+            href="/logOut"
+            className=" text-red-500 flex items-center gap-3 text-[18px] cursor-pointer mb-2"
+          >
+            <IoIosLogOut />
+            <span>Logout</span>
+          </Link>
+        </div>
       </div>
-      <button
-        className="absolute top-0 right-0 mt-2 mr-2 text-gray-600 hover:text-gray-900"
-        onClick={onClose}
-      >
-        ×
-      </button>
-    </div>,
-    document.body
+    </div>
   );
 };
 
-export default Modal;
+export default UserModal;
