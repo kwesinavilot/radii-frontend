@@ -33,7 +33,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose }) => {
           </Link>
 
           <Link
-            href=""
+            href="/billing"
             className="flex items-center gap-4 text-[18px] cursor-pointer"
           >
             <FaFileInvoiceDollar />

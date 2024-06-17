@@ -3,10 +3,9 @@ import React from "react";
 
 const Billing = () => {
   return (
-    <div className="bg-grey-bg h-screen w-screen overflow-hidden">
+    <div className="bg-grey-bg h-screen overflow-hidden">
       <Navbar title={"Billings"} />
 
-      {/* <div className="block  col-span-1 py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100"> */}
       <section className=" px-16 m-3 leading-7 text-gray-900 bg-white sm:py-12 md:py-6 border border-gray-200 rounded-lg shadow dark:border-gray-100">
         <div className="box-border mx-auto border-solid sm:px-6 md:px-6 lg:px-0 max-w-7xl ">
           <div className="flex flex-col  leading-7  text-gray-900 border-0 border-gray-200">
@@ -23,7 +22,7 @@ const Billing = () => {
             id="pricing"
             className="grid grid-cols-1  text-gray-900 border-0 border-gray-200 sm:mt-6 sm:gap-2  md:gap-4 lg:grid-cols-3"
           >
-            <div className="flex flex-col justify-between items-center max-w-md mx-auto bg-primary-blue text-white my-0 border-solid rounded-lg border-0 shadow sm:my-0 sm:p-6 md:py-4 md:px-12">
+            <div className="flex flex-col justify-between items-center max-w-md mx-auto  bg-[#038C7F] text-white my-0 border-solid rounded-lg border-0 shadow sm:my-0 sm:p-6 md:py-4 md:px-12">
               <h3 className="m-0 text-2xl font-semibold leading-tight tracking-tight text-white border-0 border-gray-200 sm:text-3xl md:text-2xl">
                 Basic
               </h3>
@@ -49,7 +48,7 @@ const Billing = () => {
                 />
                 <a
                   href="#"
-                  className="inline-flex justify-center w-full px-4 py-3 text-sm leading-none text-center text-primary-blue bg-white border border-blue-600 rounded-full cursor-pointer hover:bg-blue-700 hover:border-blue-700 hover:text-white focus:outline-none focus:bg-blue-700 focus:border-blue-700 focus:text-white sm:text-base md:text-lg"
+                  className="inline-flex justify-center w-full px-4 py-3 text-sm leading-none text-center text-[#038C7F] bg-white border border-[#038c7e9f] rounded-full cursor-pointer hover:bg-[#038c7e87] hover:border-[#038C7F] hover:text-white focus:outline-none focus:bg-[#038C7F] focus:border-[#038C7F] focus:text-[#038C7F] sm:text-base md:text-lg"
                 >
                   Your Current Plan
                 </a>
@@ -91,7 +90,7 @@ const Billing = () => {
                 />
                 <a
                   href="#"
-                  className="inline-flex justify-center w-full px-4 py-3 font-sans text-sm leading-none text-center text-blue-600 no-underline bg-transparent border border-blue-600 rounded-full cursor-pointer hover:bg-blue-700 hover:border-blue-700 hover:text-white focus-within:bg-blue-700 focus-within:border-blue-700 focus-within:text-white sm:text-base md:text-lg"
+                  className="inline-flex justify-center w-full px-4 py-3 text-sm leading-none text-center text-primary-blue bg-white border border-[#038c7e9f] rounded-full cursor-pointer hover:bg-[#038c7e87] hover:border-[#038C7F] hover:text-white focus:outline-none focus:bg-[#038C7F] focus:border-[#038C7F] focus:text-white sm:text-base md:text-lg"
                 >
                   Upgrade to Standard
                 </a>
@@ -129,7 +128,7 @@ const Billing = () => {
 
               <a
                 href="#"
-                className="inline-flex justify-center w-full px-4 py-3 font-sans text-sm leading-none text-center bg-transparent text-primary-blue no-underline  border border-blue-600 rounded-full cursor-pointer hover:bg-blue-700 hover:border-blue-700 hover:text-white focus-within:bg-blue-700 focus-within:border-blue-700 focus-within:text-white sm:text-base md:text-lg"
+                className="inline-flex justify-center w-full px-4 py-3 text-sm leading-none text-center text-primary-blue bg-white border border-[#038c7e9f] rounded-full cursor-pointer hover:bg-[#038c7e87] hover:border-[#038C7F] hover:text-white focus:outline-none focus:bg-[#038C7F] focus:border-[#038C7F] focus:text-white sm:text-base md:text-lg"
               >
                 Upgrade to Premium
               </a>

@@ -1,92 +1,155 @@
+// "use client";
+// import React, { useState, FormEvent } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { useRouter } from "next/router";
+// import axios from "axios";
+// import { ToastContainer, toast } from "react-toastify";
+// import { FaLinkedin, FaUser, FaEnvelope } from "react-icons/fa";
+// import { FcGoogle } from "react-icons/fc";
+// import { IoIosEyeOff, IoIosEye } from "react-icons/io";
+// import style from "./Register.module.css";
+
+// const Register: React.FC = () => {
+//   // const dispatch = useDispatch();
+//   // const router = useRouter();
+
+//   // const [formData, setFormData] = useState({
+//   //   name: "",
+//   //   email: "",
+//   //   password: "",
+//   //   retypePassword: "",
+//   //   agreeTerms: false,
+//   // });
+//   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+//   const togglePasswordVisibility = () => {
+//     setIsPasswordVisible(!isPasswordVisible);
+//   };
+
+//   // const handleChange = (e) => {
+//   //   const { name, value, type, checked } = e.target;
+//   //   setFormData((prevData) => ({
+//   //     ...prevData,
+//   //     [name]: type === "checkbox" ? checked : value,
+//   //   }));
+//   // };
+
+//   // const handleSubmit = async (e) => {
+//   //   e.preventDefault();
+
+//   //   if (formData.password !== formData.retypePassword) {
+//   //     toast.error("Passwords do not match. Please try again");
+//   //     return;
+//   //   }
+
+//   //   dispatch(
+//   //     updateRegistrationData({
+//   //       name: formData.name,
+//   //       email: formData.email,
+//   //       password: formData.password,
+//   //       agreeTerms: formData.agreeTerms,
+//   //     })
+//   //   );
+
+//   //   router.push("/survey");
+//   // };
+
+//   // const handleGoogleSignUp = useGoogleLogin({
+//   //   onSuccess: async (response) => {
+//   //     await axios
+//   //       .get(
+//   //         `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${response.access_token}`,
+//   //         {
+//   //           headers: {
+//   //             Authorization: `Bearer ${response.access_token}`,
+//   //           },
+//   //         }
+//   //       )
+//   //       .then((response) => {
+//   //         const profileData = response.data;
+//   //         dispatch(
+//   //           updateRegistrationData({
+//   //             name: profileData.name,
+//   //             email: profileData.email,
+//   //             password: `${profileData.given_name} ${profileData.sub}`,
+//   //             agreeTerms: true,
+//   //           })
+//   //         );
+
+//   //         router.push("/survey");
+//   //       })
+//   //       .catch((error) => {
+//   //         console.log("Error fetching Google profile:", error);
+//   //       });
+//   //   },
+//   //   onError: (error) => {
+//   //     console.log("Google error:", error);
+//   //   },
+//   // });
+
 "use client";
-import React, { useState, FormEvent } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
+
+import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
-import { FaLinkedin, FaUser, FaEnvelope } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { IoIosEyeOff, IoIosEye } from "react-icons/io";
+import { FaUser, FaEnvelope, FaLinkedin } from "react-icons/fa";
+import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
 import style from "./Register.module.css";
 
-const Register: React.FC = () => {
-  // const dispatch = useDispatch();
-  // const router = useRouter();
-
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   retypePassword: "",
-  //   agreeTerms: false,
-  // });
+const Register = () => {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    retypePassword: "",
+    agreeTerms: false,
+  });
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  // const handleChange = (e) => {
-  //   const { name, value, type, checked } = e.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: type === "checkbox" ? checked : value,
-  //   }));
-  // };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  //   if (formData.password !== formData.retypePassword) {
-  //     toast.error("Passwords do not match. Please try again");
-  //     return;
-  //   }
+    if (formData.password !== formData.retypePassword) {
+      toast.error("Passwords do not match. Please try again");
+      return;
+    }
 
-  //   dispatch(
-  //     updateRegistrationData({
-  //       name: formData.name,
-  //       email: formData.email,
-  //       password: formData.password,
-  //       agreeTerms: formData.agreeTerms,
-  //     })
-  //   );
+    try {
+      const response = await axios.post(
+        "https://backend.getradii.com/auth/account-exists/",
+        {
+          email: formData.email,
+        }
+      );
 
-  //   router.push("/survey");
-  // };
-
-  // const handleGoogleSignUp = useGoogleLogin({
-  //   onSuccess: async (response) => {
-  //     await axios
-  //       .get(
-  //         `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${response.access_token}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${response.access_token}`,
-  //           },
-  //         }
-  //       )
-  //       .then((response) => {
-  //         const profileData = response.data;
-  //         dispatch(
-  //           updateRegistrationData({
-  //             name: profileData.name,
-  //             email: profileData.email,
-  //             password: `${profileData.given_name} ${profileData.sub}`,
-  //             agreeTerms: true,
-  //           })
-  //         );
-
-  //         router.push("/survey");
-  //       })
-  //       .catch((error) => {
-  //         console.log("Error fetching Google profile:", error);
-  //       });
-  //   },
-  //   onError: (error) => {
-  //     console.log("Google error:", error);
-  //   },
-  // });
+      if (response.data.exists) {
+        toast.error("User already exists");
+      } else {
+        localStorage.setItem("registrationData", JSON.stringify(formData));
+        router.push("/survey");
+      }
+    } catch (error) {
+      console.error("Error checking account existence:", error);
+      toast.error("An error occurred. Please try again.");
+    }
+  };
 
   return (
     <>
@@ -120,10 +183,7 @@ const Register: React.FC = () => {
                 <h1 className="mb-5 text-xl font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-[#038C7F]">
                   Register below
                 </h1>
-                <form
-                  className="space-y-8 md:space-y-4"
-                  // onSubmit={handleSubmit}
-                >
+                <form onSubmit={handleSubmit}>
                   <div>
                     <label
                       htmlFor="name"
@@ -134,13 +194,13 @@ const Register: React.FC = () => {
                     <div className="relative">
                       <input
                         type="text"
-                        name="name"
                         id="name"
-                        // value={formData.name}
-                        // onChange={handleChange}
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
                         className="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-[#038C7F] dark:focus:border-[#038C7F]"
                         placeholder="John Doe"
-                        required
                       />
                       <FaUser className="absolute top-3 right-3 text-gray-400" />
                     </div>
@@ -155,13 +215,13 @@ const Register: React.FC = () => {
                     <div className="relative">
                       <input
                         type="email"
-                        name="email"
                         id="email"
-                        // value={formData.email}
-                        // onChange={handleChange}
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                         className="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-[#038C7F] dark:focus:border-[#038C7F]"
                         placeholder="johndoe@gmail.com"
-                        required
                       />
                       <FaEnvelope className="absolute top-3 right-3 text-gray-400" />
                     </div>
@@ -176,13 +236,13 @@ const Register: React.FC = () => {
                     <div className="relative">
                       <input
                         type={isPasswordVisible ? "text" : "password"}
-                        name="password"
                         id="password"
-                        // value={formData.password}
-                        // onChange={handleChange}
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
                         className="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-[#038C7F] dark:focus:border-[#038C7F]"
                         placeholder="*********"
-                        required
                       />
                       <button
                         type="button"
@@ -202,14 +262,14 @@ const Register: React.FC = () => {
                     </label>
                     <div className="relative">
                       <input
-                        // type={isPasswordVisible ? "text" : "password"}
-                        name="retypePassword"
+                        type={isPasswordVisible ? "text" : "password"}
                         id="retypePassword"
-                        // value={formData.retypePassword}
-                        // onChange={handleChange}
+                        name="retypePassword"
+                        value={formData.retypePassword}
+                        onChange={handleChange}
+                        required
                         className="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white-700 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-[#038C7F] dark:focus:border-[#038C7F]"
                         placeholder="*********"
-                        required
                       />
                       <button
                         type="button"
@@ -223,14 +283,14 @@ const Register: React.FC = () => {
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
                       <input
-                        id="terms"
-                        aria-describedby="terms"
                         type="checkbox"
+                        id="agreeTerms"
                         name="agreeTerms"
-                        // checked={formData.agreeTerms}
-                        // onChange={handleChange}
-                        className="w-4 h-4 border border-gray-500 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-white-700 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                        checked={formData.agreeTerms}
+                        onChange={handleChange}
                         required
+                        aria-describedby="terms"
+                        className="w-4 h-4 border border-gray-500 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-white-700 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -294,3 +354,142 @@ const Register: React.FC = () => {
 };
 
 export default Register;
+
+// "use client";
+// import { useState } from "react";
+// import axios from "axios";
+// import { useRouter } from "next/navigation";
+// import { ToastContainer, toast } from "react-toastify";
+// import { IoIosEyeOff, IoIosEye } from "react-icons/io";
+// import { FaUser, FaEnvelope } from "react-icons/fa";
+// import Link from "next/link";
+// import { FcGoogle } from "react-icons/fc";
+
+// const Register = () => {
+//   const router = useRouter();
+//   const [formData, setFormData] = useState({
+//     name: "",
+//     email: "",
+//     password: "",
+//     retypePassword: "",
+//     agreeTerms: false,
+//   });
+//   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+//   const togglePasswordVisibility = () => {
+//     setIsPasswordVisible(!isPasswordVisible);
+//   };
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const { name, value, type, checked } = e.target;
+//     setFormData((prevData) => ({
+//       ...prevData,
+//       [name]: type === "checkbox" ? checked : value,
+//     }));
+//   };
+
+//   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+//     e.preventDefault();
+
+//     if (formData.password !== formData.retypePassword) {
+//       toast.error("Passwords do not match. Please try again");
+//       return;
+//     }
+
+//     try {
+//       const response = await axios.post(
+//         "https://backend.getradii.com/auth/account-exists/",
+//         {
+//           email: formData.email,
+//         }
+//       );
+
+//       if (response.data.exists) {
+//         toast.error("User already exists");
+//       } else {
+//         localStorage.setItem("registrationData", JSON.stringify(formData));
+//         router.push("/survey");
+//       }
+//     } catch (error) {
+//       console.error("Error checking account existence:", error);
+//       toast.error("An error occurred. Please try again.");
+//     }
+//   };
+
+//   return (
+//     <>
+//       <ToastContainer />
+//       <section>
+//         <h1>Register Page</h1>
+//         <form onSubmit={handleSubmit}>
+//           <div>
+//             <label htmlFor="name">Name</label>
+//             <input
+//               type="text"
+//               id="name"
+//               name="name"
+//               value={formData.name}
+//               onChange={handleChange}
+//               required
+//             />
+//             <FaUser />
+//           </div>
+//           <div>
+//             <label htmlFor="email">Email</label>
+//             <input
+//               type="email"
+//               id="email"
+//               name="email"
+//               value={formData.email}
+//               onChange={handleChange}
+//               required
+//             />
+//             <FaEnvelope />
+//           </div>
+//           <div>
+//             <label htmlFor="password">Password</label>
+//             <input
+//               type={isPasswordVisible ? "text" : "password"}
+//               id="password"
+//               name="password"
+//               value={formData.password}
+//               onChange={handleChange}
+//               required
+//             />
+//             <button type="button" onClick={togglePasswordVisibility}>
+//               {isPasswordVisible ? <IoIosEye /> : <IoIosEyeOff />}
+//             </button>
+//           </div>
+//           <div>
+//             <label htmlFor="retypePassword">Retype Password</label>
+//             <input
+//               type={isPasswordVisible ? "text" : "password"}
+//               id="retypePassword"
+//               name="retypePassword"
+//               value={formData.retypePassword}
+//               onChange={handleChange}
+//               required
+//             />
+//             <button type="button" onClick={togglePasswordVisibility}>
+//               {isPasswordVisible ? <IoIosEye /> : <IoIosEyeOff />}
+//             </button>
+//           </div>
+//           <div>
+//             <input
+//               type="checkbox"
+//               id="agreeTerms"
+//               name="agreeTerms"
+//               checked={formData.agreeTerms}
+//               onChange={handleChange}
+//               required
+//             />
+//             <label htmlFor="agreeTerms">I agree to terms and conditions</label>
+//           </div>
+//           <button type="submit">Create Account</button>
+//         </form>
+//       </section>
+//     </>
+//   );
+// };
+
+// export default Register;

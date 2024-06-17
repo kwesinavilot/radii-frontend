@@ -1,16 +1,18 @@
 "use client";
-import React, { useState } from "react";
-import style from "./Survey.module.css";
-import { FaLinkedin } from "react-icons/fa";
-import { useRouter } from "next/router";
-import Creatable from "react-select/creatable";
+
+import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
-import { industryOptions, sizeOptions } from "./data";
+import { FaLinkedin } from "react-icons/fa";
 import Select from "react-select";
 import countries from "i18n-iso-countries";
-import "react-toastify/dist/ReactToastify.css";
+import { industryOptions, sizeOptions } from "./data";
+import Creatable from "react-select/creatable";
+import style from "./Survey.module.css";
 
 const Survey = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     industry: "",
     organization: "",
@@ -18,8 +20,6 @@ const Survey = () => {
     role: "",
     country: "",
   });
-
-  // const router = useRouter();
 
   const handleChange = (name, value) => {
     setFormData((prevData) => ({
@@ -30,9 +30,14 @@ const Survey = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Survey data submitted:", formData);
-    // Add your form submission logic here
-    router.push("/interest");
+    try {
+      // Save form data to backend or localStorage
+      localStorage.setItem("surveyData", JSON.stringify(formData));
+      router.push("/interest");
+    } catch (error) {
+      console.error("Error saving survey data:", error);
+      toast.error("An error occurred. Please try again.");
+    }
   };
 
   countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
@@ -68,14 +73,14 @@ const Survey = () => {
                     <div className="relative">
                       <input
                         type="text"
-                        name="organization"
                         id="organization"
+                        name="organization"
                         value={formData.organization}
                         onChange={(e) =>
                           handleChange(e.target.name, e.target.value)
                         }
-                        className="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm rounded-lg focus:ring-[#038C7F] focus:border-[#038C7F] block w-full p-2.5 dark:bg-white-700 dark:bg-white-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-[#038C7F] dark:focus:border-[#038C7F]"
                         required
+                        className="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm rounded-lg focus:ring-[#038C7F] focus:border-[#038C7F] block w-full p-2.5 dark:bg-white-700 dark:bg-white-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-[#038C7F] dark:focus:border-[#038C7F]"
                       />
                     </div>
                   </div>
@@ -90,14 +95,14 @@ const Survey = () => {
                     <div className="relative">
                       <input
                         type="text"
-                        name="role"
                         id="role"
+                        name="role"
                         value={formData.role}
                         onChange={(e) =>
                           handleChange(e.target.name, e.target.value)
                         }
-                        className="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm rounded-lg focus:ring-[#038C7F] focus:border-[#038C7F] block w-full p-2.5 dark:bg-white-700 dark:bg-white-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-[#038C7F] dark:focus:border-[#038C7F]"
                         required
+                        className="bg-gray-50 border border-gray-500 text-gray-900 sm:text-sm rounded-lg focus:ring-[#038C7F] focus:border-[#038C7F] block w-full p-2.5 dark:bg-white-700 dark:bg-white-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-[#038C7F] dark:focus:border-[#038C7F]"
                       />
                     </div>
                   </div>

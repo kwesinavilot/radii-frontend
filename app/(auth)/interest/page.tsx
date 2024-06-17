@@ -4,10 +4,12 @@ import { useState, MouseEvent } from "react";
 import style from "./Interest.module.css";
 import { FaLinkedin } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const Interest: React.FC = () => {
   const [selectedInterest, setSelectedInterest] = useState<string>("");
   const [selectedReferrer, setSelectedReferrer] = useState<string>("");
+  const router = useRouter();
 
   const handleInterestClick = (interest: string) => {
     setSelectedInterest(interest);
@@ -17,10 +19,72 @@ const Interest: React.FC = () => {
     setSelectedReferrer(referrer);
   };
 
-  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (selectedInterest && selectedReferrer) {
-      toast.success("Form submitted successfully!");
+      // try {
+      //   const formData = {
+      //     interest: selectedInterest,
+      //     referrer: selectedReferrer,
+      //   };
+
+      //   const response = await fetch(
+      //     "https://backend.getradii.com/auth/register/",
+      //     {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify(formData),
+      //     }
+      //   );
+
+      //   if (response.ok) {
+      //     toast.success("Form submitted successfully!");
+      //     router.push("/");
+      //   } else {
+      //     const data = await response.json();
+      //     toast.error(data.message || "Failed to submit form.");
+      //   }
+      // } catch (error) {
+      //   console.error("Error submitting form:", error);
+      //   toast.error("Failed to submit form.");
+      // }
+      try {
+        const formData = {
+          interest: selectedInterest,
+          referrer: selectedReferrer,
+        };
+
+        const response = await fetch(
+          "https://backend.getradii.com/auth/register/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+
+        if (response.ok) {
+          const responseData = await response.json();
+          const data = {
+            userID: responseData.userID,
+            orgID: responseData.orgID,
+            token: responseData.token,
+          };
+
+          toast.success("Form submitted successfully!");
+          router.push("/");
+        } else {
+          const errorData = await response.json();
+          toast.error(errorData.message || "Failed to submit form.");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+        toast.error("An unexpected error occurred.");
+      }
     } else {
       toast.error("Please select both interest and referrer.");
     }
