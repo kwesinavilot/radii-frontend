@@ -31,7 +31,6 @@ const Survey = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Save form data to backend or localStorage
       localStorage.setItem("surveyData", JSON.stringify(formData));
       router.push("/interest");
     } catch (error) {

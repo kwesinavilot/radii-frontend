@@ -78,7 +78,7 @@
 //       />
 
 //       <div className="h-full sm:col-span-3 py-4 m-4 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
-//         <div className=" w-4/6 p-4">
+//         <div className="w-4/6 p-4">
 //           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
 //             <div className="col-span-1 sm:col-span-3">
 //               <h2 className="text-[18px] font-bold mb-4">Databases</h2>
@@ -93,7 +93,7 @@
 //                       alt="postgres"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>PostgreSQL</span>
 //                   </div>
@@ -108,7 +108,7 @@
 //                       alt="mysql"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>MySQL</span>
 //                   </div>
@@ -123,7 +123,7 @@
 //                       alt="snowflakes"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>Snowflakes</span>
 //                   </div>
@@ -144,7 +144,7 @@
 //                       alt="csv"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>CSV</span>
 //                   </div>
@@ -159,7 +159,7 @@
 //                       alt="pdf"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>PDF</span>
 //                   </div>
@@ -174,7 +174,7 @@
 //                       alt="docs"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>DOCS</span>
 //                   </div>
@@ -195,7 +195,7 @@
 //                       alt="drive"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>Google Drive</span>
 //                   </div>
@@ -210,7 +210,7 @@
 //                       alt="qb"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>Quickbooks</span>
 //                   </div>
@@ -225,7 +225,7 @@
 //                       alt="airtable"
 //                       width={32}
 //                       height={32}
-//                       className="mb-2"
+//                       className="mr-2"
 //                     />
 //                     <span>Airtable</span>
 //                   </div>
@@ -248,7 +248,7 @@
 //                 &times;
 //               </button>
 //             </div>
-//             <div className="flex space-y-4">
+//             <div className="flex flex-col space-y-4">
 //               <button
 //                 className="text-blue-500 hover:text-blue-700"
 //                 onClick={openCreateFolderModal}
@@ -272,7 +272,7 @@
 //                 &times;
 //               </button>
 //             </div>
-//             <div className="flex space-y-4">
+//             <div className="flex flex-col space-y-4">
 //               <input
 //                 type="text"
 //                 placeholder="Folder Title"
@@ -309,6 +309,7 @@
 
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import Image from "next/image";
 import Navbar from "@/app/component/NavBar";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
@@ -318,6 +319,7 @@ const ConnectDataSource: React.FC = () => {
   const [isCreateFolderModalOpen, setIsCreateFolderModalOpen] = useState(false);
   const [folderTitle, setFolderTitle] = useState("");
   const [folderDescription, setFolderDescription] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -377,7 +379,25 @@ const ConnectDataSource: React.FC = () => {
     openModal();
   };
 
-  const isSubmitDisabled = !(folderTitle && folderDescription);
+  const isSubmitDisabled = !(folderTitle && folderDescription) || loading;
+
+  const handleCreateFolder = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        "https://backend.getradii.com/datasources/folders/",
+        {
+          title: folderTitle,
+          description: folderDescription,
+        }
+      );
+      console.log("Folder created:", response.data);
+      closeModal();
+    } catch (error) {
+      console.error("Error creating folder:", error);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="h-screen overflow-hidden bg-gray-100">
@@ -603,8 +623,9 @@ const ConnectDataSource: React.FC = () => {
                     : "bg-orange-500 hover:bg-orange-700"
                 } text-white`}
                 disabled={isSubmitDisabled}
+                onClick={handleCreateFolder}
               >
-                Create and import document
+                {loading ? "Creating..." : "Create and import document"}
               </button>
             </div>
           </div>

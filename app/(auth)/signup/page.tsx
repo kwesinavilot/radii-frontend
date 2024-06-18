@@ -67,7 +67,6 @@ const Register = () => {
       <section className={style.reg}>
         <div className={style.regWrapper}>
           <div className={style.regContent}>
-            {/* Uncomment and provide the correct logo path if needed */}
             {/* <Image src="/logo.png" alt="logo" className={style.regLogo} width={100} height={50} /> */}
             <h1>Unlock the Power of Your Data.</h1>
             <p>
