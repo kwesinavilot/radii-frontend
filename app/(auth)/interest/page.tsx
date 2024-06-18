@@ -218,14 +218,6 @@ const Interest: React.FC = () => {
   const [selectedReferrer, setSelectedReferrer] = useState<string>("");
   const router = useRouter();
 
-  useEffect(() => {
-    const surveyData = localStorage.getItem("surveyData");
-    const registerData = localStorage.getItem("registerData");
-    // if (!surveyData || !registerData) {
-    //   router.push("/register");
-    // }
-  }, [router]);
-
   const handleInterestClick = (interest: string) => {
     setSelectedInterest(interest);
   };

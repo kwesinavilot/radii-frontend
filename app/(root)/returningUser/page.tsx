@@ -87,7 +87,7 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
                   </p>
                 </div>
 
-                <Link href="/addSource" className="flex border-gray-400">
+                <Link href="/radiiView" className="flex border-gray-400">
                   <button className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow  bg-[#E58A13]">
                     My Views
                   </button>
@@ -114,7 +114,7 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
 
               <div className="flex justify-between">
                 <Link
-                  href="/addSource"
+                  href="/connectDataSources"
                   className="text-dark font-semi-bold py-2 px-6 rounded-xl mt-6 border border-gray-600 flex items-center gap-2"
                 >
                   <FaPlus />
