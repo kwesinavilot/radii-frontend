@@ -4,17 +4,30 @@
 // import { setCurrentFolder } from "@/app/store/navigationSlice";
 // import { RootState } from "@/app/store/store";
 // import Link from "next/link";
-// import React, { useState } from "react";
+// import React, { useEffect, useState } from "react";
 // import { FaRegTrashAlt, FaPlus } from "react-icons/fa";
 // import { MdFolder } from "react-icons/md";
 // import { useDispatch, useSelector } from "react-redux";
+// import axios from "axios";
+// import generateAxiosConfig from "@/app/config/axiosConfig";
 
-// interface DataItem {
-//   type: string;
-//   title: string;
-//   status: string;
-//   dateAdded: string;
+// interface Folder {
+//   folderID: string;
+//   name: string;
+//   description: string;
+//   created_at: string;
+//   updated_at: string;
+// }
+
+// interface File {
 //   lastUpdated: string;
+//   dateAdded: string;
+//   status: string;
+//   fileID: string;
+//   name: string;
+//   type: string;
+//   size: number;
+//   created_at: string;
 // }
 
 // const DataSourceTable: React.FC = () => {
@@ -23,49 +36,43 @@
 //     (state: RootState) => state.navigation.currentFolder
 //   );
 
-//   const [selectAll, setSelectAll] = useState(false);
-//   const [selectedRows, setSelectedRows] = useState<{ [key: string]: boolean }>(
-//     {}
-//   );
+//   const [folders, setFolders] = useState<Folder[]>([]);
+//   const [files, setFiles] = useState<File[]>([]);
+//   const [loading, setLoading] = useState(false);
 
-//   const handleFolderClick = (folderName: string) => {
-//     dispatch(setCurrentFolder(folderName));
-//   };
+//   // Fetch folders when component mounts or currentFolder changes
+//   useEffect(() => {
+//     const fetchFolders = async () => {
+//       setLoading(true);
+//       try {
+//         const response = await axios.get(
+//           "https://backend.getradii.com/datasources/folders/",
+//           generateAxiosConfig()
+//         );
+//         setFolders(response.data);
+//       } catch (error) {
+//         console.error("Error fetching folders:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
 
-//   const handleSelectAll = () => {
-//     setSelectAll(!selectAll);
-//     const newSelectedRows: { [key: string]: boolean } = {};
-//     if (!selectAll) {
-//       data.forEach((item) => {
-//         newSelectedRows[item.title] = true;
-//       });
+//     fetchFolders();
+//   }, [currentFolder]);
+
+//   // Fetch files for a specific folder when folder is clicked
+//   const handleFolderClick = async (folderID: string) => {
+//     dispatch(setCurrentFolder(folderID));
+//     try {
+//       const response = await axios.get(
+//         `https://backend.getradii.com/datasources/folders/${folderID}/files/`,
+//         generateAxiosConfig()
+//       );
+//       setFiles(response.data);
+//     } catch (error) {
+//       console.error(`Error fetching files for folder ${folderID}:`, error);
 //     }
-//     setSelectedRows(newSelectedRows);
 //   };
-
-//   const handleCheckboxChange = (title: string) => {
-//     setSelectedRows({
-//       ...selectedRows,
-//       [title]: !selectedRows[title],
-//     });
-//   };
-
-//   const data: DataItem[] = [
-//     {
-//       type: "PDF",
-//       title: "Customer Movement Q1",
-//       status: "Complete",
-//       dateAdded: "05/03/2024",
-//       lastUpdated: "05/03/2024",
-//     },
-//     {
-//       type: "PDF",
-//       title: "Customer Movement Q2",
-//       status: "Complete",
-//       dateAdded: "05/03/2024",
-//       lastUpdated: "05/03/2024",
-//     },
-//   ];
 
 //   return (
 //     <div className="bg-grey-bg h-screen overflow-y-auto">
@@ -98,26 +105,29 @@
 //                   </tr>
 //                 </thead>
 //                 <tbody>
-//                   <tr
-//                     className="border-t"
-//                     onClick={() => handleFolderClick("Customer Movement")}
-//                   >
-//                     <td className="px-4 py-2 flex items-center cursor-pointer">
-//                       <MdFolder className="mr-2" />
-//                       Customer Movement
-//                     </td>
-//                     <td className="px-4 py-2">5 mins ago</td>
-//                     <td className="px-4 py-2">
-//                       <span className="px-2 py-1 text-sm text-white bg-green-500 rounded">
-//                         Ready for use
-//                       </span>
-//                     </td>
-//                     <td className="px-4 py-2">
-//                       <button className="text-red-600 hover:text-red-800">
-//                         <FaRegTrashAlt />
-//                       </button>
-//                     </td>
-//                   </tr>
+//                   {folders.map((folder) => (
+//                     <tr
+//                       key={folder.folderID}
+//                       className="border-t cursor-pointer"
+//                       onClick={() => handleFolderClick(folder.folderID)}
+//                     >
+//                       <td className="px-4 py-2 flex items-center">
+//                         <MdFolder className="mr-2" />
+//                         {folder.name}
+//                       </td>
+//                       <td className="px-4 py-2">{folder.created_at}</td>
+//                       <td className="px-4 py-2">
+//                         <span className="px-2 py-1 text-sm text-white bg-green-500 rounded">
+//                           Ready for use
+//                         </span>
+//                       </td>
+//                       <td className="px-4 py-2">
+//                         <button className="text-red-600 hover:text-red-800">
+//                           <FaRegTrashAlt />
+//                         </button>
+//                       </td>
+//                     </tr>
+//                   ))}
 //                 </tbody>
 //               </table>
 //             </div>
@@ -131,19 +141,12 @@
 //               &larr; Back to All Sources
 //             </button>
 //             <p className="text-sm text-gray-500 mb-4">
-//               Here are the files you have uploaded from your device
+//               Here are the files in {currentFolder}
 //             </p>
 //             <div className="overflow-x-auto">
 //               <table className="min-w-full table-auto">
 //                 <thead>
 //                   <tr className="bg-[#1D1D1D] text-white">
-//                     <th className="px-4 py-2 text-left">
-//                       <input
-//                         type="checkbox"
-//                         checked={selectAll}
-//                         onChange={handleSelectAll}
-//                       />
-//                     </th>
 //                     <th className="px-4 py-2 text-left">Type</th>
 //                     <th className="px-4 py-2 text-left">Title</th>
 //                     <th className="px-4 py-2 text-left">Status</th>
@@ -153,20 +156,13 @@
 //                   </tr>
 //                 </thead>
 //                 <tbody>
-//                   {data.map((item) => (
-//                     <tr key={item.title} className="border-t">
-//                       <td className="px-4 py-2">
-//                         <input
-//                           type="checkbox"
-//                           checked={selectedRows[item.title] || false}
-//                           onChange={() => handleCheckboxChange(item.title)}
-//                         />
-//                       </td>
-//                       <td className="px-4 py-2">{item.type}</td>
-//                       <td className="px-4 py-2">{item.title}</td>
-//                       <td className="px-4 py-2">{item.status}</td>
-//                       <td className="px-4 py-2">{item.dateAdded}</td>
-//                       <td className="px-4 py-2">{item.lastUpdated}</td>
+//                   {files.map((file) => (
+//                     <tr key={file.fileID} className="border-t">
+//                       <td className="px-4 py-2">{file.type}</td>
+//                       <td className="px-4 py-2">{file.name}</td>
+//                       <td className="px-4 py-2">{file.status}</td>
+//                       <td className="px-4 py-2">{file.dateAdded}</td>
+//                       <td className="px-4 py-2">{file.lastUpdated}</td>
 //                       <td className="px-4 py-2">
 //                         <button className="text-red-600 hover:text-red-800">
 //                           <FaRegTrashAlt />
@@ -198,6 +194,9 @@ import { MdFolder } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import generateAxiosConfig from "@/app/config/axiosConfig";
+import { toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 interface Folder {
   folderID: string;
@@ -262,6 +261,42 @@ const DataSourceTable: React.FC = () => {
     }
   };
 
+  // Delete folder by folderID
+  const handleDeleteFolder = async (folderID: string) => {
+    try {
+      await axios.delete(
+        `https://backend.getradii.com/datasources/folders/${folderID}/`,
+        generateAxiosConfig()
+      );
+      // After deletion, filter out the deleted folder from state
+      setFolders((prevFolders) =>
+        prevFolders.filter((folder) => folder.folderID !== folderID)
+      );
+      toast.success(`Folder deleted successfully.`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        toastId: "delete-success",
+      });
+    } catch (error) {
+      console.error(`Error deleting folder ${folderID}:`, error);
+      toast.error(`Error deleting folder. Please try again.`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        toastId: "delete-error",
+      });
+    }
+  };
+
   return (
     <div className="bg-grey-bg h-screen overflow-y-auto">
       <Navbar title="Data Source" icon="" />
@@ -279,90 +314,99 @@ const DataSourceTable: React.FC = () => {
           </div>
         </div>
 
-        {currentFolder === "All Sources" ? (
-          <div>
-            <p className="text-sm text-gray-500 mb-4">Radii Hosted Documents</p>
-            <div className="overflow-x-auto">
-              <table className="min-w-full table-auto">
-                <thead>
-                  <tr>
-                    <th className="px-4 py-2 text-left">Source</th>
-                    <th className="px-4 py-2 text-left">Created</th>
-                    <th className="px-4 py-2 text-left">Status</th>
-                    <th className="px-4 py-2 text-left">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {folders.map((folder) => (
-                    <tr
-                      key={folder.folderID}
-                      className="border-t cursor-pointer"
-                      onClick={() => handleFolderClick(folder.folderID)}
-                    >
-                      <td className="px-4 py-2 flex items-center">
-                        <MdFolder className="mr-2" />
-                        {folder.name}
-                      </td>
-                      <td className="px-4 py-2">{folder.created_at}</td>
-                      <td className="px-4 py-2">
-                        <span className="px-2 py-1 text-sm text-white bg-green-500 rounded">
-                          Ready for use
-                        </span>
-                      </td>
-                      <td className="px-4 py-2">
-                        <button className="text-red-600 hover:text-red-800">
-                          <FaRegTrashAlt />
-                        </button>
-                      </td>
+        <div>
+          {currentFolder === "All Sources" ? (
+            <div>
+              <p className="text-sm text-gray-500 mb-4">
+                Radii Hosted Documents
+              </p>
+              <div className="overflow-x-auto">
+                <table className="min-w-full table-auto">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-2 text-left">Source</th>
+                      <th className="px-4 py-2 text-left">Created</th>
+                      <th className="px-4 py-2 text-left">Status</th>
+                      <th className="px-4 py-2 text-left">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {folders.map((folder) => (
+                      <tr
+                        key={folder.folderID}
+                        className="border-t cursor-pointer"
+                      >
+                        <td
+                          className="px-4 py-2 flex items-center cursor-pointer"
+                          onClick={() => handleFolderClick(folder.folderID)}
+                        >
+                          <MdFolder className="mr-2" />
+                          {folder.name}
+                        </td>
+                        <td className="px-4 py-2">{folder.created_at}</td>
+                        <td className="px-4 py-2">
+                          <span className="px-2 py-1 text-sm text-white bg-green-500 rounded">
+                            Ready for use
+                          </span>
+                        </td>
+                        <td className="px-4 py-2">
+                          <button
+                            onClick={() => handleDeleteFolder(folder.folderID)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <FaRegTrashAlt />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        ) : (
-          <div>
-            <button
-              onClick={() => dispatch(setCurrentFolder("All Sources"))}
-              className="text-[#038C7F] mb-4"
-            >
-              &larr; Back to All Sources
-            </button>
-            <p className="text-sm text-gray-500 mb-4">
-              Here are the files in {currentFolder}
-            </p>
-            <div className="overflow-x-auto">
-              <table className="min-w-full table-auto">
-                <thead>
-                  <tr className="bg-[#1D1D1D] text-white">
-                    <th className="px-4 py-2 text-left">Type</th>
-                    <th className="px-4 py-2 text-left">Title</th>
-                    <th className="px-4 py-2 text-left">Status</th>
-                    <th className="px-4 py-2 text-left">Date Added</th>
-                    <th className="px-4 py-2 text-left">Last Updated</th>
-                    <th className="px-4 py-2 text-left">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {files.map((file) => (
-                    <tr key={file.fileID} className="border-t">
-                      <td className="px-4 py-2">{file.type}</td>
-                      <td className="px-4 py-2">{file.name}</td>
-                      <td className="px-4 py-2">{file.status}</td>
-                      <td className="px-4 py-2">{file.dateAdded}</td>
-                      <td className="px-4 py-2">{file.lastUpdated}</td>
-                      <td className="px-4 py-2">
-                        <button className="text-red-600 hover:text-red-800">
-                          <FaRegTrashAlt />
-                        </button>
-                      </td>
+          ) : (
+            <div>
+              <button
+                onClick={() => dispatch(setCurrentFolder("All Sources"))}
+                className="text-[#038C7F] mb-4"
+              >
+                &larr; Back to All Sources
+              </button>
+              <p className="text-sm text-gray-500 mb-4">
+                Here are the files in {currentFolder}
+              </p>
+              <div className="overflow-x-auto">
+                <table className="min-w-full table-auto">
+                  <thead>
+                    <tr className="bg-[#1D1D1D] text-white">
+                      <th className="px-4 py-2 text-left">Type</th>
+                      <th className="px-4 py-2 text-left">Title</th>
+                      <th className="px-4 py-2 text-left">Status</th>
+                      <th className="px-4 py-2 text-left">Date Added</th>
+                      <th className="px-4 py-2 text-left">Last Updated</th>
+                      <th className="px-4 py-2 text-left">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {files.map((file) => (
+                      <tr key={file.fileID} className="border-t">
+                        <td className="px-4 py-2">{file.type}</td>
+                        <td className="px-4 py-2">{file.name}</td>
+                        <td className="px-4 py-2">{file.status}</td>
+                        <td className="px-4 py-2">{file.dateAdded}</td>
+                        <td className="px-4 py-2">{file.lastUpdated}</td>
+                        <td className="px-4 py-2">
+                          <button className="text-red-600 hover:text-red-800">
+                            <FaRegTrashAlt />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
