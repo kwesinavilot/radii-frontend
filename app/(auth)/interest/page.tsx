@@ -1,15 +1,20 @@
 "use client";
-
 import { useState, MouseEvent, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { useRouter } from "next/navigation";
 import style from "./Interest.module.css";
 import { FaLinkedin } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { setToken } from "@/app/store/authSlice";
+import axios from "axios";
+import generateAxiosConfig from "@/app/config/axiosConfig";
 
 const Interest: React.FC = () => {
   const [selectedInterest, setSelectedInterest] = useState<string>("");
   const [selectedReferrer, setSelectedReferrer] = useState<string>("");
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleInterestClick = (interest: string) => {
     setSelectedInterest(interest);
@@ -38,37 +43,25 @@ const Interest: React.FC = () => {
         };
 
         console.log("Submitting form data:", combinedData);
-
-        const response = await fetch(
+        const { data: responseData } = await axios.post(
           "https://backend.getradii.com/auth/register/",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(combinedData),
-          }
+          combinedData,
+          generateAxiosConfig()
         );
+        toast.success("Form submitted successfully!");
+        console.log("Registration successful:", responseData);
+        dispatch(setToken(responseData.token));
 
-        const responseData = await response.json();
+        console.log("Token:", responseData.token);
 
-        if (response.ok) {
-          toast.success("Form submitted successfully!");
-          console.log("Registration successful:", responseData);
+        localStorage.removeItem("registerData");
+        localStorage.removeItem("surveyData");
 
-          localStorage.removeItem("registerData");
-          localStorage.removeItem("surveyData");
-          router.push("/");
-        } else {
-          console.error("Failed to submit form:", responseData);
-          toast.error(responseData.message || "Failed to submit form.");
-        }
-      } catch (error) {
+        router.push("/");
+      } catch (error: any) {
         console.error("An error occurred:", error);
-        toast.error("An unexpected error occurred.");
+        toast.error(error.response.data?.error || "Failed to submit form.");
       }
-    } else {
-      toast.error("Please select both interest and referrer.");
     }
   };
 

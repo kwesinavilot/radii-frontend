@@ -13,7 +13,7 @@ export default function RootLayout({
       <ToastContainer />
       <Sidebar />
       <div className="flex-1">
-        <ClientProvider>{children}</ClientProvider>
+        <div>{children}</div>
       </div>
     </div>
   );
