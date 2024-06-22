@@ -338,14 +338,14 @@ const Login: React.FC = () => {
     try {
       const response = await axios.post(
         "https://backend.getradii.com/auth/login/",
-        formData,
-        generateAxiosConfig()
+        formData
+        // generateAxiosConfig()
       );
 
       dispatch(setToken(response.data.token));
 
       toast.success(response.data.message || "Login successful");
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error message:", error.response?.data);
