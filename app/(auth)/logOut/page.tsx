@@ -23,6 +23,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import { useRouter } from "next/navigation";
+import { IoIosLogOut } from "react-icons/io";
 
 const Logout: React.FC<{ onLogoutSuccess: () => void }> = ({
   onLogoutSuccess,
@@ -58,7 +59,11 @@ const Logout: React.FC<{ onLogoutSuccess: () => void }> = ({
       <ToastContainer />
 
       <div className="flex items-center">
-        <button className="--btn" onClick={handleLogout}>
+        <button
+          className="--btn flex gap-4 items-center"
+          onClick={handleLogout}
+        >
+          <IoIosLogOut />
           Logout
         </button>
       </div>
