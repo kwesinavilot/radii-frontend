@@ -529,36 +529,38 @@ const ConnectDataSource: React.FC = () => {
       case "pdf":
       case "csv":
         return (
-          <div>
+          <div className="">
             <h2 className="text-lg font-semibold">
               Upload {selectedSource.toUpperCase()} Files
             </h2>
-            <input
-              type="file"
-              multiple
-              accept={
-                selectedSource === "docs"
-                  ? ".doc,.docx"
-                  : selectedSource === "pdf"
-                  ? ".pdf"
-                  : ".csv"
-              }
-              onChange={handleFileChange}
-              className="border p-2 rounded"
-            />
-            <button
-              className={`p-2 mt-4 rounded ${
-                isSubmitDisabled
-                  ? "bg-gray-400"
-                  : "bg-orange-500 hover:bg-orange-700"
-              } text-white`}
-              disabled={isSubmitDisabled}
-              onClick={handleCreateFolder}
-            >
-              {loading
-                ? "Uploading..."
-                : `Upload ${selectedSource.toUpperCase()} Files`}
-            </button>
+            <div className="flex gap-2">
+              <input
+                type="file"
+                multiple
+                accept={
+                  selectedSource === "docs"
+                    ? ".doc,.docx"
+                    : selectedSource === "pdf"
+                    ? ".pdf"
+                    : ".csv"
+                }
+                onChange={handleFileChange}
+                className="border p-2 rounded"
+              />
+              <button
+                className={`p-2 rounded ${
+                  isSubmitDisabled
+                    ? "bg-gray-400"
+                    : "bg-orange-500 hover:bg-orange-700"
+                } text-white`}
+                disabled={isSubmitDisabled}
+                onClick={handleCreateFolder}
+              >
+                {loading
+                  ? "Uploading..."
+                  : `Upload ${selectedSource.toUpperCase()} Files`}
+              </button>
+            </div>
           </div>
         );
       default:
