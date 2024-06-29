@@ -1,5 +1,4 @@
 // "use client";
-
 // import React, { useState } from "react";
 // import axios from "axios";
 // import Image from "next/image";
@@ -15,9 +14,7 @@
 //   const [folderTitle, setFolderTitle] = useState("");
 //   const [folderDescription, setFolderDescription] = useState("");
 //   const [loading, setLoading] = useState(false);
-//   const [files, setFiles] = useState<FileList | null>(null);
 //   const [selectedSource, setSelectedSource] = useState<string | null>(null);
-//   const [folderID, setFolderID] = useState<string | null>(null);
 //   const router = useRouter();
 
 //   const openModal = () => {
@@ -28,8 +25,6 @@
 //     setIsModalOpen(false);
 //     setFolderTitle("");
 //     setFolderDescription("");
-//     setFiles(null);
-//     setFolderID(null);
 //     setSelectedSource(null);
 //   };
 
@@ -45,14 +40,14 @@
 
 //   const handleDataSourceClick = (source: string) => {
 //     setSelectedSource(source);
-//     openModal();
+//     if (source === "csv" || source === "pdf" || source === "docs") {
+//       openModal();
+//     } else {
+//       toast.info(`Connecting to ${source.toUpperCase()}...`);
+//     }
 //   };
 
 //   const isSubmitDisabled = !(folderTitle && folderDescription) || loading;
-
-//   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setFiles(e.target.files);
-//   };
 
 //   const handleCreateFolder = async () => {
 //     setLoading(true);
@@ -66,7 +61,6 @@
 //         generateAxiosConfig()
 //       );
 
-//       // Assuming the response data is an array and we want the last created folder
 //       const folders = response.data;
 //       if (!Array.isArray(folders) || folders.length === 0) {
 //         throw new Error("Folder creation response is not valid");
@@ -75,114 +69,54 @@
 //       const createdFolder = folders[folders.length - 1];
 //       const createdFolderID = createdFolder.folderID;
 
-//       console.log("Folder created:", createdFolder);
-//       console.log("Folder ID:", createdFolderID);
-
-//       setFolderID(createdFolderID);
-
-//       try {
-//         const folderDetailsResponse = await axios.get(
-//           `https://backend.getradii.com/datasources/folders/${createdFolderID}/`,
-//           generateAxiosConfig()
-//         );
-//         console.log("Folder details:", folderDetailsResponse.data);
-//       } catch (error) {
-//         console.error("Error retrieving folder details:", error);
-//         toast.error("Error retrieving folder details");
-//       }
-
-//       if (files && files.length > 0) {
-//         await handleFileUpload(createdFolderID);
-//       }
-
 //       toast.success("Folder created successfully!");
+
 //       closeModal();
 //       router.push(`/dataSources`);
 //     } catch (error) {
-//       console.error("Error creating folder:", error);
 //       toast.error("Error creating folder");
 //     } finally {
 //       setLoading(false);
 //     }
-// };
-
-// const handleFileUpload = async (folderID: string) => {
-//   console.log("Folder ID:", folderID);
-//   if (files) {
-//     const formData = new FormData();
-//     Array.from(files).forEach((file) => {
-//       formData.append("files", file);
-//     });
-//     formData.append("folderID", folderID);
-//     formData.append("type", "file");
-//     formData.append("source", selectedSource || "");
-
-//     try {
-//       const response = await axios.post(
-//         "https://backend.getradii.com/datasources/static/",
-//         formData,
-//         generateAxiosConfig()
-//       );
-//       console.log("Files uploaded:", response.data);
-//       toast.success("Files uploaded successfully!");
-//       closeModal();
-//       router.push(`/dataSources`);
-//     } catch (error) {
-//       console.error("Error uploading files:", error);
-//       toast.error("Error uploading files");
-//     }
-//   }
-// };
-
-//   const renderModalContent = () => {
-//     switch (selectedSource) {
-//       case "docs":
-//       case "pdf":
-//       case "csv":
-//         return (
-//           <div>
-//             <h2 className="text-lg font-semibold">
-//               Upload {selectedSource.toUpperCase()} Files
-//             </h2>
-//             <input
-//               type="file"
-//               multiple
-//               accept={
-//                 selectedSource === "docs"
-//                   ? ".doc,.docx"
-//                   : selectedSource === "pdf"
-//                   ? ".pdf"
-//                   : ".csv"
-//               }
-//               onChange={handleFileChange}
-//               className="border p-2 rounded"
-//             />
-//             <button
-//               className={`p-2 mt-4 rounded ${
-//                 isSubmitDisabled
-//                   ? "bg-gray-400"
-//                   : "bg-orange-500 hover:bg-orange-700"
-//               } text-white`}
-//               disabled={isSubmitDisabled}
-//               onClick={handleCreateFolder}
-//             >
-//               {loading
-//                 ? "Uploading..."
-//                 : `Upload ${selectedSource.toUpperCase()} Files`}
-//             </button>
-//           </div>
-//         );
-//       case "postgres":
-//       case "mysql":
-//       case "snowflakes":
-//       case "drive":
-//       case "qb":
-//       case "airtable":
-//         return <div>Connect to {selectedSource}</div>;
-//       default:
-//         return null;
-//     }
 //   };
+
+//   // const renderModalContent = () => {
+//   //   switch (selectedSource) {
+//   //     case "docs":
+//   //     case "pdf":
+//   //     case "csv":
+//   //       return (
+//   //         <div className="">
+//   //           <h2 className="text-lg font-semibold">
+//   //             Create {selectedSource.toUpperCase()} Folder
+//   //           </h2>
+//   //           <div className="flex justify-between gap-2">
+//   //             <button
+//   //               className={`p-2 rounded ${
+//   //                 isSubmitDisabled
+//   //                   ? "bg-gray-400"
+//   //                   : "bg-orange-500 hover:bg-orange-700"
+//   //               } text-white`}
+//   //               disabled={isSubmitDisabled}
+//   //               onClick={handleCreateFolder}
+//   //             >
+//   //               {loading
+//   //                 ? "Creating..."
+//   //                 : `Create ${selectedSource.toUpperCase()} Folder`}
+//   //             </button>
+//   //             <button
+//   //               className=" p-2 bg-red-500 text-white rounded hover:bg-red-700"
+//   //               onClick={closeModal}
+//   //             >
+//   //               Cancel
+//   //             </button>
+//   //           </div>
+//   //         </div>
+//   //       );
+//   //     default:
+//   //       return null;
+//   //   }
+//   // };
 
 //   return (
 //     <div className="h-screen overflow-hidden bg-gray-100">
@@ -197,10 +131,7 @@
 //             <div className="col-span-1 sm:col-span-3">
 //               <h2 className="text-[18px] font-bold mb-4">Databases</h2>
 //               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-//                 <div
-//                   className="dataSourceBtn"
-//                   onClick={() => handleDataSourceClick("postgres")}
-//                 >
+//                 <div className="dataSourceBtn">
 //                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
 //                     <Image
 //                       src="/postgres.png"
@@ -212,10 +143,7 @@
 //                     <span>PostgreSQL</span>
 //                   </div>
 //                 </div>
-//                 <div
-//                   className="dataSourceBtn"
-//                   onClick={() => handleDataSourceClick("mysql")}
-//                 >
+//                 <div className="dataSourceBtn">
 //                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
 //                     <Image
 //                       src="/mysql.png"
@@ -227,10 +155,7 @@
 //                     <span>MySQL</span>
 //                   </div>
 //                 </div>
-//                 <div
-//                   className="dataSourceBtn"
-//                   onClick={() => handleDataSourceClick("snowflakes")}
-//                 >
+//                 <div className="dataSourceBtn">
 //                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
 //                     <Image
 //                       src="/snowflakes.png"
@@ -299,10 +224,7 @@
 //             <div className="col-span-1 sm:col-span-3">
 //               <h2 className="text-[18px] font-bold mb-4">Others</h2>
 //               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-//                 <div
-//                   className="dataSourceBtn"
-//                   onClick={() => handleDataSourceClick("drive")}
-//                 >
+//                 <div className="dataSourceBtn">
 //                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
 //                     <Image
 //                       src="/drive.png"
@@ -314,10 +236,7 @@
 //                     <span>Google Drive</span>
 //                   </div>
 //                 </div>
-//                 <div
-//                   className="dataSourceBtn"
-//                   onClick={() => handleDataSourceClick("qb")}
-//                 >
+//                 <div className="dataSourceBtn">
 //                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
 //                     <Image
 //                       src="/qb.png"
@@ -329,10 +248,7 @@
 //                     <span>QuickBooks</span>
 //                   </div>
 //                 </div>
-//                 <div
-//                   className="dataSourceBtn"
-//                   onClick={() => handleDataSourceClick("airtable")}
-//                 >
+//                 <div className="dataSourceBtn">
 //                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
 //                     <Image
 //                       src="/airtable.png"
@@ -346,47 +262,39 @@
 //                 </div>
 //               </div>
 //             </div>
-
-//             <div className="col-span-1 sm:col-span-3 mt-10 mb-4">
-//               <button
-//                 className="text-orange-500 bg-transparent border border-orange-500 hover:bg-orange-500 hover:text-white rounded p-2"
-//                 onClick={() => router.push("/")}
-//               >
-//                 Cancel
-//               </button>
-//             </div>
 //           </div>
+//           <ToastContainer />
+//           {isModalOpen && (
+//             <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+//               <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+//                 <button
+//                   className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800"
+//                   onClick={closeModal}
+//                 >
+//                   &times;
+//                 </button>
+//                 <h2 className="text-2xl font-semibold mb-4">
+//                   Enter Folder Details
+//                 </h2>
+//                 <input
+//                   type="text"
+//                   placeholder="Folder Title"
+//                   value={folderTitle}
+//                   onChange={handleTitleChange}
+//                   className="w-full p-2 mb-4 border border-gray-300 rounded"
+//                 />
+//                 <textarea
+//                   placeholder="Folder Description"
+//                   value={folderDescription}
+//                   onChange={handleDescriptionChange}
+//                   className="w-full p-2 mb-4 border border-gray-300 rounded"
+//                 />
+//                 {renderModalContent()}
+//               </div>
+//             </div>
+//           )}
 //         </div>
 //       </div>
-
-//       {isModalOpen && (
-//         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-//           <div className="bg-white p-6 rounded-lg shadow-lg">
-//             <h2 className="text-xl font-bold mb-4">Create Folder</h2>
-//             <input
-//               type="text"
-//               placeholder="Folder Title"
-//               value={folderTitle}
-//               onChange={handleTitleChange}
-//               className="border p-2 mb-4 rounded w-full"
-//             />
-//             <textarea
-//               placeholder="Folder Description"
-//               value={folderDescription}
-//               onChange={handleDescriptionChange}
-//               className="border p-2 mb-4 rounded w-full"
-//             />
-//             {renderModalContent()}
-//             <button
-//               className="mt-4 p-2 bg-red-500 text-white rounded hover:bg-red-700"
-//               onClick={closeModal}
-//             >
-//               Cancel
-//             </button>
-//           </div>
-//         </div>
-//       )}
-//       <ToastContainer />
 //     </div>
 //   );
 // };
@@ -400,118 +308,127 @@ import Image from "next/image";
 import Navbar from "@/app/component/NavBar";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import generateAxiosConfig from "@/app/config/axiosConfig";
-import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const ConnectDataSource: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [folderTitle, setFolderTitle] = useState("");
-  const [folderDescription, setFolderDescription] = useState("");
   const [loading, setLoading] = useState(false);
-  const [selectedSource, setSelectedSource] = useState<string | null>(null);
+  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+  const [selectedSources, setSelectedSources] = useState<string[]>([]);
+  const userToken = Cookies.get("auth_token");
+  console.log(userToken);
   const router = useRouter();
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setFolderTitle("");
-    setFolderDescription("");
-    setSelectedSource(null);
-  };
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFolderTitle(e.target.value);
-  };
-
-  const handleDescriptionChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFolderDescription(e.target.value);
-  };
-
   const handleDataSourceClick = (source: string) => {
-    setSelectedSource(source);
+    setSelectedSources((prevSources) => [...prevSources, source]);
     if (source === "csv" || source === "pdf" || source === "docs") {
-      openModal();
+      document.getElementById("fileInput")?.click();
     } else {
       toast.info(`Connecting to ${source.toUpperCase()}...`);
     }
   };
 
-  const isSubmitDisabled = !(folderTitle && folderDescription) || loading;
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedFiles(e.target.files);
+  };
 
-  const handleCreateFolder = async () => {
+  const handleUploadFiles = async () => {
+    if (
+      !selectedFiles ||
+      selectedFiles.length === 0 ||
+      selectedSources.length === 0
+    )
+      return;
+
     setLoading(true);
     try {
-      const response = await axios.post(
-        "https://backend.getradii.com/datasources/folders/",
-        {
-          title: folderTitle,
-          description: folderDescription,
-        },
-        generateAxiosConfig()
-      );
+      const formData = new FormData();
 
-      const folders = response.data;
-      if (!Array.isArray(folders) || folders.length === 0) {
-        throw new Error("Folder creation response is not valid");
+      for (let i = 0; i < selectedFiles.length; i++) {
+        formData.append("source", selectedFiles[i]);
       }
 
-      const createdFolder = folders[folders.length - 1];
-      const createdFolderID = createdFolder.folderID;
+      formData.append("type", "file");
 
-      toast.success("Folder created successfully!");
+      formData.append("source", JSON.stringify(selectedSources));
 
-      closeModal();
-      router.push(`/dataSources`);
+      const response = await axios.post(
+        `https://backend.getradii.com/datasources/static/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Token ${userToken}`,
+          },
+        }
+      );
+
+      toast.success(response.data.message);
+      console.log(response.data);
+      toast.success("Files uploaded successfully!");
+      router.push("/dataSources");
     } catch (error) {
-      toast.error("Error creating folder");
+      toast.error("Error uploading files");
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.error || error.message);
+        console.log(error.response?.data);
+      } else {
+        console.error(error);
+        toast.error("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
+      setSelectedFiles(null);
+      setSelectedSources([]);
     }
   };
 
-  const renderModalContent = () => {
-    switch (selectedSource) {
-      case "docs":
-      case "pdf":
-      case "csv":
-        return (
-          <div className="">
-            <h2 className="text-lg font-semibold">
-              Create {selectedSource.toUpperCase()} Folder
-            </h2>
-            <div className="flex justify-between gap-2">
-              <button
-                className={`p-2 rounded ${
-                  isSubmitDisabled
-                    ? "bg-gray-400"
-                    : "bg-orange-500 hover:bg-orange-700"
-                } text-white`}
-                disabled={isSubmitDisabled}
-                onClick={handleCreateFolder}
-              >
-                {loading
-                  ? "Creating..."
-                  : `Create ${selectedSource.toUpperCase()} Folder`}
-              </button>
-              <button
-                className=" p-2 bg-red-500 text-white rounded hover:bg-red-700"
-                onClick={closeModal}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+  // const handleUploadFiles = async () => {
+  //   if (
+  //     !selectedFiles ||
+  //     selectedFiles.length === 0 ||
+  //     selectedFiles.length === 0
+  //   )
+  //     return;
+
+  //   setLoading(true);
+  //   try {
+  //     const formData = new FormData();
+  //     Array.from(selectedFiles).forEach((file) => {
+  //       formData.append("source", file);
+  //     });
+
+  //     formData.append("type", "FILE");
+
+  //     formData.append("source", JSON.stringify(selectedSources));
+
+  //     const response = await axios.post(
+  //       `https://backend.getradii.com/datasources/static/`,
+  //       formData,
+  //       generateAxiosConfig()
+  //     );
+
+  //     toast.success(response.data.message);
+  //     console.log(response.data);
+  //     toast.success("Files uploaded successfully!");
+  //     router.push("/dataSources");
+  //   } catch (error) {
+  //     toast.error("Error uploading files");
+  //     if (axios.isAxiosError(error)) {
+  //       toast.error(error.response?.data?.error || error.message);
+  //       console.log(error.response?.data);
+  //     } else {
+  //       console.error(error);
+  //       toast.error("An unknown error occurred");
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //     setSelectedFiles(null);
+  //     setSelectedSources([]);
+  //   }
+  // };
 
   return (
     <div className="h-screen overflow-hidden bg-gray-100">
@@ -659,32 +576,44 @@ const ConnectDataSource: React.FC = () => {
             </div>
           </div>
           <ToastContainer />
-          {isModalOpen && (
+          <input
+            type="file"
+            id="fileInput"
+            className="hidden"
+            onChange={handleFileChange}
+            multiple
+          />
+          {selectedFiles && (
             <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
               <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
-                <button
-                  className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800"
-                  onClick={closeModal}
-                >
-                  &times;
-                </button>
-                <h2 className="text-2xl font-semibold mb-4">
-                  Enter Folder Details
-                </h2>
-                <input
-                  type="text"
-                  placeholder="Folder Title"
-                  value={folderTitle}
-                  onChange={handleTitleChange}
-                  className="w-full p-2 mb-4 border border-gray-300 rounded"
-                />
-                <textarea
-                  placeholder="Folder Description"
-                  value={folderDescription}
-                  onChange={handleDescriptionChange}
-                  className="w-full p-2 mb-4 border border-gray-300 rounded"
-                />
-                {renderModalContent()}
+                <h2 className="text-2xl font-semibold mb-4">Upload Files</h2>
+                <ul className="mb-4">
+                  {Array.from(selectedFiles).map((file, index) => (
+                    <li key={index}>{file.name}</li>
+                  ))}
+                </ul>
+                <div className="flex justify-end gap-2">
+                  <button
+                    className={`p-2 rounded ${
+                      loading
+                        ? "bg-gray-400"
+                        : "bg-orange-500 hover:bg-orange-700"
+                    } text-white`}
+                    disabled={loading}
+                    onClick={handleUploadFiles}
+                  >
+                    {loading ? "Uploading..." : "Upload"}
+                  </button>
+                  <button
+                    className="p-2 bg-red-500 text-white rounded hover:bg-red-700"
+                    onClick={() => {
+                      setSelectedFiles(null);
+                      setSelectedSources([]);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           )}
