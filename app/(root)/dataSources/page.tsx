@@ -1783,33 +1783,67 @@ interface FileItem {
 }
 
 const DataSourceTable: React.FC = () => {
-  const currentFolder = useSelector(
-    (state: RootState) => state.navigation.currentFolder
-  );
-
+  const [dataSources, setDataSources] = useState([]);
+  const token = useSelector((state: RootState) => state.auth.token);
+  const orgID = useSelector((state: RootState) => state.auth.orgID);
+  console.log(orgID);
   const [files, setFiles] = useState<FileItem[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchFiles = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          "https://backend.getradii.com/datasources/static/{sourceID}",
-          generateAxiosConfig()
-        );
-        console.log("Files fetched:", response.data);
-        setFiles(response.data.files || []);
-      } catch (error) {
-        console.error("Error fetching files:", error);
-        toast.error("Error fetching files");
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (token && orgID) {
+      fetchDataSources();
+    }
+  }, [token, orgID]);
 
-    fetchFiles();
-  }, []);
+  console.log(orgID);
+
+  const fetchDataSources = async () => {
+    try {
+      const response = await axios.get(
+        `https://backend.getradii.com/datasources/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            orgID: orgID,
+          },
+        }
+      );
+      setDataSources(response.data);
+    } catch (error) {
+      console.error("Error fetching data sources:", error);
+      toast.error("Error fetching data sources");
+    }
+  };
+
+  // const DataSourceTable: React.FC = () => {
+  //   const currentFolder = useSelector(
+  //     (state: RootState) => state.navigation.currentFolder
+  //   );
+
+  // const [files, setFiles] = useState<FileItem[]>([]);
+  // const [loading, setLoading] = useState(false);
+
+  //   useEffect(() => {
+  //     const fetchFiles = async () => {
+  //       setLoading(true);
+  //       try {
+  //         const response = await axios.get(
+  //           "https://backend.getradii.com/datasources/static/{sourceID}",
+  //           generateAxiosConfig()
+  //         );
+  //         console.log("Files fetched:", response.data);
+  //         setFiles(response.data.files || []);
+  //       } catch (error) {
+  //         console.error("Error fetching files:", error);
+  //         toast.error("Error fetching files");
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     };
+
+  //     fetchFiles();
+  //   }, []);
 
   return (
     <div className="bg-grey-bg h-screen overflow-y-auto">
