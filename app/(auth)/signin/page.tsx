@@ -58,7 +58,7 @@ const Login: React.FC = () => {
       );
 
       dispatch(setToken(response.data.token));
-
+      console.log("Login successful:", response.data);
       toast.success(response.data.message || "Login successful");
       router.push("/");
     } catch (error) {
