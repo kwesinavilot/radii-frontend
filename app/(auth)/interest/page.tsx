@@ -88,7 +88,7 @@ const Interest: React.FC = () => {
                     }`}
                     onClick={() => handleInterestClick("explore")}
                   >
-                    I'm here to explore
+                    I&apos;m here to explore
                   </button>
                   <button
                     className={`text-sm text-gray-700 border border-gray-400 rounded-2xl p-4 inline-block mb-2 ${

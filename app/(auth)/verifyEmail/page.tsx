@@ -44,9 +44,9 @@ const EmailVerification: React.FC = () => {
                   To ensure security, kindly verify your Email.
                 </h1>
                 <p className="text-[17px] text-gray-700 dark:text-gray-800">
-                  We've sent a verification email to complete your registration.
-                  If you don't see it, click the Resend button below to receive
-                  a new one.
+                  We&apos;ve sent a verification email to complete your
+                  registration. If you don&apos;t see it, click the Resend
+                  button below to receive a new one.
                 </p>
                 <button
                   //   onClick={isEmailVerified ? handleProceed : handleResendEmail}

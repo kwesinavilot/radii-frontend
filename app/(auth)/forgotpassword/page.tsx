@@ -43,7 +43,7 @@ const ForgotPassword: React.FC = () => {
               height={30}
             /> */}
             <h1>Forgot Password?</h1>
-            <p>Let's help you reset your password!</p>
+            <p>Let &apos;s help you reset your password!</p>
             <p className={style.regIcons}>
               <Link
                 href="https://www.linkedin.com/company/urubytes"
