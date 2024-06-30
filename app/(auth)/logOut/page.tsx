@@ -73,6 +73,7 @@
 
 // export default Logout;
 
+"use client";
 import Logout from "@/app/component/Logout";
 import React from "react";
 import { toast } from "react-toastify";

@@ -56,7 +56,7 @@
 // };
 
 // export default UserModal;
-
+"use client";
 import React from "react";
 import { RiTeamFill } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
