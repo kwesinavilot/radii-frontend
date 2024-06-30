@@ -263,8 +263,8 @@ const Login: React.FC = () => {
     try {
       const response = await axios.post(
         "https://backend.getradii.com/auth/login/",
-        formData
-        // generateAxiosConfig()
+        formData,
+        generateAxiosConfig()
       );
       console.log(response.data);
       const { token, user } = response.data;
