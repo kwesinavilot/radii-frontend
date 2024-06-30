@@ -63,8 +63,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
 import { FaFileInvoiceDollar } from "react-icons/fa";
 import Link from "next/link";
-import Logout from "@/app/component/Logout"; // Adjust the import path as needed
-
+import Logout from "@/app/component/Logout";
 interface UserModalProps {
   onClose: () => void;
   onLogoutSuccess: () => void;
