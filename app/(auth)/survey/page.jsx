@@ -10,6 +10,7 @@ import countries from "i18n-iso-countries";
 import { industryOptions, sizeOptions } from "./data";
 import Creatable from "react-select/creatable";
 import style from "./Survey.module.css";
+import Image from "next/image";
 
 const Survey = () => {
   const router = useRouter();
@@ -176,22 +177,33 @@ const Survey = () => {
               </div>
             </div>
           </div>
-          <div className={style.surveyContent}>
-            <h1>Gain Insights, Drive Growth.</h1>
-            <p>
-              Integrate all your data sources to unlock insights and drive
-              strategic decisions that propel your business forward.
-            </p>
-            <p className={style.surveyIcons}>
-              <a
-                href="https://www.linkedin.com/company/urubytes"
-                target="_blank"
-                className="flex items-center justify-center gap-1"
-              >
-                <FaLinkedin size={22} color="#1b1b1b" />
-                <span className="text-[#1b1b1b]">@URUbytes</span>
-              </a>
-            </p>
+          <div className="f">
+            <div className="flex justify-end items-end">
+              <Image
+                src="/logo.svg"
+                alt="logo"
+                className={style.surveyLogo}
+                width={50}
+                height={50}
+              />
+            </div>
+            <div className={style.surveyContent}>
+              <h1>Gain Insights, Drive Growth.</h1>
+              <p>
+                Integrate all your data sources to unlock insights and drive
+                strategic decisions that propel your business forward.
+              </p>
+              <p className={style.surveyIcons}>
+                <a
+                  href="https://www.linkedin.com/company/urubytes"
+                  target="_blank"
+                  className="flex items-center justify-center gap-1"
+                >
+                  <FaLinkedin size={22} color="#1b1b1b" />
+                  <span className="text-[#1b1b1b]">@URUbytes</span>
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
