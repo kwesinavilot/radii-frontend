@@ -52,7 +52,7 @@
 //     e.preventDefault();
 //     try {
 //       const response = await axios.post(
-//         "https://lobster-app-9ufhi.ondigitalocean.app//auth/login/",
+//         "https://lobster-app-9ufhi.ondigitalocean.app/auth/login/",
 //         formData
 //         // generateAxiosConfig()
 //       );
@@ -263,7 +263,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://lobster-app-9ufhi.ondigitalocean.app//auth/login/",
+        "https://lobster-app-9ufhi.ondigitalocean.app/auth/login/",
         formData
       );
       console.log(response.data);
