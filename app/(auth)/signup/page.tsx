@@ -43,7 +43,7 @@
 
 // //     try {
 // //       const response = await axios.post(
-// //         "https://lobster-app-9ufhi.ondigitalocean.app//auth/account-exists/",
+// //         "https://lobster-app-9ufhi.ondigitalocean.app/auth/account-exists/",
 // //         {
 // //           email: formData.email,
 // //         }
@@ -322,7 +322,7 @@
 //     e.preventDefault();
 //     try {
 //       const response = await axios.post(
-//         "https://lobster-app-9ufhi.ondigitalocean.app//auth/register/",
+//         "https://lobster-app-9ufhi.ondigitalocean.app/auth/register/",
 //         formData
 //       );
 
@@ -543,7 +543,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://lobster-app-9ufhi.ondigitalocean.app//auth/account-exists/",
+        "https://lobster-app-9ufhi.ondigitalocean.app/auth/account-exists/",
         {
           email: formData.email,
         }
