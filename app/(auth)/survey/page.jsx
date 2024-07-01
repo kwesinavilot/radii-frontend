@@ -195,12 +195,12 @@ const Survey = () => {
               </p>
               <p className={style.surveyIcons}>
                 <a
-                  href="https://www.linkedin.com/company/urubytes"
+                  href="https://www.linkedin.com/company/Radiis"
                   target="_blank"
                   className="flex items-center justify-center gap-1"
                 >
                   <FaLinkedin size={22} color="#1b1b1b" />
-                  <span className="text-[#1b1b1b]">@URUbytes</span>
+                  <span className="text-[#1b1b1b]">@Radiis</span>
                 </a>
               </p>
             </div>

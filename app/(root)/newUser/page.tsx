@@ -12,7 +12,7 @@ const NewUser: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-4 p-2 overflow-hidden">
         <div className="sm:col-span-3 py-6 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
           <div className="mt-6">
-            <h1 className="text-3xl font-semibold">Welcome To Urubytes</h1>
+            <h1 className="text-3xl font-semibold">Welcome To Radiis</h1>
             <div className="px-2 py-8 my-4 border border-gray-200 rounded-lg shadow bg-[#038C7F] dark:border-gray-300 dark:hover:bg-[#38766f]">
               <div className="flex flex-col-reverse sm:flex-row justify-between px-8">
                 <div className="my-8 leading-10 text-white">
@@ -84,7 +84,7 @@ const NewUser: React.FC = () => {
         <div className="block sm:col-span-1 py-4 px-2 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100">
           <div className="block overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100 transition-transform transform hover:scale-105">
             <video
-              src="./urubytes.mp4"
+              src="./Radiis.mp4"
               className="h-auto max-h-[600px] w-full object-contain lg:h-full lg:w-full"
               autoPlay
               muted

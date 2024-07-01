@@ -15,7 +15,7 @@ const EmailVerification: React.FC = () => {
   //   const handleResendEmail = async () => {
   //     try {
   //       const response = await axios.post(
-  //         "https://urubytes-backend-v2-r6wnv.ondigitalocean.app/accounts/register/"
+  //         "https://Radiis-backend-v2-r6wnv.ondigitalocean.app/accounts/register/"
   //       );
   //       console.log("Email sent:", response.data);
   //       toast.success("Verification email sent");
@@ -94,12 +94,12 @@ const EmailVerification: React.FC = () => {
             </p>
             <p className={style.interestIcons}>
               <a
-                href="https://www.linkedin.com/company/urubytes"
+                href="https://www.linkedin.com/company/Radiis"
                 target="_blank"
                 className="flex items-center justify-center gap-1"
               >
                 <FaLinkedin size={22} color="#1b1b1b" />
-                <span className="text-[#1b1b1b]">@URUbytes</span>
+                <span className="text-[#1b1b1b]">@Radiis</span>
               </a>
             </p>
           </div>

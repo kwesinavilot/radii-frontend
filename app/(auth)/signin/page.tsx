@@ -83,12 +83,12 @@
 //             <p>Welcome back! Log in to pick up where you left off</p>
 //             <div className={style.regIcons}>
 //               <Link
-//                 href="https://www.linkedin.com/company/urubytes"
+//                 href="https://www.linkedin.com/company/Radiis"
 //                 target="_blank"
 //               >
 //                 <div className="flex items-center justify-center gap-1">
 //                   <FaLinkedin size={22} color="#1b1b1b" />
-//                   <span className="text-[#1b1b1b]">@URUbytes</span>
+//                   <span className="text-[#1b1b1b]">@Radiis</span>
 //                 </div>
 //               </Link>
 //             </div>
@@ -312,12 +312,12 @@ const Login: React.FC = () => {
             <p>Welcome back! Log in to pick up where you left off</p>
             <div className={style.regIcons}>
               <Link
-                href="https://www.linkedin.com/company/urubytes"
+                href="https://www.linkedin.com/company/Radiis"
                 target="_blank"
               >
                 <div className="flex items-center justify-center gap-1">
                   <FaLinkedin size={22} color="#1b1b1b" />
-                  <span className="text-[#1b1b1b]">@URUbytes</span>
+                  <span className="text-[#1b1b1b]">@Radiis</span>
                 </div>
               </Link>
             </div>
