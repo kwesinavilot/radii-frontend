@@ -45,7 +45,7 @@ const Interest: React.FC = () => {
 
         console.log("Submitting form data:", combinedData);
         const { data: responseData } = await axios.post(
-          "https://backend.getradii.com/auth/register/",
+          "https://lobster-app-9ufhi.ondigitalocean.app//auth/register/",
           combinedData
           // generateAxiosConfig()
         );

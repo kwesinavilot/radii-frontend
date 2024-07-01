@@ -52,7 +52,7 @@ const ConnectDataSource: React.FC = () => {
       formData.append("source", JSON.stringify(selectedSources));
 
       const response = await axios.post(
-        `https://backend.getradii.com/datasources/static/`,
+        `https://lobster-app-9ufhi.ondigitalocean.app//datasources/static/`,
         formData,
         {
           headers: {
@@ -81,51 +81,6 @@ const ConnectDataSource: React.FC = () => {
       setSelectedSources([]);
     }
   };
-
-  // const handleUploadFiles = async () => {
-  //   if (
-  //     !selectedFiles ||
-  //     selectedFiles.length === 0 ||
-  //     selectedFiles.length === 0
-  //   )
-  //     return;
-
-  //   setLoading(true);
-  //   try {
-  //     const formData = new FormData();
-  //     Array.from(selectedFiles).forEach((file) => {
-  //       formData.append("source", file);
-  //     });
-
-  //     formData.append("type", "FILE");
-
-  //     formData.append("source", JSON.stringify(selectedSources));
-
-  //     const response = await axios.post(
-  //       `https://backend.getradii.com/datasources/static/`,
-  //       formData,
-  //       generateAxiosConfig()
-  //     );
-
-  //     toast.success(response.data.message);
-  //     console.log(response.data);
-  //     toast.success("Files uploaded successfully!");
-  //     router.push("/dataSources");
-  //   } catch (error) {
-  //     toast.error("Error uploading files");
-  //     if (axios.isAxiosError(error)) {
-  //       toast.error(error.response?.data?.error || error.message);
-  //       console.log(error.response?.data);
-  //     } else {
-  //       console.error(error);
-  //       toast.error("An unknown error occurred");
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //     setSelectedFiles(null);
-  //     setSelectedSources([]);
-  //   }
-  // };
 
   return (
     <div className="h-screen overflow-hidden bg-gray-100">

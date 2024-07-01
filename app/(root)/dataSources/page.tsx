@@ -40,7 +40,7 @@
 //   const fetchDataSources = async () => {
 //     try {
 //       const response = await axios.get(
-//         `https://backend.getradii.com/datasources/`,
+//         `https://lobster-app-9ufhi.ondigitalocean.app//datasources/`,
 //         {
 //           headers: {
 //             Authorization: `Bearer ${token}`,
@@ -166,7 +166,7 @@ const DataSourceTable: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get(
-        `https://backend.getradii.com/datasources/static/`,
+        `https://lobster-app-9ufhi.ondigitalocean.app//datasources/static/`,
         {
           ...generateAxiosConfig(),
           params: {
