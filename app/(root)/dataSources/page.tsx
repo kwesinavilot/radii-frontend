@@ -166,15 +166,20 @@ const DataSourceTable: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get(
-        `https://backend.getradii.com/datasources/`,
-        generateAxiosConfig(orgID)
+        `https://backend.getradii.com/datasources/static/`,
+        {
+          ...generateAxiosConfig(),
+          params: {
+            orgID: orgID,
+          },
+        }
       );
-      setDataSources(response.data);
-      console.log(orgID);
-      console.log(response.data);
+
+      setFiles(response.data);
+      console.log("Files fetched successfully:", response.data);
     } catch (error) {
-      console.error("Error fetching data sources:", error);
-      toast.error("Error fetching data sources");
+      console.error("Error fetching files:", error);
+      toast.error("Error fetching files");
     }
   };
 
