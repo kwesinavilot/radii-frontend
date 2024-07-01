@@ -46,8 +46,8 @@ const Interest: React.FC = () => {
         console.log("Submitting form data:", combinedData);
         const { data: responseData } = await axios.post(
           "https://backend.getradii.com/auth/register/",
-          combinedData
-          // generateAxiosConfig()
+          combinedData,
+          generateAxiosConfig()
         );
         toast.success("Form submitted successfully!");
         console.log("Registration successful:", responseData);
