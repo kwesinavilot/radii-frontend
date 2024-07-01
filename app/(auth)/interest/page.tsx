@@ -8,7 +8,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { setToken } from "@/app/store/authSlice";
 import axios from "axios";
-import generateAxiosConfig from "@/app/config/axiosConfig";
+// import generateAxiosConfig from "@/app/config/axiosConfig";
 import Image from "next/image";
 
 const Interest: React.FC = () => {
@@ -46,8 +46,8 @@ const Interest: React.FC = () => {
         console.log("Submitting form data:", combinedData);
         const { data: responseData } = await axios.post(
           "https://backend.getradii.com/auth/register/",
-          combinedData,
-          generateAxiosConfig()
+          combinedData
+          // generateAxiosConfig()
         );
         toast.success("Form submitted successfully!");
         console.log("Registration successful:", responseData);
