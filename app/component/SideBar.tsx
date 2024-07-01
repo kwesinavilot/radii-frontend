@@ -292,9 +292,15 @@ const Sidebar = () => {
     >
       <div className="flex items-center justify-between p-4 mt-10">
         {isOpen ? (
-          <span className="text-white text-lg font-bold">URUbytes</span>
+          <Image src="/logo.svg" alt="Logo" width={121} height={47} />
         ) : (
-          <Image src="/u-logo.png" alt="Logo" width={32} height={32} />
+          <Image
+            src="/i-logo.svg"
+            alt="Logo"
+            width={30}
+            height={30}
+            className="pl-4"
+          />
         )}
       </div>
       <nav className="flex-1">
