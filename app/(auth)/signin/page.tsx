@@ -206,6 +206,32 @@
 
 // export default Login;
 
+// "use client";
+
+// import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+// import style from "./Login.module.css";
+// import { FaLinkedin, FaEnvelope } from "react-icons/fa";
+// import { IoIosEyeOff, IoMdEye } from "react-icons/io";
+// import Link from "next/link";
+// import { useRouter } from "next/navigation";
+// import axios from "axios";
+// import { ToastContainer, toast } from "react-toastify";
+// import { FcGoogle } from "react-icons/fc";
+// import { useDispatch } from "react-redux";
+// import { setToken, setOrgID } from "@/app/store/authSlice";
+// import generateAxiosConfig from "@/app/config/axiosConfig";
+// import { useSelector } from "react-redux";
+// import { RootState } from "@/app/store/store";
+// import { log } from "console";
+// import Image from "next/image";
+
+// interface FormData {
+//   email: string;
+//   password: string;
+// }
+
+// tsx
+// Copy code
 "use client";
 
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
@@ -220,9 +246,6 @@ import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { setToken, setOrgID } from "@/app/store/authSlice";
 import generateAxiosConfig from "@/app/config/axiosConfig";
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/store/store";
-import { log } from "console";
 import Image from "next/image";
 
 interface FormData {
@@ -245,17 +268,11 @@ const Login: React.FC = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   useEffect(() => {
-    setFormData({
-      email: "",
-      password: "",
-    });
+    setFormData({ email: "", password: "" });
     setIsPasswordVisible(false);
   }, []);
 
@@ -267,24 +284,75 @@ const Login: React.FC = () => {
         formData,
         generateAxiosConfig()
       );
-      console.log(response.data);
       const { token, user } = response.data;
-      const orgID = user.orgID;
-      console.log(orgID);
       dispatch(setToken(token));
-      dispatch(setOrgID(orgID));
+      dispatch(setOrgID(user.orgID));
       toast.success(response.data.message || "Login successful");
       router.push("/");
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error("Error message:", error.response?.data);
         toast.error(error.response?.data || "Login failed");
       } else {
-        console.error("Unknown error occurred:", error);
         toast.error("Unknown error occurred");
       }
     }
   };
+
+  // const Login: React.FC = () => {
+  //   const [formData, setFormData] = useState<FormData>({
+  //     email: "",
+  //     password: "",
+  //   });
+  //   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  //   const router = useRouter();
+  //   const dispatch = useDispatch();
+
+  //   const togglePasswordVisibility = () => {
+  //     setIsPasswordVisible(!isPasswordVisible);
+  //   };
+
+  //   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //     const { name, value } = e.target;
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       [name]: value,
+  //     }));
+  //   };
+
+  //   useEffect(() => {
+  //     setFormData({
+  //       email: "",
+  //       password: "",
+  //     });
+  //     setIsPasswordVisible(false);
+  //   }, []);
+
+  //   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //     e.preventDefault();
+  //     try {
+  //       const response = await axios.post(
+  //         "https://backend.getradii.com/auth/login/",
+  //         formData,
+  //         generateAxiosConfig()
+  //       );
+  //       console.log(response.data);
+  //       const { token, user } = response.data;
+  //       const orgID = user.orgID;
+  //       console.log(orgID);
+  //       dispatch(setToken(token));
+  //       dispatch(setOrgID(orgID));
+  //       toast.success(response.data.message || "Login successful");
+  //       router.push("/");
+  //     } catch (error) {
+  //       if (axios.isAxiosError(error)) {
+  //         console.error("Error message:", error.response?.data);
+  //         toast.error(error.response?.data || "Login failed");
+  //       } else {
+  //         console.error("Unknown error occurred:", error);
+  //         toast.error("Unknown error occurred");
+  //       }
+  //     }
+  //   };
 
   return (
     <>
