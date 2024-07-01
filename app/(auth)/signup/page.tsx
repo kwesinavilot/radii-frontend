@@ -508,6 +508,7 @@ import { FaUser, FaEnvelope, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import style from "./Register.module.css";
+import Image from "next/image";
 
 const Register = () => {
   const router = useRouter();
@@ -566,7 +567,22 @@ const Register = () => {
       <section className={style.reg}>
         <div className={style.regWrapper}>
           <div className={style.regContent}>
-            {/* <Image src="/logo.png" alt="logo" className={style.regLogo} width={100} height={50} /> */}
+            <div className="flex gap-12 p-4 mb-8">
+              <Image
+                src="/logo.svg"
+                alt="logo"
+                className={style.regLogo}
+                width={30}
+                height={30}
+              />
+              <Image
+                src="/auth-img.svg"
+                alt="logo"
+                className={style.regLogo}
+                width={30}
+                height={30}
+              />
+            </div>
             <h1>Unlock the Power of Your Data.</h1>
             <p>
               Integrate all your data sources to unlock insights and drive
