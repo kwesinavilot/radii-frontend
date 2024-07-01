@@ -35,13 +35,22 @@ const ForgotPassword: React.FC = () => {
       <section className={style.reg}>
         <div className={style.regWrapper}>
           <div className={style.regContent}>
-            {/* <Image
-              src="/u-logo.png"
-              alt="logo"
-              className={style.regLogo}
-              width={30}
-              height={30}
-            /> */}
+            <div className="flex gap-12 p-4 mb-8">
+              <Image
+                src="/logo.svg"
+                alt="logo"
+                className={style.regLogo}
+                width={30}
+                height={30}
+              />
+              <Image
+                src="/auth-img.svg"
+                alt="logo"
+                className={style.regLogo}
+                width={30}
+                height={30}
+              />
+            </div>
             <h1>Forgot Password?</h1>
             <p>Let &apos;s help you reset your password!</p>
             <p className={style.regIcons}>

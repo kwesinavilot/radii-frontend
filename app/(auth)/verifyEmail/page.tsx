@@ -71,13 +71,22 @@ const EmailVerification: React.FC = () => {
           </div>
 
           <div className={style.interestContent}>
-            {/* <Image
-              src="/logo.png"
-              alt="logo"
-              width={100}
-              height={50}
-              className={style.interestLogo}
-            /> */}
+            <div className="flex gap-12 p-4 mb-8">
+              <Image
+                src="/logo.svg"
+                alt="logo"
+                className={style.interestLogo}
+                width={30}
+                height={30}
+              />
+              <Image
+                src="/auth-img.svg"
+                alt="logo"
+                className={style.interestLogo}
+                width={30}
+                height={30}
+              />
+            </div>
             <h1>Gain Insights, Drive Growth.</h1>
             <p>
               Integrate all your data sources to unlock insights and drive

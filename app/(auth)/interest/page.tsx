@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { setToken } from "@/app/store/authSlice";
 import axios from "axios";
 import generateAxiosConfig from "@/app/config/axiosConfig";
+import Image from "next/image";
 
 const Interest: React.FC = () => {
   const [selectedInterest, setSelectedInterest] = useState<string>("");
@@ -184,23 +185,33 @@ const Interest: React.FC = () => {
               </div>
             </div>
           </div>
-
-          <div className={style.interestContent}>
-            <h1>Gain Insights, Drive Growth.</h1>
-            <p>
-              Integrate all your data sources to unlock insights and drive
-              strategic decisions that propel your business forward.
-            </p>
-            <p className={style.interestIcons}>
-              <a
-                href="https://www.linkedin.com/company/urubytes"
-                target="_blank"
-                className="flex items-center justify-center gap-1"
-              >
-                <FaLinkedin size={22} color="#1b1b1b" />
-                <span className="text-[#1b1b1b]">@URUbytes</span>
-              </a>
-            </p>
+          <div className="">
+            <div className="flex justify-end items-end">
+              <Image
+                src="/logo.svg"
+                alt="logo"
+                className={style.interestLogo}
+                width={50}
+                height={50}
+              />
+            </div>
+            <div className={style.interestContent}>
+              <h1>Gain Insights, Drive Growth.</h1>
+              <p>
+                Integrate all your data sources to unlock insights and drive
+                strategic decisions that propel your business forward.
+              </p>
+              <p className={style.interestIcons}>
+                <a
+                  href="https://www.linkedin.com/company/urubytes"
+                  target="_blank"
+                  className="flex items-center justify-center gap-1"
+                >
+                  <FaLinkedin size={22} color="#1b1b1b" />
+                  <span className="text-[#1b1b1b]">@URUbytes</span>
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
