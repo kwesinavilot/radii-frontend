@@ -177,7 +177,7 @@ const Survey = () => {
               </div>
             </div>
           </div>
-          <div className="f">
+          <div className="">
             <div className="flex justify-end items-end">
               <Image
                 src="/logo.svg"
