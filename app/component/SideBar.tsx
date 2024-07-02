@@ -7,6 +7,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import UserModal from "./UserModal";
+import { FaCircleUser } from "react-icons/fa6";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -73,15 +74,7 @@ const Sidebar = () => {
   const bottomLinks = [
     { icon: <MdHelp />, text: "Get Help", route: "/getHelp" },
     {
-      icon: (
-        <Image
-          src="/bright.png"
-          alt="Profile"
-          className="rounded-full"
-          width={36}
-          height={36}
-        />
-      ),
+      icon: <FaCircleUser className="rounded-full" />,
       text: "User",
       route: "#",
       onClick: () => setIsModalOpen(true),

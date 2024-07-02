@@ -249,7 +249,7 @@
 // export default SearchResult;
 
 import React, { useState } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import {
   IoCopyOutline,
@@ -266,6 +266,8 @@ import {
   FaRegThumbsUp,
   FaPlus,
   FaChartLine,
+  FaChartPie,
+  // FaChartDonut,
 } from "react-icons/fa";
 import Select, { SingleValue } from "react-select";
 
@@ -275,7 +277,10 @@ interface Result {
   status: string;
   dateAdded: string;
   lastUpdated: string;
-  data: any;
+  data: {
+    labels: string[];
+    values: number[];
+  };
 }
 
 interface SearchResultProps {
@@ -291,16 +296,24 @@ interface CustomOption {
 const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
   const [viewType, setViewType] = useState("Table");
 
-  const data = {
-    labels: result.data.labels,
-    datasets: [
-      {
-        label: result.title,
-        data: result.data.values,
-        backgroundColor: "#038C7F",
-      },
-    ],
-  };
+  // Check if result.data exists and has the necessary properties
+  const hasValidData =
+    result.data &&
+    Array.isArray(result.data.labels) &&
+    Array.isArray(result.data.values);
+
+  const data = hasValidData
+    ? {
+        labels: result.data.labels,
+        datasets: [
+          {
+            label: result.title,
+            data: result.data.values,
+            backgroundColor: "#038C7F",
+          },
+        ],
+      }
+    : { labels: [], datasets: [] };
 
   const options = {
     scales: {
@@ -313,6 +326,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
   const customOptions: CustomOption[] = [
     { value: "Bar", label: "Bar Charts", icon: <IoBarChartOutline /> },
     { value: "Line", label: "Line Charts", icon: <FaChartLine /> },
+    { value: "Pie", label: "Pie Charts", icon: <FaChartPie /> },
+    // { value: "Doughnut", label: "Doughnut Charts", icon: <FaChartDonut /> },
     { value: "Text", label: "Text View", icon: <IoDocumentTextOutline /> },
     { value: "Table", label: "Table View", icon: <IoListOutline /> },
   ];
@@ -342,11 +357,19 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
   );
 
   const renderChart = () => {
+    if (!hasValidData) {
+      return <p className="text-red-500">Invalid data format</p>;
+    }
+
     switch (viewType) {
       case "Bar":
         return <Bar data={data} options={options} />;
       case "Line":
         return <Line data={data} options={options} />;
+      case "Pie":
+        return <Pie data={data} />;
+      case "Doughnut":
+        return <Doughnut data={data} />;
       case "Text":
         return (
           <div className="text-lg mt-4">
@@ -388,7 +411,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
         <div className="relative">
           <Select
             value={customOptions.find((option) => option.value === viewType)}
-            onChange={(selectedOption) =>
+            onChange={(selectedOption: SingleValue<CustomOption>) =>
               selectedOption && setViewType(selectedOption.value)
             }
             options={customOptions}
