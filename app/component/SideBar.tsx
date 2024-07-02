@@ -102,14 +102,20 @@ const Sidebar = () => {
     >
       <div className="flex items-center justify-between p-4 mt-10">
         {isOpen ? (
-          <Image src="/logo.svg" alt="Logo" width={121} height={47} />
+          <Image
+            src="/logo.svg"
+            alt="Logo"
+            width={100}
+            height={42}
+            className="pl-2"
+          />
         ) : (
           <Image
             src="/i-logo.svg"
             alt="Logo"
-            width={30}
-            height={30}
-            className="pl-4"
+            width={32}
+            height={32}
+            className="pl-2"
           />
         )}
       </div>
