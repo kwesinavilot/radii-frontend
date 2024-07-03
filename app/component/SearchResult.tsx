@@ -57,8 +57,9 @@ interface CustomOption {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
+  const chartDataAvailable = result.chart_data.data.labels.length > 0;
   const [viewType, setViewType] = useState(
-    result.chart_data.chartType || "Table"
+    chartDataAvailable ? result.chart_data.chartType : "Table"
   );
 
   const data = result.chart_data.data || { labels: [], datasets: [] };
@@ -111,6 +112,20 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
   );
 
   const renderChart = () => {
+    if (
+      !chartDataAvailable &&
+      (viewType === "Bar" ||
+        viewType === "Line" ||
+        viewType === "Pie" ||
+        viewType === "Doughnut")
+    ) {
+      return (
+        <div className="text-lg mt-4 text-red-500">
+          Chart view is not available
+        </div>
+      );
+    }
+
     switch (viewType) {
       case "Bar":
         return <Bar data={data} options={options} />;
@@ -150,6 +165,22 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
     }
   };
 
+  const handleViewTypeChange = (selectedOption: SingleValue<CustomOption>) => {
+    if (selectedOption) {
+      if (
+        !chartDataAvailable &&
+        (selectedOption.value === "Bar" ||
+          selectedOption.value === "Line" ||
+          selectedOption.value === "Pie" ||
+          selectedOption.value === "Doughnut")
+      ) {
+        alert("Chart view is not available");
+      } else {
+        setViewType(selectedOption.value);
+      }
+    }
+  };
+
   return (
     <div className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4">
@@ -159,9 +190,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
         <div className="relative">
           <Select
             value={customOptions.find((option) => option.value === viewType)}
-            onChange={(selectedOption: SingleValue<CustomOption>) =>
-              selectedOption && setViewType(selectedOption.value)
-            }
+            onChange={handleViewTypeChange}
             options={customOptions}
             styles={customStyles}
             formatOptionLabel={renderOption}
@@ -182,7 +211,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
           </button>
         </div>
       </div>
-      <div className="w-full  border border-gray-200 rounded-lg shadow">
+      <div className="w-full border border-gray-200 rounded-lg shadow">
         <div className="flex justify-between items-center mb-4">
           <div style={{ width: "100%" }}>{renderChart()}</div>
         </div>
