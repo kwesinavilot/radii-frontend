@@ -8,7 +8,6 @@ import { FaLinkedin } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { setOrgID, setToken } from "@/app/store/authSlice";
 import axios from "axios";
-// import generateAxiosConfig from "@/app/config/axiosConfig";
 import Image from "next/image";
 
 const Interest: React.FC = () => {
@@ -47,7 +46,6 @@ const Interest: React.FC = () => {
         const { data: responseData } = await axios.post(
           "https://lobster-app-9ufhi.ondigitalocean.app/auth/register/",
           combinedData
-          // generateAxiosConfig()
         );
         toast.success("Form submitted successfully!");
         console.log("Registration successful:", responseData);
@@ -55,7 +53,6 @@ const Interest: React.FC = () => {
 
         dispatch(setToken(responseData.data.token));
         const orgID = responseData.data.user.orgID;
-
         dispatch(setOrgID(orgID));
 
         localStorage.removeItem("registerData");
