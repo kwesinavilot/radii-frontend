@@ -9,9 +9,9 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { setToken } from "@/app/store/authSlice";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import { useSelector } from "react-redux";
+import { setToken, setOrgID } from "@/app/store/authSlice";
 import { RootState } from "@/app/store/store";
 
 interface FormData {
@@ -56,11 +56,16 @@ const Login: React.FC = () => {
         formData
         // generateAxiosConfig()
       );
-
       dispatch(setToken(response.data.token));
+      const orgID = response.data.user.orgID;
+
+      dispatch(setOrgID(orgID));
+      console.log("orgID:", orgID);
+      console.log("Token:", response.data.token);
+      // dispatch(setToken(response.data.token));
       console.log("Login successful:", response.data);
       toast.success(response.data.message || "Login successful");
-      router.push("/");
+      router.push("/returningUser");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error message:", error.response?.data);
@@ -207,7 +212,6 @@ const Login: React.FC = () => {
 export default Login;
 
 // "use client";
-
 // import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 // import style from "./Login.module.css";
 // import { FaLinkedin, FaEnvelope } from "react-icons/fa";
@@ -218,12 +222,8 @@ export default Login;
 // import { ToastContainer, toast } from "react-toastify";
 // import { FcGoogle } from "react-icons/fc";
 // import { useDispatch } from "react-redux";
-// import { setToken, setOrgID } from "@/app/store/authSlice";
-
-// import { useSelector } from "react-redux";
-// import { RootState } from "@/app/store/store";
-// import { log } from "console";
-// import Image from "next/image";
+// import { setToken } from "@/app/store/authSlice";
+// import { setCookie } from "nookies";
 
 // interface FormData {
 //   email: string;
@@ -266,14 +266,17 @@ export default Login;
 //         "https://lobster-app-9ufhi.ondigitalocean.app/auth/login/",
 //         formData
 //       );
-//       console.log(response.data);
-//       const { token, user } = response.data;
-//       const orgID = user.orgID;
-//       console.log(orgID);
-//       dispatch(setToken(token));
-//       dispatch(setOrgID(orgID));
+
+//       // Save the token in a cookie
+//       setCookie(null, "token", response.data.token, {
+//         maxAge: 30 * 24 * 60 * 60,
+//         path: "/",
+//       });
+
+//       dispatch(setToken(response.data.token));
+//       console.log("Login successful:", response.data);
 //       toast.success(response.data.message || "Login successful");
-//       router.push("/");
+//       router.push("/returningUser");
 //     } catch (error) {
 //       if (axios.isAxiosError(error)) {
 //         console.error("Error message:", error.response?.data);
@@ -292,22 +295,6 @@ export default Login;
 //       <section className={style.reg}>
 //         <div className={style.regWrapper}>
 //           <div className={style.regContent}>
-//             <div className="flex gap-12 p-4 mb-8">
-//               <Image
-//                 src="/logo.svg"
-//                 alt="logo"
-//                 className={style.regLogo}
-//                 width={30}
-//                 height={30}
-//               />
-//               <Image
-//                 src="/auth-img.svg"
-//                 alt="logo"
-//                 className={style.regLogo}
-//                 width={30}
-//                 height={30}
-//               />
-//             </div>
 //             <h1>Log in to start your search!</h1>
 //             <p>Welcome back! Log in to pick up where you left off</p>
 //             <div className={style.regIcons}>
@@ -410,18 +397,17 @@ export default Login;
 //                   </div>
 //                   <button type="button" className="--btn --btn-block">
 //                     <FcGoogle style={{ marginRight: 15 }} />{" "}
-//                     <span className="text-[#1b1b1b]">
-//                       Sign in with your Google account
+//                     <span className="text-[#038C7F] text-[14px]">
+//                       Login with Google
 //                     </span>
 //                   </button>
-
-//                   <p className="text-sm font-light text-gray-700 dark:text-gray-700">
-//                     Do not have an account?{" "}
+//                   <p className="text-sm font-light text-gray-900 dark:text-gray-900">
+//                     Don’t Have an Account?{" "}
 //                     <Link
-//                       href="/register"
-//                       className="font-medium text-[#038C7F] hover:text-[#33766f] dark:text-[#038C7F]"
+//                       href="/signup"
+//                       className="font-medium text-orange-600 hover:underline dark:text-orange-500"
 //                     >
-//                       Sign up
+//                       Register here
 //                     </Link>
 //                   </p>
 //                 </form>

@@ -262,7 +262,7 @@ const Register = () => {
                   <p className="text-sm font-light text-gray-900 dark:text-gray-900">
                     Have an account?{" "}
                     <Link
-                      href="/"
+                      href="/signin"
                       className="font-medium text-orange-600 hover:underline dark:text-orange-500"
                     >
                       Login here

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import style from "./Interest.module.css";
 import { FaLinkedin } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
-import { setToken } from "@/app/store/authSlice";
+import { setOrgID, setToken } from "@/app/store/authSlice";
 import axios from "axios";
 // import generateAxiosConfig from "@/app/config/axiosConfig";
 import Image from "next/image";
@@ -53,7 +53,10 @@ const Interest: React.FC = () => {
         console.log("Registration successful:", responseData);
         dispatch(setToken(responseData.token));
 
-        console.log("Token:", responseData.token);
+        dispatch(setToken(responseData.data.token));
+        const orgID = responseData.data.user.orgID;
+
+        dispatch(setOrgID(orgID));
 
         localStorage.removeItem("registerData");
         localStorage.removeItem("surveyData");
