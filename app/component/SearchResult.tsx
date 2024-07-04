@@ -61,6 +61,7 @@
 //   const [viewType, setViewType] = useState(
 //     chartDataAvailable ? result.chart_data.chartType : "Table"
 //   );
+//   const [showInsights, setShowInsights] = useState(false);
 
 //   const data = result.chart_data.data || { labels: [], datasets: [] };
 
@@ -181,6 +182,10 @@
 //     }
 //   };
 
+//   const toggleInsights = () => {
+//     setShowInsights(!showInsights);
+//   };
+
 //   return (
 //     <div className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow">
 //       <h2 className="text-2xl font-bold mb-4">
@@ -205,9 +210,12 @@
 //             <FaPlus className="mr-1" />
 //             Add to Views
 //           </button>
-//           <button className="flex items-center px-4 py-2 bg-gray-200 rounded shadow">
+//           <button
+//             className="flex items-center px-4 py-2 bg-gray-200 rounded shadow"
+//             onClick={toggleInsights}
+//           >
 //             <IoEyeOutline className="mr-1" />
-//             View Reference
+//             View Details
 //           </button>
 //         </div>
 //       </div>
@@ -215,17 +223,19 @@
 //         <div className="flex justify-between items-center mb-4">
 //           <div style={{ width: "100%" }}>{renderChart()}</div>
 //         </div>
-//         <div className="p-4 bg-white border border-gray-200 rounded-lg shadow">
-//           <div className="flex justify-between items-center">
-//             <div>
-//               <p className="text-xl font-semibold mb-2">Insight Details</p>
-//               <p className="text-gray-500">{result.insights}</p>
+//         {showInsights && (
+//           <div className="p-4 bg-white border border-gray-200 rounded-lg shadow">
+//             <div className="flex justify-between items-center">
+//               <div>
+//                 <p className="text-xl font-semibold mb-2">Insight Details</p>
+//                 <p className="text-gray-500">{result.insights}</p>
+//               </div>
 //             </div>
+//             <p className="text-gray-500 text-right mt-4">
+//               {result.chart_data.options.title}
+//             </p>
 //           </div>
-//           <p className="text-gray-500 text-right mt-4">
-//             {result.chart_data.options.title}
-//           </p>
-//         </div>
+//         )}
 //       </div>
 //       <div className="flex items-center justify-between mt-6">
 //         <div className="flex gap-4">
@@ -315,11 +325,8 @@ interface CustomOption {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
-  const chartDataAvailable = result.chart_data.data.labels.length > 0;
-  const [viewType, setViewType] = useState(
-    chartDataAvailable ? result.chart_data.chartType : "Table"
-  );
-  const [showInsights, setShowInsights] = useState(false); // State to track insight details visibility
+  const [viewType, setViewType] = useState("Text");
+  const [showInsights, setShowInsights] = useState(false);
 
   const data = result.chart_data.data || { labels: [], datasets: [] };
 
@@ -371,38 +378,35 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
   );
 
   const renderChart = () => {
-    if (
-      !chartDataAvailable &&
-      (viewType === "Bar" ||
-        viewType === "Line" ||
-        viewType === "Pie" ||
-        viewType === "Doughnut")
-    ) {
-      return (
-        <div className="text-lg mt-4 text-red-500">
-          Chart view is not available
-        </div>
-      );
+    let chartWidth = "100%";
+    if (viewType === "Pie" || viewType === "Doughnut") {
+      chartWidth = "60%";
     }
-
-    switch (viewType) {
-      case "Bar":
-        return <Bar data={data} options={options} />;
-      case "Line":
-        return <Line data={data} options={options} />;
-      case "Pie":
-        return <Pie data={data} />;
-      case "Doughnut":
-        return <Doughnut data={data} />;
-      case "Text":
-        return <div className="text-lg mt-4">{result.insights}</div>;
-      case "Table":
-        return (
+    return (
+      <div className="flex justify-center" style={{ width: chartWidth }}>
+        {viewType === "Bar" && <Bar data={data} options={options} />}
+        {viewType === "Line" && <Line data={data} options={options} />}
+        {viewType === "Pie" && <Pie data={data} />}
+        {viewType === "Doughnut" && <Doughnut data={data} />}
+        {viewType === "Text" && (
+          <div>
+            <button
+              className="text-blue-500 underline"
+              onClick={() => setShowInsights(!showInsights)}
+            >
+              View Details
+            </button>
+            {showInsights && (
+              <div className="text-lg mt-4">{result.insights}</div>
+            )}
+          </div>
+        )}
+        {viewType === "Table" && (
           <table className="min-w-full bg-white">
             <thead>
               <tr>
-                <th className="py-2 px-8 border-b">Label</th>
-                <th className="py-2 px-8 border-b">Value</th>
+                <th className="py-2 px-4 border-b">Label</th>
+                <th className="py-2 px-4 border-b">Value</th>
               </tr>
             </thead>
             <tbody>
@@ -418,30 +422,16 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
               )}
             </tbody>
           </table>
-        );
-      default:
-        return null;
-    }
+        )}
+      </div>
+    );
   };
 
   const handleViewTypeChange = (selectedOption: SingleValue<CustomOption>) => {
     if (selectedOption) {
-      if (
-        !chartDataAvailable &&
-        (selectedOption.value === "Bar" ||
-          selectedOption.value === "Line" ||
-          selectedOption.value === "Pie" ||
-          selectedOption.value === "Doughnut")
-      ) {
-        alert("Chart view is not available");
-      } else {
-        setViewType(selectedOption.value);
-      }
+      setViewType(selectedOption.value);
+      setShowInsights(false); // Hide insights when changing view type
     }
-  };
-
-  const toggleInsights = () => {
-    setShowInsights(!showInsights); // Toggle visibility of insight details
   };
 
   return (
@@ -468,12 +458,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
             <FaPlus className="mr-1" />
             Add to Views
           </button>
-          <button
-            className="flex items-center px-4 py-2 bg-gray-200 rounded shadow"
-            onClick={toggleInsights}
-          >
+          <button className="flex items-center px-4 py-2 bg-gray-200 rounded shadow">
             <IoEyeOutline className="mr-1" />
-            View Details
+            View Reference
           </button>
         </div>
       </div>
@@ -481,19 +468,21 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
         <div className="flex justify-between items-center mb-4">
           <div style={{ width: "100%" }}>{renderChart()}</div>
         </div>
-        {showInsights && ( // Conditional rendering based on showInsights state
-          <div className="p-4 bg-white border border-gray-200 rounded-lg shadow">
-            <div className="flex justify-between items-center">
-              <div>
-                <p className="text-xl font-semibold mb-2">Insight Details</p>
-                <p className="text-gray-500">{result.insights}</p>
-              </div>
+        <div className="p-4 bg-white border border-gray-200 rounded-lg shadow">
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="text-xl font-semibold mb-2">Insight Details</p>
+              {viewType === "Text" && (
+                <p className="text-gray-500">
+                  Click 'View Details' to see insights
+                </p>
+              )}
             </div>
-            <p className="text-gray-500 text-right mt-4">
-              {result.chart_data.options.title}
-            </p>
           </div>
-        )}
+          <p className="text-gray-500 text-right mt-4">
+            {result.chart_data.options.title}
+          </p>
+        </div>
       </div>
       <div className="flex items-center justify-between mt-6">
         <div className="flex gap-4">
