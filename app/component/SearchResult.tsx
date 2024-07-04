@@ -37,7 +37,7 @@ interface Result {
       xAxisLabel: string;
       yAxisLabel: string;
     };
-  };
+  } | null;
   metadata: {
     [key: string]: {
       file_name: string;
@@ -60,7 +60,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
   const [viewType, setViewType] = useState("Text");
   const [showInsights, setShowInsights] = useState(true);
 
-  const data = result.chart_data.data || { labels: [], datasets: [] };
+  const data = result.chart_data?.data || { labels: [], datasets: [] };
 
   const options = {
     scales: {
@@ -71,19 +71,24 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
     plugins: {
       title: {
         display: true,
-        text: result.chart_data.options.title,
+        text: result.chart_data?.options.title || "",
       },
     },
   };
 
   const customOptions: CustomOption[] = [
-    { value: "Bar", label: "Bar Charts", icon: <IoBarChartOutline /> },
-    { value: "Line", label: "Line Charts", icon: <FaChartLine /> },
-    { value: "Pie", label: "Pie Charts", icon: <FaChartPie /> },
-    { value: "Doughnut", label: "Doughnut Charts", icon: <FaChartPie /> },
     { value: "Text", label: "Text View", icon: <IoDocumentTextOutline /> },
-    { value: "Table", label: "Table View", icon: <IoListOutline /> },
   ];
+
+  if (result.chart_data) {
+    customOptions.unshift(
+      { value: "Bar", label: "Bar Charts", icon: <IoBarChartOutline /> },
+      { value: "Line", label: "Line Charts", icon: <FaChartLine /> },
+      { value: "Pie", label: "Pie Charts", icon: <FaChartPie /> },
+      { value: "Doughnut", label: "Doughnut Charts", icon: <FaChartPie /> },
+      { value: "Table", label: "Table View", icon: <IoListOutline /> }
+    );
+  }
 
   const customStyles = {
     control: (provided: any) => ({
@@ -129,12 +134,12 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
               </tr>
             </thead>
             <tbody>
-              {result.chart_data.data.labels.map(
+              {result.chart_data?.data.labels.map(
                 (label: string, index: number) => (
                   <tr key={index}>
                     <td className="py-2 px-4 border-b">{label}</td>
                     <td className="py-2 px-4 border-b">
-                      {result.chart_data.data.datasets[0].data[index]}
+                      {result.chart_data?.data.datasets[0].data[index]}
                     </td>
                   </tr>
                 )
@@ -164,7 +169,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
   return (
     <div className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4">
-        {result.chart_data.options.title}
+        {result.chart_data?.options.title || "No Chart Available"}
       </h2>
       <div className="flex justify-between items-center mb-4">
         <div className="relative">
