@@ -385,8 +385,8 @@ export default function Insight() {
                   className="mb-2 p-4 bg-gray-100 relative"
                 >
                   <h3 className="font-semibold text-sm mb-1">
-                    {truncateText(item.query, 20)}{" "}
-                    {item.query.length > 20 && (
+                    {truncateText(item.query, 24)}{" "}
+                    {item.query.length > 24 && (
                       <button
                         className="text-blue-500 hover:underline"
                         onClick={(e) => handleEllipsisClick(e, item)}
@@ -395,6 +395,7 @@ export default function Insight() {
                       </button>
                     )}
                   </h3>
+
                   {/* <p className="text-sm text-gray-500 mb-2">
                     Added on {new Date(item.created_at).toLocaleDateString()}
                   </p> */}
