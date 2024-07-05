@@ -9,10 +9,8 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import generateAxiosConfig from "@/app/config/axiosConfig";
-import { useSelector } from "react-redux";
 import { setToken, setOrgID } from "@/app/store/authSlice";
-import { RootState } from "@/app/store/store";
+import Cookies from "js-cookie";
 
 interface FormData {
   email: string;
@@ -54,18 +52,17 @@ const Login: React.FC = () => {
       const response = await axios.post(
         "https://lobster-app-9ufhi.ondigitalocean.app/auth/login/",
         formData
-        // generateAxiosConfig()
       );
       dispatch(setToken(response.data.token));
       const orgID = response.data.user.orgID;
-
+      const token = response.data.token;
       dispatch(setOrgID(orgID));
+      Cookies.set("token", token);
       console.log("orgID:", orgID);
       console.log("Token:", response.data.token);
-      // dispatch(setToken(response.data.token));
       console.log("Login successful:", response.data);
       toast.success(response.data.message || "Login successful");
-      router.push("/returningUser");
+      router.push("/dashboard");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error message:", error.response?.data);

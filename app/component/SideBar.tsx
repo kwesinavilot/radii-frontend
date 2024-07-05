@@ -48,7 +48,7 @@ const Sidebar = () => {
     {
       icon: <MdDashboard />,
       text: "Dashboard",
-      route: "/",
+      route: "/dashboard",
     },
     {
       icon: <FaChartLine />,

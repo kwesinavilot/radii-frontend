@@ -26,7 +26,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/(auth)/survey/page.jsx"
+    "app/(auth)/survey/page.jsx",
+    "app/(root)/error404"
   ],
   "exclude": ["node_modules"]
 }
