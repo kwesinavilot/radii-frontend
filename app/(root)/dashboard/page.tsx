@@ -1,22 +1,3 @@
-// // import ReturningUser from "../returningUser/page";
-
-// // const data = {
-// //   recentSearches: {
-// //     user: [
-// //       { id: "1", query: "Query 1", updated_at: new Date().toString() },
-// //       { id: "2", query: "Query 2", updated_at: new Date().toString() },
-// //     ],
-// //   },
-// // };
-
-// // export default function Home() {
-// //   return (
-// //     <div>
-// //       <ReturningUser userQueries={10} data={data} />
-// //     </div>
-// //   );
-// // }
-
 // "use client";
 
 // import ReturningUser from "../returningUser/page";
@@ -44,15 +25,18 @@
 //       try {
 //         const response = await fetch(
 //           "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
-
 //           generateAxiosConfig()
 //         );
+
 //         const result = await response.json();
-//         const recentSearches = result.map((item: any) => ({
-//           searchID: item.searchID,
-//           query: item.query,
-//           updated_at: item.updated_at,
-//         }));
+//         console.log("Result:", result);
+//         const recentSearches = result
+//           .map((item: any) => ({
+//             searchID: item.searchID,
+//             query: item.query,
+//             updated_at: item.updated_at,
+//           }))
+//           .slice(0, 3);
 //         setData({ recentSearches });
 //         setIsLoading(false);
 //       } catch (error) {
@@ -103,6 +87,7 @@ interface RecentSearch {
 
 interface Data {
   recentSearches: RecentSearch[];
+  totalSearches: number;
 }
 
 export default function Home() {
@@ -117,15 +102,23 @@ export default function Home() {
           "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
           generateAxiosConfig()
         );
+
         const result = await response.json();
+        console.log("Result:", result);
+
+     
+        const totalSearches = result.length;
+
+
         const recentSearches = result
           .map((item: any) => ({
             searchID: item.searchID,
             query: item.query,
             updated_at: item.updated_at,
           }))
-          .slice(0, 3); // Get only the first 3 items
-        setData({ recentSearches });
+          .slice(0, 3);
+
+        setData({ recentSearches, totalSearches });
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -148,7 +141,7 @@ export default function Home() {
   if (data && data.recentSearches.length > 0) {
     return (
       <div>
-        <ReturningUser userQueries={data.recentSearches.length} data={data} />
+        <ReturningUser userQueries={data.totalSearches} data={data} />
       </div>
     );
   } else {
