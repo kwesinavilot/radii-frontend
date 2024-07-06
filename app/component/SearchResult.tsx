@@ -368,13 +368,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
                 <th className="py-2 px-4 border-b text-left">Value</th>
               </tr>
             </thead>
+
             <tbody>
-              {result.chart_data?.data.labels.map(
+              {result.chart_data?.data?.labels.map(
                 (label: string, index: number) => (
                   <tr key={index}>
                     <td className="py-2 px-4 border-b">{label}</td>
                     <td className="py-2 px-4 border-b">
-                      {result.chart_data?.data.datasets[0].data[index]}
+                      {result.chart_data?.data?.datasets[0]?.data[index]}
                     </td>
                   </tr>
                 )

@@ -62,7 +62,7 @@ const Login: React.FC = () => {
       console.log("Token:", response.data.token);
       console.log("Login successful:", response.data);
       toast.success(response.data.message || "Login successful");
-      router.push("/dashboard");
+      router.push("/returningUser");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error message:", error.response?.data);
