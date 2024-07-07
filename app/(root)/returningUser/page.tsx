@@ -170,6 +170,8 @@
 
 // export default ReturningUser;
 
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -200,7 +202,7 @@ interface ReturningUserProps {
 const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
   const router = useRouter();
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>(
-    data.recentSearches
+    data?.recentSearches || []
   );
 
   const handleUserQueriesClick = (searchID: string) => {

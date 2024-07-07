@@ -7,7 +7,6 @@
 //   const protectedPaths = [
 //     "/connectDataSources",
 //     "/Billing",
-//     "/connectDataSources",
 //     "/dashboard",
 //     "/getHelp",
 //     "/insight",
@@ -19,7 +18,7 @@
 //     "/other-protected-route",
 //   ];
 
-//   if (protectedPaths.includes(pathname)) {
+//   if (protectedPaths.some((path) => pathname.startsWith(path))) {
 //     if (!token) {
 //       const loginUrl = new URL("/signin", req.url);
 //       return NextResponse.redirect(loginUrl);
@@ -27,7 +26,7 @@
 //   }
 
 //   if (!protectedPaths.includes(pathname) && !pathname.startsWith("/api")) {
-//     const notFoundUrl = new URL("/404", req.url);
+//     const notFoundUrl = new URL("/error404", req.url);
 //     return NextResponse.rewrite(notFoundUrl);
 //   }
 
@@ -38,7 +37,6 @@
 //   matcher: [
 //     "/connectDataSources",
 //     "/Billing",
-//     "/connectDataSources",
 //     "/dashboard",
 //     "/getHelp",
 //     "/insight",
@@ -55,6 +53,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
+  const googleToken = req.cookies.get("google_token")?.value;
   const { pathname } = req.nextUrl;
 
   const protectedPaths = [
@@ -72,7 +71,7 @@ export function middleware(req: NextRequest) {
   ];
 
   if (protectedPaths.some((path) => pathname.startsWith(path))) {
-    if (!token) {
+    if (!token && !googleToken) {
       const loginUrl = new URL("/signin", req.url);
       return NextResponse.redirect(loginUrl);
     }
