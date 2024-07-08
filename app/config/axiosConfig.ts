@@ -16,6 +16,7 @@ import Cookies from "js-cookie";
 
 const generateAxiosConfig = () => {
   const userToken = Cookies.get("auth_token");
+  console.log(userToken);
   return {
     headers: {
       "Content-Type": "application/json",
