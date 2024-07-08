@@ -17,6 +17,21 @@ const ConnectDataSource: React.FC = () => {
   const userToken = Cookies.get("auth_token");
   const router = useRouter();
 
+  // const CLIENT_ID =
+  //   "75800942170-6uk0kinmmo3a308dscul4mk72g7uavr9.apps.googleusercontent.com";
+  // const REDIRECT_URI = "http://localhost:3000/api/oauth2callback";
+
+  // const SCOPES =
+  //   "email profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.metadata.readonly";
+
+  // const connectToGoogleDrive = () => {
+  //   const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${encodeURIComponent(
+  //     SCOPES
+  //   )}&access_type=offline&prompt=consent`;
+  //   window.location.href = oauth2Url;
+  //   console.log("Redirecting to Google OAuth2 URL:", oauth2Url);
+  // };
+
   const CLIENT_ID =
     "75800942170-6uk0kinmmo3a308dscul4mk72g7uavr9.apps.googleusercontent.com";
   const REDIRECT_URI = "http://localhost:3000/api/oauth2callback";
