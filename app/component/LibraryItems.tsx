@@ -86,8 +86,6 @@
 
 import React, { useEffect, useRef } from "react";
 import { FaInfoCircle, FaEdit, FaTrashAlt, FaShareAlt } from "react-icons/fa";
-import axios from "axios";
-import { toast } from "react-toastify";
 
 interface LibraryItemPopupProps {
   isOpen: boolean;
