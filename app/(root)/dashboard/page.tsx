@@ -4,6 +4,7 @@ import ReturningUser from "../returningUser/page";
 import NewUser from "../newUser/page";
 import { useEffect, useState } from "react";
 import generateAxiosConfig from "@/app/config/axiosConfig";
+import Spinner from "@/app/component/Spinner";
 
 interface RecentSearch {
   searchID: string;
@@ -55,7 +56,7 @@ export default function Home() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (hasError) {
