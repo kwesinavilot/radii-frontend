@@ -156,7 +156,7 @@
 //   const orgID = useSelector((state: RootState) => state.auth.orgID);
 //   const [files, setFiles] = useState<FileItem[]>([]);
 //   const [drive, setDrive] = useState<FileItem[]>([]);
-//   const [database, setDatabase] = useState<FileItem[]>([]);
+// const [database, setDatabase] = useState<FileItem[]>([]);
 //   const [loading, setLoading] = useState(false);
 
 //   useEffect(() => {
@@ -214,6 +214,8 @@
 //       toast.error("Error fetching drive data");
 //     }
 //   };
+
+//  fetchDatabaseData();
 
 //   // const fetchDatabaseData = async () => {
 //   //   try {
@@ -310,16 +312,16 @@
 //           >
 //             Drive
 //           </button>
-//           <button
-//             className={`px-4 py-2 rounded-t-lg ml-2 ${
-//               activeTab === "database"
-//                 ? "bg-orange-500 text-white"
-//                 : "bg-gray-200 text-gray-600"
-//             }`}
-//             onClick={() => setActiveTab("database")}
-//           >
-//             Database
-//           </button>
+// <button
+//   className={`px-4 py-2 rounded-t-lg ml-2 ${
+//     activeTab === "database"
+//       ? "bg-orange-500 text-white"
+//       : "bg-gray-200 text-gray-600"
+//   }`}
+//   onClick={() => setActiveTab("database")}
+// >
+//   Database
+// </button>
 //         </div>
 
 //         <div>
@@ -368,6 +370,7 @@ const DataSourceTable: React.FC = () => {
   const [activeTab, setActiveTab] = useState("files");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [drive, setDrive] = useState<DriveItem[]>([]);
+  const [database, setDatabase] = useState<FileItem[]>([]);
   const [loading, setLoading] = useState(false);
   const token = useSelector((state: RootState) => state.auth.token);
   const orgID = useSelector((state: RootState) => state.auth.orgID);
@@ -376,6 +379,7 @@ const DataSourceTable: React.FC = () => {
     if (token && orgID) {
       fetchDataSources();
       fetchDriveData();
+      fetchDatabaseData();
     }
   }, [token, orgID]);
 
@@ -422,6 +426,26 @@ const DataSourceTable: React.FC = () => {
     } catch (error) {
       console.error("Error fetching drive data:", error);
       toast.error("Error fetching drive data");
+    }
+  };
+
+  const fetchDatabaseData = async () => {
+    try {
+      if (!orgID) {
+        throw new Error("orgID is required");
+      }
+      const response = await axios.get(
+        `https://backend.getradii.com/datasources/database/${orgID}/`,
+        {
+          ...generateAxiosConfig(),
+        }
+      );
+
+      setDatabase(response.data);
+      // console.log("Database data fetched successfully:", response.data);
+    } catch (error) {
+      // console.error("Error fetching database data:", error);
+      // toast.error("Error fetching database data");
     }
   };
 
@@ -583,11 +607,22 @@ const DataSourceTable: React.FC = () => {
           >
             Drive
           </button>
+          <button
+            className={`px-4 py-2 rounded-t-lg ml-2 ${
+              activeTab === "database"
+                ? "bg-orange-500 text-white"
+                : "bg-gray-200 text-gray-600"
+            }`}
+            onClick={() => setActiveTab("database")}
+          >
+            Database
+          </button>
         </div>
 
         <div>
           {activeTab === "files" && renderFilesTable(files)}
           {activeTab === "drive" && renderDriveTable(drive)}
+          {activeTab === "database" && renderFilesTable(database)}
         </div>
       </div>
     </div>
