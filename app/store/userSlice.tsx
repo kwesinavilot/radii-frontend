@@ -47,10 +47,12 @@ const userSlice = createSlice({
     setUser(state, action: PayloadAction<UserState>) {
       state.name = action.payload.name;
       state.email = action.payload.email;
+      console.log("User set:", action.payload);
     },
     clearUser(state) {
       state.name = "";
       state.email = "";
+      console.log("User cleared");
     },
   },
 });
