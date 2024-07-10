@@ -1,7 +1,8 @@
+
+
 "use client";
 
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaPlus, FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
@@ -14,29 +15,28 @@ import Link from "next/link";
 import Navbar from "@/app/component/NavBar";
 
 interface RecentSearch {
-  id: string;
+  searchID: string;
   query: string;
   updated_at: string;
 }
 
+interface Data {
+  recentSearches: RecentSearch[];
+}
+
 interface ReturningUserProps {
   userQueries: number;
-  data: {
-    recentSearches: {
-      user: RecentSearch[];
-    };
-  };
+  data: Data;
 }
 
 const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
   const router = useRouter();
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>(
-    data?.recentSearches?.user || []
+    data?.recentSearches || []
   );
-  //   const token = useSelector((state: any) => state.login.token);
 
-  const handleUserQueriesClick = (id: string) => {
-    const url = `/internalInsight?selectedQuery=${id}`;
+  const handleUserQueriesClick = (searchID: string) => {
+    const url = `/internalInsight?selectedQuery=${searchID}`;
     router.push(url);
   };
 
@@ -124,7 +124,7 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
             </div>
             <div className="flex-grow flex flex-col bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-100 transition-transform transform hover:scale-105">
               <div className="border-b-2 border-neutral-500 px-8 py-3 dark:border-black/10">
-                <h2 className="font-semibold"> Total Question Asked</h2>
+                <h2 className="font-semibold"> Total Questions Asked</h2>
               </div>
               <div className="p-6 flex items-center m-auto">
                 <span className="font-bold text-2xl text-center">
@@ -150,17 +150,15 @@ const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
           <h1 className="text-[16px] font-bold">Recent Search</h1>
           {recentSearches.map((search, index) => (
             <ul key={index}>
-              <li className="bg-[#F0F2F9] p-2 my-2">
-                <span
-                  onClick={() => handleUserQueriesClick(search.id)}
-                  className="cursor-pointer"
-                >
-                  {search.query.length > 30
-                    ? `${search.query.substring(0, 30)}...`
-                    : search.query}
-                </span>
-                <span className="flex justify-between items-center">
-                  <span className="text-sm text-gray-500">
+              <li className="bg-[#F0F2F9] p-2 my-4 list-none rounded-md">
+                <span className="flex flex-col">
+                  <span
+                    onClick={() => handleUserQueriesClick(search.searchID)}
+                    className="text-[#E58A13] cursor-pointer"
+                  >
+                    {search.query}
+                  </span>
+                  <span className="text-[12px] text-gray-400">
                     {new Date(search.updated_at).toLocaleDateString()}
                   </span>
                 </span>

@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { use, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Navbar from "@/app/component/NavBar";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import generateAxiosConfig from "@/app/config/axiosConfig";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
@@ -15,13 +15,44 @@ const ConnectDataSource: React.FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [selectedSources, setSelectedSources] = useState<string[]>([]);
   const userToken = Cookies.get("auth_token");
-  console.log(userToken);
   const router = useRouter();
+
+  // const CLIENT_ID =
+  //   "75800942170-6uk0kinmmo3a308dscul4mk72g7uavr9.apps.googleusercontent.com";
+  // const REDIRECT_URI = "http://localhost:3000/api/oauth2callback";
+
+  // const SCOPES =
+  //   "email profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.metadata.readonly";
+
+  // const connectToGoogleDrive = () => {
+  //   const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${encodeURIComponent(
+  //     SCOPES
+  //   )}&access_type=offline&prompt=consent`;
+  //   window.location.href = oauth2Url;
+  //   console.log("Redirecting to Google OAuth2 URL:", oauth2Url);
+  // };
+
+  const CLIENT_ID =
+    "75800942170-6uk0kinmmo3a308dscul4mk72g7uavr9.apps.googleusercontent.com";
+  const REDIRECT_URI = "http://localhost:3000/api/oauth2callback";
+
+  const SCOPES =
+    "email profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.metadata.readonly";
+
+  const connectToGoogleDrive = () => {
+    const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${encodeURIComponent(
+      SCOPES
+    )}&access_type=offline&prompt=consent`;
+    window.location.href = oauth2Url;
+    console.log("Redirecting to Google OAuth2 URL:", oauth2Url);
+  };
 
   const handleDataSourceClick = (source: string) => {
     setSelectedSources((prevSources) => [...prevSources, source]);
     if (source === "csv" || source === "pdf" || source === "docs") {
       document.getElementById("fileInput")?.click();
+    } else if (source === "gdrive") {
+      connectToGoogleDrive();
     } else {
       toast.info(`Connecting to ${source.toUpperCase()}...`);
     }
@@ -42,13 +73,10 @@ const ConnectDataSource: React.FC = () => {
     setLoading(true);
     try {
       const formData = new FormData();
-
       for (let i = 0; i < selectedFiles.length; i++) {
         formData.append("source", selectedFiles[i]);
       }
-
       formData.append("type", "file");
-
       formData.append("source", JSON.stringify(selectedSources));
 
       const response = await axios.post(
@@ -63,18 +91,11 @@ const ConnectDataSource: React.FC = () => {
       );
 
       toast.success(response.data.message);
-      console.log(response.data);
       toast.success("Files uploaded successfully!");
       router.push("/dataSources");
     } catch (error) {
+      console.error("Error uploading files:", error);
       toast.error("Error uploading files");
-      if (axios.isAxiosError(error)) {
-        toast.error(error.response?.data?.error || error.message);
-        console.log(error.response?.data);
-      } else {
-        console.error(error);
-        toast.error("An unknown error occurred");
-      }
     } finally {
       setLoading(false);
       setSelectedFiles(null);
@@ -188,7 +209,10 @@ const ConnectDataSource: React.FC = () => {
             <div className="col-span-1 sm:col-span-3">
               <h2 className="text-[18px] font-bold mb-4">Others</h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="dataSourceBtn">
+                <div
+                  className="dataSourceBtn"
+                  onClick={() => handleDataSourceClick("gdrive")}
+                >
                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
                     <Image
                       src="/drive.png"
@@ -200,6 +224,7 @@ const ConnectDataSource: React.FC = () => {
                     <span>Google Drive</span>
                   </div>
                 </div>
+
                 <div className="dataSourceBtn">
                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
                     <Image

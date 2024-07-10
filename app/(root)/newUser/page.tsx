@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 import Image from "next/image";
@@ -12,7 +11,7 @@ const NewUser: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-4 p-2 overflow-hidden">
         <div className="sm:col-span-3 py-6 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
           <div className="mt-6">
-            <h1 className="text-3xl font-semibold">Welcome To Radiis</h1>
+            <h1 className="text-3xl font-semibold">Welcome To Radii</h1>
             <div className="px-2 py-8 my-4 border border-gray-200 rounded-lg shadow bg-[#038C7F] dark:border-gray-300 dark:hover:bg-[#38766f]">
               <div className="flex flex-col-reverse sm:flex-row justify-between px-8">
                 <div className="my-8 leading-10 text-white">
@@ -54,7 +53,7 @@ const NewUser: React.FC = () => {
               </p>
 
               <div className="flex justify-between">
-                <Link href="/addSource">
+                <Link href="/connectDataSources">
                   <button className="text-dark font-semi-bold py-2 px-6 rounded-xl mt-6 border border-gray-600 flex items-center gap-2">
                     <FaPlus />
                     Add Source

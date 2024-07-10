@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import UserModal from "./UserModal";
 import { FaCircleUser } from "react-icons/fa6";
+import { MdViewInAr } from "react-icons/md";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -47,7 +48,7 @@ const Sidebar = () => {
     {
       icon: <MdDashboard />,
       text: "Dashboard",
-      route: "/",
+      route: "/dashboard",
     },
     {
       icon: <FaChartLine />,
@@ -60,7 +61,7 @@ const Sidebar = () => {
       route: "/dataSources",
     },
     {
-      icon: <FaDatabase />,
+      icon: <MdViewInAr />,
       text: "Views",
       route: "/views",
     },

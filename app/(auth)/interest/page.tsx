@@ -51,14 +51,14 @@ const Interest: React.FC = () => {
         console.log("Registration successful:", responseData);
         dispatch(setToken(responseData.token));
 
-        dispatch(setToken(responseData.data.token));
-        const orgID = responseData.data.user.orgID;
+        dispatch(setToken(responseData.token));
+        const orgID = responseData.user.orgID;
         dispatch(setOrgID(orgID));
 
         localStorage.removeItem("registerData");
         localStorage.removeItem("surveyData");
 
-        router.push("/");
+        router.push("/dashboard");
       } catch (error: any) {
         console.error("An error occurred:", error);
         toast.error(error.response.data?.error || "Failed to submit form.");
