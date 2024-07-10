@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import React, { useState } from "react";
@@ -29,7 +27,7 @@ interface ReturningUserProps {
   data: Data;
 }
 
-const ReturningUser: React.FC<ReturningUserProps> = ({ userQueries, data }) => {
+const ReturningUser: React.FC<any> = ({ userQueries, data }) => {
   const router = useRouter();
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>(
     data?.recentSearches || []
