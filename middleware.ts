@@ -76,7 +76,7 @@ export function middleware(req: NextRequest) {
   console.log(`Google Token: ${googleToken}`);
 
   if (protectedPaths.some((path) => pathname.startsWith(path))) {
-    if (!token && !googleToken) {
+    if (!token || !googleToken) {
       console.log(`Redirecting to /signin`);
       const loginUrl = new URL("/signin", req.url);
       return NextResponse.redirect(loginUrl);
