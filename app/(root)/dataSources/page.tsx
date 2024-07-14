@@ -2078,7 +2078,7 @@ const DataSourceTable: React.FC = () => {
             <th className="px-4 py-2 text-left">Type</th>
             <th className="px-4 py-2 text-left">Title</th>
             <th className="px-4 py-2 text-left">Source</th>
-            <th className="px-4 py-2 text-left">Description</th>
+
             <th className="px-4 py-2 text-left">Date Added</th>
             <th className="px-4 py-2 text-left">Actions</th>
           </tr>
@@ -2096,7 +2096,7 @@ const DataSourceTable: React.FC = () => {
                 <td className="px-4 py-2">{item.type}</td>
                 <td className="px-4 py-2">{item.name}</td>
                 <td className="px-4 py-2">{item.source}</td>
-                <td className="px-4 py-2">{item.description}</td>
+                {/* <td className="px-4 py-2">{item.description}</td> */}
                 <td className="px-4 py-2">
                   {format(new Date(item.created_at), "yyyy-MM-dd")}
                 </td>
