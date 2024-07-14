@@ -112,20 +112,6 @@ export async function GET(req: NextRequest) {
     const data = response.data;
     console.log("Response from backend:", data);
 
-    // if (response.status >= 200 && response.status < 300) {
-    //   console.log(
-    //     "Response from backend:",
-    //     response.data.integration["username"]
-    //   );
-    //   // const { email } = response.data.integration.username;
-
-    //   // return NextResponse.redirect(
-    //   //   `/dataSources?email=${encodeURIComponent(email)}`
-    //   // );
-    // const { username } = response.data.integration["username"];
-
-    //   console.log(encodeURIComponent(username));
-    //   return NextResponse.redirect(`/dataSources?email=${username}`);
     if (response.status >= 200 && response.status < 300) {
       const { username } = response.data.integration["username"];
       const baseUrl = req.nextUrl.origin;
