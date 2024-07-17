@@ -55,6 +55,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./authSlice";
 import navigationReducer from "./navigationSlice";
+import integrationReducer from "./integrationSlice";
 
 const persistConfig = {
   key: "root",
@@ -67,6 +68,7 @@ const store = configureStore({
   reducer: {
     navigation: navigationReducer,
     auth: persistedAuthReducer,
+    integration: integrationReducer,
   },
 });
 

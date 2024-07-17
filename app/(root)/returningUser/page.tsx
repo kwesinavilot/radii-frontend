@@ -12,6 +12,32 @@ import {
 import Link from "next/link";
 import Navbar from "@/app/component/NavBar";
 
+// interface RecentSearch {
+//   searchID: string;
+//   query: string;
+//   updated_at: string;
+// }
+
+// interface Data {
+//   recentSearches: RecentSearch[];
+// }
+
+// interface ReturningUserProps {
+//   userQueries: number;
+//   data: Data;
+// }
+
+// const ReturningUser: React.FC<any> = ({ userQueries, data }) => {
+//   const router = useRouter();
+//   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>(
+//     data?.recentSearches || []
+//   );
+
+//   const handleUserQueriesClick = (searchID: string) => {
+//     const url = `/internalInsight?selectedQuery=${searchID}`;
+//     router.push(url);
+//   };
+
 interface RecentSearch {
   searchID: string;
   query: string;
@@ -25,17 +51,20 @@ interface Data {
 interface ReturningUserProps {
   userQueries: number;
   data: Data;
+  onRecentSearchClick: (searchID: string) => void;
 }
 
-const ReturningUser: React.FC<any> = ({ userQueries, data }) => {
-  const router = useRouter();
+const ReturningUser: React.FC<ReturningUserProps> = ({
+  userQueries,
+  data,
+  onRecentSearchClick,
+}) => {
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>(
     data?.recentSearches || []
   );
 
   const handleUserQueriesClick = (searchID: string) => {
-    const url = `/internalInsight?selectedQuery=${searchID}`;
-    router.push(url);
+    onRecentSearchClick(searchID);
   };
 
   return (
@@ -146,7 +175,7 @@ const ReturningUser: React.FC<any> = ({ userQueries, data }) => {
           </div>
 
           <h1 className="text-[16px] font-bold">Recent Search</h1>
-          {recentSearches.map((search, index) => (
+          {/* {recentSearches.map((search, index) => (
             <ul key={index}>
               <li className="bg-[#F0F2F9] p-2 my-4 list-none rounded-md">
                 <span className="flex flex-col">
@@ -158,6 +187,24 @@ const ReturningUser: React.FC<any> = ({ userQueries, data }) => {
                   </span>
                   <span className="text-[12px] text-gray-400">
                     {new Date(search.updated_at).toLocaleDateString()}
+                  </span>
+                </span>
+              </li>
+            </ul>
+          ))} */}
+
+          {recentSearches.map((item) => (
+            <ul key={item.searchID}>
+              <li className="bg-[#F0F2F9] p-2 my-4 list-none rounded-md">
+                <span className="flex flex-col">
+                  <span
+                    onClick={() => handleUserQueriesClick(item.searchID)}
+                    className="text-[#E58A13] cursor-pointer"
+                  >
+                    {item.query}
+                  </span>
+                  <span className="text-[12px] text-gray-400">
+                    {new Date(item.updated_at).toLocaleDateString()}
                   </span>
                 </span>
               </li>
