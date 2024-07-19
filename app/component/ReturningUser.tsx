@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { FaPlus, FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import {
   IoCopyOutline,
@@ -11,32 +10,6 @@ import {
 } from "react-icons/io5";
 import Link from "next/link";
 import Navbar from "@/app/component/NavBar";
-
-// interface RecentSearch {
-//   searchID: string;
-//   query: string;
-//   updated_at: string;
-// }
-
-// interface Data {
-//   recentSearches: RecentSearch[];
-// }
-
-// interface ReturningUserProps {
-//   userQueries: number;
-//   data: Data;
-// }
-
-// const ReturningUser: React.FC<any> = ({ userQueries, data }) => {
-//   const router = useRouter();
-//   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>(
-//     data?.recentSearches || []
-//   );
-
-//   const handleUserQueriesClick = (searchID: string) => {
-//     const url = `/internalInsight?selectedQuery=${searchID}`;
-//     router.push(url);
-//   };
 
 interface RecentSearch {
   searchID: string;
@@ -48,17 +21,17 @@ interface Data {
   recentSearches: RecentSearch[];
 }
 
-interface ReturningUserProps {
+type ReturningUserProps = {
   userQueries: number;
   data: Data;
   onRecentSearchClick: (searchID: string) => void;
-}
+};
 
-const ReturningUser: React.FC<ReturningUserProps> = ({
+export default function ReturningUser({
   userQueries,
   data,
   onRecentSearchClick,
-}) => {
+}: ReturningUserProps) {
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>(
     data?.recentSearches || []
   );
@@ -214,6 +187,6 @@ const ReturningUser: React.FC<ReturningUserProps> = ({
       </div>
     </div>
   );
-};
+}
 
-export default ReturningUser;
+// export default ReturningUser;

@@ -229,11 +229,12 @@
 // }
 
 "use client";
-import ReturningUser from "../returningUser/page";
+
 import { useEffect, useState } from "react";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import { useRouter } from "next/navigation";
 import Spinner from "@/app/component/Spinner";
+import ReturningUser from "@/app/component/ReturningUser";
 
 interface RecentSearch {
   searchID: string;
@@ -263,7 +264,6 @@ export default function Home() {
         const result = await response.json();
         console.log("Result:", result);
 
-        // Check if result is empty or not
         if (result.length === 0) {
           setData({ recentSearches: [], totalSearches: 0 });
         } else {
