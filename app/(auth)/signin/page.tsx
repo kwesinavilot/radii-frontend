@@ -63,7 +63,7 @@ const Login: React.FC = () => {
       console.log("orgID:", orgID);
       console.log("Token:", response.data.token);
       console.log("Login successful:", response.data);
-      toast.success(response.data.message || "Login successful");
+      // toast.success(response.data.message || "Login successful");
       router.push("/dashboard");
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -108,7 +108,7 @@ const Login: React.FC = () => {
           Cookies.set("google_token", response.access_token);
 
           console.log("Full Google login successful:", loginResponse.data);
-          toast.success(loginResponse.data.message || "Login successful");
+          // toast.success(loginResponse.data.message || "Login successful");
           router.push("/dashboard");
         } catch (loginError) {
           if (

@@ -19,8 +19,8 @@ const ConnectDataSource: React.FC = () => {
 
   const CLIENT_ID =
     "75800942170-6uk0kinmmo3a308dscul4mk72g7uavr9.apps.googleusercontent.com";
-  const REDIRECT_URI = "https://www.app.getradii.com/api/oauth2callback";
-  // const REDIRECT_URI = "http://localhost:3000/api/oauth2callback";
+  // const REDIRECT_URI = "https://www.app.getradii.com/api/oauth2callback";
+  const REDIRECT_URI = "http://localhost:3000/api/oauth2callback";
 
   const SCOPES =
     "email profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.metadata.readonly";
