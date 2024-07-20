@@ -84,7 +84,8 @@ const Login: React.FC = () => {
           `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${response.access_token}`,
           {
             headers: {
-              Authorization: `Bearer ${response.access_token}`,
+              // Authorization: `Bearer ${response.access_token}`,
+              Authorization: `Token ${response.access_token}`,
             },
           }
         );
