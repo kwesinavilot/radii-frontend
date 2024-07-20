@@ -44,7 +44,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "https://lobster-app-9ufhi.ondigitalocean.app/auth/account-exists/",
+//         "https://lionfish-app-ahhfx.ondigitalocean.app/auth/account-exists/",
 //         {
 //           email: formData.email,
 //         }
@@ -330,7 +330,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://lobster-app-9ufhi.ondigitalocean.app/auth/account-exists/",
+        "https://lionfish-app-ahhfx.ondigitalocean.app/auth/account-exists/",
         {
           email: formData.email,
         }

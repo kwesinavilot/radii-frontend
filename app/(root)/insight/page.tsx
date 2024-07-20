@@ -78,7 +78,7 @@
 //         throw new Error("orgID is required");
 //       }
 //       const response = await axios.get(
-//         "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
+//         "https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/",
 //         generateAxiosConfig()
 //       );
 //       setLibraryItems(response.data);
@@ -107,7 +107,7 @@
 
 //       try {
 //         const response = await axios.post(
-//           "https://lobster-app-9ufhi.ondigitalocean.app/insights/internal/",
+//           "https://lionfish-app-ahhfx.ondigitalocean.app/insights/internal/",
 //           {
 //             query: inputValue,
 //             orgID: orgID,
@@ -131,7 +131,7 @@
 //   const handleLibraryItemClick = async (item: LibraryItem) => {
 //     try {
 //       const response = await axios.get(
-//         `https://lobster-app-9ufhi.ondigitalocean.app/insights/library/${item.searchID}/`,
+//         `https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/${item.searchID}/`,
 //         generateAxiosConfig()
 //       );
 //       setResult(response.data);
@@ -155,7 +155,7 @@
 //   const handleDelete = async (searchID: string) => {
 //     try {
 //       await axios.delete(
-//         `https://lobster-app-9ufhi.ondigitalocean.app/insights/library/${searchID}/`,
+//         `https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/${searchID}/`,
 //         generateAxiosConfig()
 //       );
 //       toast.success("Library item deleted successfully");
@@ -355,7 +355,7 @@
 //         throw new Error("orgID is required");
 //       }
 //       const response = await axios.get(
-//         "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
+//         "https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/",
 //         generateAxiosConfig()
 //       );
 //       setLibraryItems(response.data);
@@ -384,7 +384,7 @@
 
 //       try {
 //         const response = await axios.post(
-//           "https://lobster-app-9ufhi.ondigitalocean.app/insights/internal/",
+//           "https://lionfish-app-ahhfx.ondigitalocean.app/insights/internal/",
 //           {
 //             query: inputValue,
 //             orgID: orgID,
@@ -408,7 +408,7 @@
 //   const handleLibraryItemClick = async (item: LibraryItem) => {
 //     try {
 //       const response = await axios.get(
-//         `https://lobster-app-9ufhi.ondigitalocean.app/insights/library/${item.searchID}/`,
+//         `https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/${item.searchID}/`,
 //         generateAxiosConfig()
 //       );
 //       setResult(response.data);
@@ -432,7 +432,7 @@
 //   const handleDelete = async (searchID: string) => {
 //     try {
 //       await axios.delete(
-//         `https://lobster-app-9ufhi.ondigitalocean.app/insights/library/${searchID}/`,
+//         `https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/${searchID}/`,
 //         generateAxiosConfig()
 //       );
 //       toast.success("Library item deleted successfully");
@@ -645,7 +645,7 @@
 //         throw new Error("orgID is required");
 //       }
 //       const response = await axios.get(
-//         "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
+//         "https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/",
 //         generateAxiosConfig()
 //       );
 //       setLibraryItems(response.data);
@@ -674,7 +674,7 @@
 
 //       try {
 //         const response = await axios.post(
-//           "https://lobster-app-9ufhi.ondigitalocean.app/insights/internal/",
+//           "https://lionfish-app-ahhfx.ondigitalocean.app/insights/internal/",
 //           {
 //             query: inputValue,
 //             orgID: orgID,
@@ -700,7 +700,7 @@
 //   const handleLibraryItemClick = async (item: LibraryItem) => {
 //     try {
 //       const response = await axios.get(
-//         `https://lobster-app-9ufhi.ondigitalocean.app/insights/library/${item.searchID}/`,
+//         `https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/${item.searchID}/`,
 //         generateAxiosConfig()
 //       );
 //       setResult(response.data);
@@ -724,7 +724,7 @@
 //   const handleDelete = async (searchID: string) => {
 //     try {
 //       await axios.delete(
-//         `https://lobster-app-9ufhi.ondigitalocean.app/insights/library/${searchID}/`,
+//         `https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/${searchID}/`,
 //         generateAxiosConfig()
 //       );
 //       toast.success("Library item deleted successfully");
@@ -932,7 +932,7 @@ const Insight: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get(
-        "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
+        "https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/",
         generateAxiosConfig()
       );
       setLibraryItems(response.data);
@@ -961,7 +961,7 @@ const Insight: React.FC = () => {
 
   //     try {
   //       const response = await axios.post(
-  //         "https://lobster-app-9ufhi.ondigitalocean.app/insights/internal/",
+  //         "https://lionfish-app-ahhfx.ondigitalocean.app/insights/internal/",
   //         {
   //           query: inputValue,
   //           orgID: orgID,
@@ -1005,7 +1005,7 @@ const Insight: React.FC = () => {
         console.log(integrationID);
 
         const response = await axios.post(
-          "https://lobster-app-9ufhi.ondigitalocean.app/insights/internal/",
+          "https://lionfish-app-ahhfx.ondigitalocean.app/insights/internal/",
           payload,
           generateAxiosConfig()
         );
@@ -1025,7 +1025,7 @@ const Insight: React.FC = () => {
   const handleLibraryItemClick = async (item: LibraryItem) => {
     try {
       const response = await axios.get(
-        `https://lobster-app-9ufhi.ondigitalocean.app/insights/library/${item.searchID}/`,
+        `https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/${item.searchID}/`,
         generateAxiosConfig()
       );
       setResult(response.data);
@@ -1049,7 +1049,7 @@ const Insight: React.FC = () => {
   const handleDelete = async (searchID: string) => {
     try {
       await axios.delete(
-        `https://lobster-app-9ufhi.ondigitalocean.app/insights/library/${searchID}/`,
+        `https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/${searchID}/`,
         generateAxiosConfig()
       );
       toast.success("Library item deleted successfully");

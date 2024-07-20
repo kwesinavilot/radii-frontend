@@ -26,7 +26,7 @@
 //     const fetchData = async () => {
 //       try {
 //         const response = await fetch(
-//           "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
+//           "https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/",
 //           generateAxiosConfig()
 //         );
 
@@ -104,7 +104,7 @@
 //     const fetchData = async () => {
 //       try {
 //         const response = await fetch(
-//           "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
+//           "https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/",
 //           generateAxiosConfig()
 //         );
 
@@ -174,7 +174,7 @@
 //     const fetchData = async () => {
 //       try {
 //         const response = await fetch(
-//           "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
+//           "https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/",
 //           generateAxiosConfig()
 //         );
 
@@ -257,7 +257,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://lobster-app-9ufhi.ondigitalocean.app/insights/library/",
+          "https://lionfish-app-ahhfx.ondigitalocean.app/insights/library/",
           generateAxiosConfig()
         );
 
