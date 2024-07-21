@@ -208,16 +208,15 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  // Use NextRequest cookies method to get the token
   const token = req.cookies.get("auth_token");
   console.log("Token from cookies:", token);
 
-  if (!token) {
-    return NextResponse.json(
-      { error: "User token is missing" },
-      { status: 401 }
-    );
-  }
+  // if (!token) {
+  //   return NextResponse.json(
+  //     { error: 'User token is missing' },
+  //     { status: 401 }
+  //   );
+  // }
 
   try {
     const response = await axios.post(
@@ -225,7 +224,7 @@ export async function GET(req: NextRequest) {
       { code },
       {
         headers: {
-          Authorization: `Token ${token}`,
+          Authorization: `Token ${token?.value}`,
         },
         withCredentials: true,
       }
@@ -235,14 +234,14 @@ export async function GET(req: NextRequest) {
     console.log("Response from backend:", data);
 
     if (response.status >= 200 && response.status < 300) {
-      const { username } = response.data.integration;
+      const { username } = data.integration;
       const baseUrl = req.nextUrl.origin;
 
       return NextResponse.redirect(
         `${baseUrl}/dataSources?email=${encodeURIComponent(username)}`
       );
     } else {
-      return NextResponse.json(response.data, { status: response.status });
+      return NextResponse.json(data, { status: response.status });
     }
   } catch (error) {
     console.error("Error sending code to backend:", error);
