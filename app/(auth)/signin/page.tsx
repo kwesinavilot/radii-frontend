@@ -52,7 +52,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://lobster-app-9ufhi.ondigitalocean.app/auth/login/",
+        "https://lionfish-app-ahhfx.ondigitalocean.app/auth/login/",
         formData
       );
       dispatch(setToken(response.data.token));
@@ -84,8 +84,7 @@ const Login: React.FC = () => {
           `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${response.access_token}`,
           {
             headers: {
-              // Authorization: `Bearer ${response.access_token}`,
-              Authorization: `Token ${response.access_token}`,
+              Authorization: `Bearer ${response.access_token}`,
             },
           }
         );
@@ -95,7 +94,7 @@ const Login: React.FC = () => {
         try {
           // Attempt to log in the user
           const loginResponse = await axios.post(
-            "https://lobster-app-9ufhi.ondigitalocean.app/auth/login/",
+            "https://lionfish-app-ahhfx.ondigitalocean.app/auth/login/",
             {
               email: profileData.email,
               password: `${profileData.given_name} ${profileData.sub}`,
@@ -119,7 +118,7 @@ const Login: React.FC = () => {
             // Handle user does not exist: create a new user
             try {
               const registerResponse = await axios.post(
-                "https://lobster-app-9ufhi.ondigitalocean.app/auth/register/",
+                "https://lionfish-app-ahhfx.ondigitalocean.app/auth/register/",
                 {
                   email: profileData.email,
                   password: `${profileData.given_name} ${profileData.sub}`,
@@ -130,7 +129,7 @@ const Login: React.FC = () => {
 
               // After successful registration, log the user in
               const loginAfterRegisterResponse = await axios.post(
-                "https://lobster-app-9ufhi.ondigitalocean.app/auth/login/",
+                "https://lionfish-app-ahhfx.ondigitalocean.app/auth/login/",
                 {
                   email: profileData.email,
                   password: `${profileData.given_name} ${profileData.sub}`,

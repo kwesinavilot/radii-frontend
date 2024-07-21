@@ -14,7 +14,7 @@ const Logout: React.FC<{ onLogoutSuccess: () => void }> = ({
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "https://lobster-app-9ufhi.ondigitalocean.app/auth/logout/",
+        "https://lionfish-app-ahhfx.ondigitalocean.app/auth/logout/",
         null,
         generateAxiosConfig()
       );

@@ -66,7 +66,7 @@ const ConnectDataSource: React.FC = () => {
       formData.append("source", JSON.stringify(selectedSources));
 
       const response = await axios.post(
-        `https://lobster-app-9ufhi.ondigitalocean.app/datasources/static/`,
+        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/`,
         formData,
         {
           headers: {

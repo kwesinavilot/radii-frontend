@@ -67,7 +67,7 @@ const DataSourceTable: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get<FileItem[]>(
-        "https://lobster-app-9ufhi.ondigitalocean.app/datasources/static/",
+        "https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/",
         {
           ...generateAxiosConfig(),
           params: {
@@ -89,7 +89,7 @@ const DataSourceTable: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get<DriveItem[]>(
-        "https://lobster-app-9ufhi.ondigitalocean.app/datasources/gdrive/",
+        "https://lionfish-app-ahhfx.ondigitalocean.app/datasources/gdrive/",
         {
           ...generateAxiosConfig(),
           params: {
@@ -122,7 +122,7 @@ const DataSourceTable: React.FC = () => {
         files: any[];
         current_folderID: string;
       }>(
-        `https://lobster-app-9ufhi.ondigitalocean.app/datasources/gdrive/${integrationID}/browse/${folderID}/`,
+        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/gdrive/${integrationID}/browse/${folderID}/`,
         {
           ...config,
           params: {
@@ -145,7 +145,7 @@ const DataSourceTable: React.FC = () => {
   const handleDeleteFile = async (id: string) => {
     try {
       const response = await axios.delete(
-        `https://lobster-app-9ufhi.ondigitalocean.app/datasources/static/${id}`,
+        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/${id}`,
         {
           ...generateAxiosConfig(),
           params: {
@@ -164,7 +164,7 @@ const DataSourceTable: React.FC = () => {
   const handleDeleteDrive = async (id: string) => {
     try {
       const response = await axios.delete(
-        `https://lobster-app-9ufhi.ondigitalocean.app/datasources/gdrive/${id}`,
+        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/gdrive/${id}`,
         generateAxiosConfig()
       );
       console.log("Drive integration deleted successfully:", response.data);
@@ -209,7 +209,7 @@ const DataSourceTable: React.FC = () => {
       console.log("Payload to be sent:", payload);
 
       const response = await axios.post(
-        `https://lobster-app-9ufhi.ondigitalocean.app/datasources/gdrive/${selectedDrive.integrationID}/selectDriveFolder/`,
+        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/gdrive/${selectedDrive.integrationID}/selectDriveFolder/`,
         payload,
         generateAxiosConfig()
       );
