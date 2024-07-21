@@ -6,7 +6,7 @@ import Image from "next/image";
 import Navbar from "@/app/component/NavBar";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
