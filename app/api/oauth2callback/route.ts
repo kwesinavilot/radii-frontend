@@ -38,7 +38,7 @@
 //       },
 //       {
 //         headers: {
-//           Authorization: `Token ${token.value}`,
+// Authorization: `Token ${token.value}`,
 //         },
 //       }
 //     );
@@ -164,7 +164,7 @@ export async function GET(req: NextRequest) {
       { code },
       {
         headers: {
-          Authorization: `Token ${token}`,
+          Authorization: `Token ${token.value}`,
         },
         withCredentials: true,
       }
