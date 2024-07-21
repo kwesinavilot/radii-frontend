@@ -32,7 +32,7 @@
 //   const handleLogout = async () => {
 //     try {
 //       const response = await axios.post(
-//         "https://lionfish-app-ahhfx.ondigitalocean.app/auth/logout/",
+//         "https://starfish-app-9ezx5.ondigitalocean.app/auth/logout/",
 //         null,
 //         generateAxiosConfig()
 //       );

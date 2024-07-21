@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { setToken, setOrgID } from "@/app/store/authSlice";
@@ -52,7 +54,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://lionfish-app-ahhfx.ondigitalocean.app/auth/login/",
+        "https://starfish-app-9ezx5.ondigitalocean.app/auth/login/",
         formData
       );
       dispatch(setToken(response.data.token));
@@ -63,7 +65,7 @@ const Login: React.FC = () => {
       console.log("orgID:", orgID);
       console.log("Token:", response.data.token);
       console.log("Login successful:", response.data);
-      // toast.success(response.data.message || "Login successful");
+      toast.success(response.data.message || "Login successful");
       router.push("/dashboard");
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -94,7 +96,7 @@ const Login: React.FC = () => {
         try {
           // Attempt to log in the user
           const loginResponse = await axios.post(
-            "https://lionfish-app-ahhfx.ondigitalocean.app/auth/login/",
+            "https://starfish-app-9ezx5.ondigitalocean.app/auth/login/",
             {
               email: profileData.email,
               password: `${profileData.given_name} ${profileData.sub}`,
@@ -108,7 +110,7 @@ const Login: React.FC = () => {
           Cookies.set("google_token", response.access_token);
 
           console.log("Full Google login successful:", loginResponse.data);
-          // toast.success(loginResponse.data.message || "Login successful");
+          toast.success(loginResponse.data.message || "Login successful");
           router.push("/dashboard");
         } catch (loginError) {
           if (
@@ -118,7 +120,7 @@ const Login: React.FC = () => {
             // Handle user does not exist: create a new user
             try {
               const registerResponse = await axios.post(
-                "https://lionfish-app-ahhfx.ondigitalocean.app/auth/register/",
+                "https://starfish-app-9ezx5.ondigitalocean.app/auth/register/",
                 {
                   email: profileData.email,
                   password: `${profileData.given_name} ${profileData.sub}`,
@@ -127,9 +129,8 @@ const Login: React.FC = () => {
                 }
               );
 
-              // After successful registration, log the user in
               const loginAfterRegisterResponse = await axios.post(
-                "https://lionfish-app-ahhfx.ondigitalocean.app/auth/login/",
+                "https://starfish-app-9ezx5.ondigitalocean.app/auth/login/",
                 {
                   email: profileData.email,
                   password: `${profileData.given_name} ${profileData.sub}`,

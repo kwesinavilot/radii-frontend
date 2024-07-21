@@ -67,7 +67,7 @@ const DataSourceTable: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get<FileItem[]>(
-        "https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/",
+        "https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/",
         {
           ...generateAxiosConfig(),
           params: {
@@ -89,7 +89,7 @@ const DataSourceTable: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get<DriveItem[]>(
-        "https://lionfish-app-ahhfx.ondigitalocean.app/datasources/gdrive/",
+        "https://starfish-app-9ezx5.ondigitalocean.app/datasources/gdrive/",
         {
           ...generateAxiosConfig(),
           params: {
@@ -122,7 +122,7 @@ const DataSourceTable: React.FC = () => {
         files: any[];
         current_folderID: string;
       }>(
-        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/gdrive/${integrationID}/browse/${folderID}/`,
+        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/gdrive/${integrationID}/browse/${folderID}/`,
         {
           ...config,
           params: {
@@ -145,8 +145,8 @@ const DataSourceTable: React.FC = () => {
   // const handleDeleteFile = async (id: string) => {
   //   try {
   //     const response = await axios.delete(
-  //       // `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/${id}`,
-  //       "https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/{sourceID}/",
+  //       // `https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/${id}`,
+  //       "https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/{sourceID}/",
   //       {
   //         ...generateAxiosConfig(),
   //         params: {
@@ -166,7 +166,7 @@ const DataSourceTable: React.FC = () => {
   const handleDeleteFile = async (id: string) => {
     try {
       const response = await axios.delete(
-        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/${id}`,
+        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/${id}`,
         {
           ...generateAxiosConfig(),
           params: {
@@ -190,7 +190,7 @@ const DataSourceTable: React.FC = () => {
   const handleDeleteDrive = async (id: string) => {
     try {
       const response = await axios.delete(
-        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/gdrive/${id}`,
+        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/gdrive/${id}`,
         generateAxiosConfig()
       );
       console.log("Drive integration deleted successfully:", response.data);
@@ -235,7 +235,7 @@ const DataSourceTable: React.FC = () => {
       console.log("Payload to be sent:", payload);
 
       const response = await axios.post(
-        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/gdrive/${selectedDrive.integrationID}/selectDriveFolder/`,
+        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/gdrive/${selectedDrive.integrationID}/selectDriveFolder/`,
         payload,
         generateAxiosConfig()
       );

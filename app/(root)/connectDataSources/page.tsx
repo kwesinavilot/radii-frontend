@@ -6,7 +6,7 @@ import Image from "next/image";
 import Navbar from "@/app/component/NavBar";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
@@ -66,7 +66,7 @@ const ConnectDataSource: React.FC = () => {
       formData.append("source", JSON.stringify(selectedSources));
 
       const response = await axios.post(
-        `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/`,
+        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/`,
         formData,
         {
           headers: {
