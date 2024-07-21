@@ -44,7 +44,7 @@ const Interest: React.FC = () => {
 
         console.log("Submitting form data:", combinedData);
         const { data: responseData } = await axios.post(
-          "https://lionfish-app-ahhfx.ondigitalocean.app/auth/register/",
+          "https://starfish-app-9ezx5.ondigitalocean.app/auth/register/",
           combinedData
         );
         toast.success("Form submitted successfully!");

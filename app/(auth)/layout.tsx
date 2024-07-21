@@ -8,7 +8,6 @@ export default function RootLayout({
 }) {
   return (
     <main className="bg-[#F5F6FA]">
-      <ToastContainer />
       <div>{children}</div>
     </main>
   );

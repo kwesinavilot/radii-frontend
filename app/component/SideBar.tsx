@@ -9,6 +9,7 @@ import Link from "next/link";
 import UserModal from "./UserModal";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdViewInAr } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
