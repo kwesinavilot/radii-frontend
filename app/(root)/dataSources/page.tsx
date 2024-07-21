@@ -142,6 +142,27 @@ const DataSourceTable: React.FC = () => {
     }
   };
 
+  // const handleDeleteFile = async (id: string) => {
+  //   try {
+  //     const response = await axios.delete(
+  //       // `https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/${id}`,
+  //       "https://lionfish-app-ahhfx.ondigitalocean.app/datasources/static/{sourceID}/",
+  //       {
+  //         ...generateAxiosConfig(),
+  //         params: {
+  //           orgID: orgID,
+  //         },
+  //       }
+  //     );
+  //     console.log("File deleted successfully:", response.data);
+  //     toast.success("File deleted successfully");
+  //     fetchDataSources();
+  //   } catch (error) {
+  //     handleError(error, "Error deleting file");
+  //     console.error("Error deleting file:", error);
+  //   }
+  // };
+
   const handleDeleteFile = async (id: string) => {
     try {
       const response = await axios.delete(
@@ -153,11 +174,16 @@ const DataSourceTable: React.FC = () => {
           },
         }
       );
-      console.log("File deleted successfully:", response.data);
-      toast.success("File deleted successfully");
-      fetchDataSources();
+      if (response.status >= 200 && response.status < 300) {
+        console.log("File deleted successfully:", response.data);
+        toast.success("File deleted successfully");
+        fetchDataSources();
+      } else {
+        toast.error("Error deleting file");
+      }
     } catch (error) {
       handleError(error, "Error deleting file");
+      console.error("Error deleting file:", error);
     }
   };
 
