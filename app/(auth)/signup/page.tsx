@@ -426,7 +426,7 @@ const Register = () => {
             </p>
             <p className={style.regIcons}>
               <Link
-                href="https://www.linkedin.com/company/Radiis"
+                href="https://www.linkedin.com/company/getradii/"
                 target="_blank"
                 className="flex items-center justify-center gap-1"
               >

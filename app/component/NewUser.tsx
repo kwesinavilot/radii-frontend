@@ -82,14 +82,6 @@ const NewUser: React.FC = () => {
         </div>
         <div className="block sm:col-span-1 py-4 px-2 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100">
           <div className="block overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100 transition-transform transform hover:scale-105">
-            {/* <video
-              src="./Radiis.mp4"
-              className="h-auto max-h-[600px] w-full object-contain lg:h-full lg:w-full"
-              autoPlay
-              muted
-              loop
-              controls
-            /> */}
             <iframe
               className="h-auto max-h-[600px] w-full object-contain lg:h-full lg:w-full"
               src="https://www.youtube.com/embed/ihEpnzgt_Yc?si=BmxI7gtLmAX14lqZ"

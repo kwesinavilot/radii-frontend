@@ -87,11 +87,11 @@ export default function ReturningUser({
                   </p>
                 </div>
 
-                <Link href="/radiiView" className="flex border-gray-400">
+                {/* <Link href="/radiiView" className="flex border-gray-400">
                   <button className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow  bg-[#E58A13]">
                     My Views
                   </button>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
