@@ -274,7 +274,7 @@ const AccountSettings = () => {
   const [isUserTab, setIsUserTab] = useState(true);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [userID, setUserID] = useState("user_id");
-  const [orgID, setOrgID] = useState("org_id");
+  const [orgID, setOrgID] = useState("        ");
 
   useEffect(() => {
     const userFieldsFilled = Object.values(userDetails).every(

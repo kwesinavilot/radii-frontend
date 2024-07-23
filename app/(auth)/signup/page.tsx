@@ -405,7 +405,8 @@ const Register = () => {
           <div className={style.regContent}>
             <div className="flex gap-12 p-4 mb-8">
               <Image
-                src="/logo.svg"
+                // src="/logo.svg"
+                src="/logo-white.j"
                 alt="logo"
                 className={style.regLogo}
                 width={30}
