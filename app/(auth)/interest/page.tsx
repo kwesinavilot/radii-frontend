@@ -58,7 +58,7 @@ const Interest: React.FC = () => {
         localStorage.removeItem("registerData");
         localStorage.removeItem("surveyData");
 
-        router.push("/newUser");
+        router.push("/dashboard");
       } catch (error: any) {
         console.error("An error occurred:", error);
         toast.error(error.response.data?.error || "Failed to submit form.");

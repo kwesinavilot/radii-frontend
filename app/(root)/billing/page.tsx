@@ -40,7 +40,7 @@ const Billing = () => {
                   One File Upload & A Google drive
                 </li>
                 <li className=" ">100 Queries</li>
-                <li className=" ">5 Views</li>
+                <li className=" ">1 View</li>
                 <li className=" ">2 Users</li>
 
                 <li className=" ">Up To 250 MB</li>
@@ -79,8 +79,8 @@ const Billing = () => {
               <ul className="flex flex-col items-center leading-7 text-gray-600 border-0 border-gray-200 gap-2">
                 <li className="">Access to all supported data sources</li>
                 <li className=" ">1000 Queries</li>
-                <li className=" ">50 Views</li>
-                <li className=" ">15 Users</li>
+                <li className=" ">5 Views</li>
+                <li className=" ">5 Users</li>
                 <li className=" ">Up To 50 GB</li>
               </ul>
 
@@ -122,8 +122,8 @@ const Billing = () => {
                   custom integrations
                 </li>
                 <li className=" ">Unlimited Queries</li>
-                <li className=" ">Unlimited Views</li>
-                <li className=" ">Unlimited Users</li>
+
+                <li className=" ">10 Users</li>
 
                 <li className="text-center">
                   Custom Storage Solutions Tailored To Business Needs

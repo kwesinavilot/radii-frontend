@@ -67,7 +67,7 @@ const DataSourceTable: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get<FileItem[]>(
-        "https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/",
+        "https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/",
         {
           ...generateAxiosConfig(),
           params: {
@@ -145,8 +145,8 @@ const DataSourceTable: React.FC = () => {
   // const handleDeleteFile = async (id: string) => {
   //   try {
   //     const response = await axios.delete(
-  //       // `https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/${id}`,
-  //       "https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/{sourceID}/",
+  //       // `https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/${id}`,
+  //       "https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/{sourceID}/",
   //       {
   //         ...generateAxiosConfig(),
   //         params: {
@@ -166,7 +166,7 @@ const DataSourceTable: React.FC = () => {
   const handleDeleteFile = async (id: string) => {
     try {
       const response = await axios.delete(
-        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/${id}`,
+        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/${id}`,
         {
           ...generateAxiosConfig(),
           params: {

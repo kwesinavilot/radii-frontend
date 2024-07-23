@@ -23,7 +23,8 @@ const Navbar: React.FC<NavbarProps> = ({ title, icon }) => {
         <h1 className="ml-4 text-[40px] font-bold">{title}</h1>
       </div>
       <div className="flex items-center">
-        <div className="relative" onClick={toggleDropdown}>
+        {/* <div className="relative" onClick={toggleDropdown}> */}
+        <div className="relative">
           <div className="relative py-2 px-4 flex justify-end gap-4 mr-6 cursor-pointer">
             <div className="flex flex-col bg-[#EB5757] text-white py-1 px-6 items-center">
               <span className="text-[12px]">Current Plan</span>

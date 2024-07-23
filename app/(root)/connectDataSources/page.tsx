@@ -6,7 +6,7 @@ import Image from "next/image";
 import Navbar from "@/app/component/NavBar";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
@@ -19,11 +19,12 @@ const ConnectDataSource: React.FC = () => {
 
   const CLIENT_ID =
     "75800942170-6uk0kinmmo3a308dscul4mk72g7uavr9.apps.googleusercontent.com";
-  const REDIRECT_URI = "https://www.app.getradii.com/api/oauth2callback";
-  // const REDIRECT_URI = "http://localhost:3000/api/oauth2callback";
+  // const REDIRECT_URI = "https://www.app.getradii.com/api/oauth2callback";
+  const REDIRECT_URI = "http://localhost:3000/api/oauth2callback";
 
+  // const SCOPES = "email profile https://www.googleapis.com/auth/drive";
   const SCOPES =
-    "email profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.metadata.readonly";
+    "https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive openid";
 
   const connectToGoogleDrive = () => {
     const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${encodeURIComponent(
@@ -66,7 +67,7 @@ const ConnectDataSource: React.FC = () => {
       formData.append("source", JSON.stringify(selectedSources));
 
       const response = await axios.post(
-        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/static/`,
+        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/`,
         formData,
         {
           headers: {

@@ -405,7 +405,8 @@ const Register = () => {
           <div className={style.regContent}>
             <div className="flex gap-12 p-4 mb-8">
               <Image
-                src="/logo.svg"
+                // src="/logo.svg"
+                src="/logo-white.j"
                 alt="logo"
                 className={style.regLogo}
                 width={30}
@@ -426,12 +427,12 @@ const Register = () => {
             </p>
             <p className={style.regIcons}>
               <Link
-                href="https://www.linkedin.com/company/Radiis"
+                href="https://www.linkedin.com/company/getradii/"
                 target="_blank"
                 className="flex items-center justify-center gap-1"
               >
                 <FaLinkedin size={22} color="#1b1b1b" />
-                <span className="text-[#1b1b1b]">@Radiis</span>
+                <span className="text-[#1b1b1b]">@Radii</span>
               </Link>
             </p>
           </div>

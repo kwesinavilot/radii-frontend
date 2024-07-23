@@ -95,7 +95,7 @@ const Sidebar = () => {
         isOpen ? "w-64" : "w-20"
       } transition-all duration-300`}
     >
-      <div className="flex items-center justify-between p-4 mt-10">
+      <div className="flex items-center justify-between p-4 mt-4">
         {isOpen ? (
           <Image
             src="/logo.svg"

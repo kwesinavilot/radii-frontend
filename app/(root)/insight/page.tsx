@@ -112,7 +112,7 @@
 //             query: inputValue,
 //             orgID: orgID,
 //             sourceType: "folder",
-//             folderID: "static",
+//             folderID: "files",
 //           },
 //           generateAxiosConfig()
 //         );
@@ -389,7 +389,7 @@
 //             query: inputValue,
 //             orgID: orgID,
 //             sourceType: "folder",
-//             folderID: "static",
+//             folderID: "files",
 //           },
 //           generateAxiosConfig()
 //         );
@@ -679,7 +679,7 @@
 //             query: inputValue,
 //             orgID: orgID,
 //             sourceType: selectedDataSource === "drive" ? "gdrive" : "folder",
-//             folderID: selectedDataSource === "folder" ? "static" : undefined,
+//             folderID: selectedDataSource === "folder" ? "files" : undefined,
 //             integrationID:
 //               selectedDataSource === "drive" ? integrationID : undefined,
 //           },
@@ -966,7 +966,7 @@ const Insight: React.FC = () => {
   //           query: inputValue,
   //           orgID: orgID,
   //           sourceType: selectedDataSource === "drive" ? "gdrive" : "folder",
-  //           folderID: selectedDataSource === "folder" ? "static" : undefined,
+  //           folderID: selectedDataSource === "folder" ? "files" : undefined,
   //           integrationID:
   //             selectedDataSource === "drive" ? integrationID : undefined,
   //         },
@@ -995,7 +995,7 @@ const Insight: React.FC = () => {
           query: inputValue,
           orgID: orgID,
           sourceType: selectedDataSource === "drive" ? "gdrive" : "folder",
-          folderID: selectedDataSource === "folder" ? "static" : undefined,
+          folderID: selectedDataSource === "folder" ? "files" : undefined,
         };
 
         if (selectedDataSource === "drive") {
