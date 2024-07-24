@@ -381,7 +381,6 @@
 
 "use client";
 
-
 import React, { useEffect, useState } from "react";
 import {
   IoEllipsisVerticalOutline,
@@ -394,6 +393,8 @@ import Link from "next/link";
 import axios from "axios";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import ChartModal from "@/app/component/ChartModal";
+import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import Navbar from "@/app/component/NavBar";
 
 interface ViewItem {
   title: string;
@@ -470,7 +471,6 @@ const MyViews: React.FC = () => {
     setSelectedChart(null);
   };
 
-  // Pagination logic
   const indexOfLastChart = currentPage * chartsPerPage;
   const indexOfFirstChart = indexOfLastChart - chartsPerPage;
   const currentCharts = charts
@@ -482,145 +482,146 @@ const MyViews: React.FC = () => {
   const totalPages = Math.ceil(charts.length / chartsPerPage);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">My Views</h1>
+    <div className="bg-gray-100 h-screen overflow-y-auto">
+      <Navbar title="My Views" />
 
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-4 w-4/5">
-          <h2 className="text-xl font-semibold">Views</h2>
-          <button className="flex items-center px-4 py-2 bg-green-500 text-white rounded">
-            <IoCreateOutline className="mr-2" />
-            Create View
-          </button>
-        </div>
-        <div className="grid grid-cols-1 w-3/5 sm:grid-cols-2 gap-4">
-          {views.map((view, index) => (
-            <Link
-              href={view.link}
-              key={index}
-              className="border p-4 rounded shadow-sm flex justify-between items-center py-6"
-            >
-              <div className="flex items-center">
-                {view.icon}
-                <div>
-                  <h3 className="font-bold mb-4">{view.title}</h3>
-                  <p className="text-gray-500">Updated {view.updated}</p>
-                </div>
-              </div>
-              <IoEllipsisVerticalOutline className="text-gray-500 cursor-pointer" />
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex justify-between items-center mb-8">
-        <p className="text-gray-500">
-          Showing {indexOfFirstChart + 1}-
-          {Math.min(indexOfLastChart, charts.length)} of {charts.length}
-        </p>
-        <div className="flex space-x-2">
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index + 1)}
-              className={`px-3 py-1 rounded ${
-                currentPage === index + 1 ? "bg-gray-200" : "text-gray-700"
-              }`}
-            >
-              {index + 1}
+      <div className="h-full  overflow-hidden sm:col-span-3 py-4 m-4 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
+        <div className="mb-8">
+          <div className="flex justify-end items-end mb-4 w-4/5">
+            <button className="flex items-end px-4 py-2 bg-green-500 text-white rounded">
+              <IoCreateOutline className="mr-2" />
+              Create View
             </button>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <div className="flex flex-col mb-4">
-          <h2 className="text-xl font-semibold mb-4">Charts</h2>
-          <div className="relative w-[20%]">
-            <input
-              type="text"
-              placeholder="Search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="border p-2 rounded-lg w-full pl-10"
-            />
-            <IoSearchOutline className="absolute top-[13px] left-3 text-gray-500" />
           </div>
-        </div>
-        <div className="grid grid-cols-1 w-3/5 sm:grid-cols-2 gap-4">
-          {currentCharts.map((chart, index) => {
-            return (
-              <div
+          <div className="grid grid-cols-1 w-3/5 sm:grid-cols-2 gap-4">
+            {views.map((view, index) => (
+              <Link
+                href={view.link}
                 key={index}
                 className="border p-4 rounded shadow-sm flex justify-between items-center py-6"
-                onClick={() => handleChartClick(chart)}
               >
                 <div className="flex items-center">
-                  {chart.type === "Doughnut" && (
-                    <FaChartPie
-                      className="text-2xl mr-4 text-[#038C7F] font-extrabold"
-                      size={34}
-                    />
-                  )}
-                  {chart.type === "Pie" && (
-                    <FaChartPie
-                      className="text-2xl mr-4 text-[#038C7F] font-extrabold"
-                      size={34}
-                    />
-                  )}
-                  {chart.type === "Bar" && (
-                    <FaChartBar
-                      className="text-2xl mr-4 text-[#038C7F] font-extrabold"
-                      size={44}
-                    />
-                  )}
-                  {chart.type === "Line" && (
-                    <FaChartLine
-                      className="text-2xl mr-4 text-[#038C7F] font-extrabold"
-                      size={44}
-                    />
-                  )}
+                  {view.icon}
                   <div>
-                    <div className="flex justify-between gap-4 items-center mt-4">
-                      <p className="text-gray-500">
-                        Updated{" "}
-                        {new Date(chart.updated_at).toLocaleDateString()}
-                      </p>
-                    </div>
+                    <h3 className="font-bold mb-4">{view.title}</h3>
+                    <p className="text-gray-500">Updated {view.updated}</p>
                   </div>
                 </div>
                 <IoEllipsisVerticalOutline className="text-gray-500 cursor-pointer" />
-              </div>
-            );
-          })}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="flex justify-between items-center mt-8">
-        <p className="text-gray-500">
-          Showing {indexOfFirstChart + 1}-
-          {Math.min(indexOfLastChart, charts.length)} of {charts.length}
-        </p>
-        <div className="flex space-x-2">
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index + 1)}
-              className={`px-3 py-1 rounded ${
-                currentPage === index + 1 ? "bg-gray-200" : "text-gray-700"
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}
+        <div className="flex justify-between items-center mb-8">
+          <p className="text-gray-500">
+            Showing {indexOfFirstChart + 1}-
+            {Math.min(indexOfLastChart, charts.length)} of {charts.length}
+          </p>
+          <div className="flex space-x-2">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-3 py-1 rounded ${
+                  currentPage === index + 1 ? "bg-gray-200" : "text-gray-700"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <ChartModal
-        isOpen={!!selectedChart}
-        onClose={closeModal}
-        chartData={selectedChart}
-      />
+        <div>
+          <div className="flex flex-col mb-4">
+            <h2 className="text-xl font-semibold mb-4">Charts</h2>
+            <div className="relative w-[20%]">
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="border p-2 rounded-lg w-full pl-10"
+              />
+              <IoSearchOutline className="absolute top-[13px] left-3 text-gray-500" />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 w-3/5 sm:grid-cols-2 gap-4">
+            {currentCharts.map((chart, index) => {
+              return (
+                <div
+                  key={index}
+                  className="border p-4 rounded shadow-sm flex justify-between items-center py-6"
+                  onClick={() => handleChartClick(chart)}
+                >
+                  <div className="flex items-center">
+                    {chart.type === "Doughnut" && (
+                      <FaChartPie
+                        className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+                        size={34}
+                      />
+                    )}
+                    {chart.type === "Pie" && (
+                      <FaChartPie
+                        className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+                        size={34}
+                      />
+                    )}
+                    {chart.type === "Bar" && (
+                      <FaChartBar
+                        className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+                        size={44}
+                      />
+                    )}
+                    {chart.type === "Line" && (
+                      <FaChartLine
+                        className="text-2xl mr-4 text-[#038C7F] font-extrabold"
+                        size={44}
+                      />
+                    )}
+                    <div>
+                      <div className="flex justify-between gap-4 items-center mt-4">
+                        <p className="text-gray-500">
+                          Updated{" "}
+                          {new Date(chart.updated_at).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <IoEllipsisVerticalOutline className="text-gray-500 cursor-pointer" />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center mt-8">
+          <p className="text-gray-500">
+            Showing {indexOfFirstChart + 1}-
+            {Math.min(indexOfLastChart, charts.length)} of {charts.length}
+          </p>
+          <div className="flex space-x-2">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-3 py-1 rounded ${
+                  currentPage === index + 1 ? "bg-gray-200" : "text-gray-700"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <ChartModal
+          isOpen={!!selectedChart}
+          onClose={closeModal}
+          chartData={selectedChart}
+        />
+      </div>
     </div>
   );
 };

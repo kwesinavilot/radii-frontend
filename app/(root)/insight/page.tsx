@@ -835,7 +835,7 @@ const Insight: React.FC = () => {
   };
 
   return (
-    <div className="bg-grey-bg h-screen overflow-y-auto">
+    <div className="bg-gray-100 h-screen overflow-y-auto">
       <Navbar title="Dashboard" icon="" />
       <div className="grid grid-cols-1 sm:grid-cols-4 p-2 py-4 h-full overflow-y-auto">
         <div className="block sm:col-span-1 h-full overflow-y-auto py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100">

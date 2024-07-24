@@ -11,7 +11,6 @@ import {
   ArcElement,
 } from "chart.js";
 
-// Register the chart components you will use
 ChartJS.register(
   CategoryScale,
   LinearScale,
