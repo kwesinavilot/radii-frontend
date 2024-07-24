@@ -995,7 +995,7 @@ const Insight: React.FC = () => {
           query: inputValue,
           orgID: orgID,
           sourceType: selectedDataSource === "drive" ? "gdrive" : "folder",
-          folderID: selectedDataSource === "folder" ? "files" : undefined,
+          folderID: selectedDataSource === "folder" ? "static" : undefined,
         };
 
         if (selectedDataSource === "drive") {
