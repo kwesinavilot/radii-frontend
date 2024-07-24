@@ -638,6 +638,7 @@ import { RootState } from "@/app/store/store";
 import { truncateText } from "@/app/utils/truncateText";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import { setSearchID } from "@/app/store/insightSlice";
+import Image from "next/image";
 
 interface ChartData {
   chartType: string;
@@ -666,7 +667,7 @@ interface Result {
   chart_data: ChartData | null;
   metadata: { [key: string]: Metadata };
   sources: string;
-  searchID: string; // Add searchID to Result type
+  searchID: string;
 }
 
 interface LibraryItem {
@@ -826,6 +827,7 @@ const Insight: React.FC = () => {
         generateAxiosConfig()
       );
       toast.success("Chart saved successfully");
+      console.log("Chart saved successfully:", response.data);
     } catch (error) {
       console.error("Error saving chart:", error);
       toast.error("Error saving chart");
@@ -836,7 +838,7 @@ const Insight: React.FC = () => {
     <div className="bg-grey-bg h-screen overflow-y-auto">
       <Navbar title="Dashboard" icon="" />
       <div className="grid grid-cols-1 sm:grid-cols-4 p-2 py-4 h-full overflow-y-auto">
-        <div className="block sm:col-span-1 py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100">
+        <div className="block sm:col-span-1 h-full overflow-y-auto py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100">
           <h2 className="text-xl font-bold mb-4">Library</h2>
           {libraryItems.length > 0 ? (
             <ul className="h-screen overflow-y-auto">
@@ -870,9 +872,23 @@ const Insight: React.FC = () => {
             <p>No items found in the library.</p>
           )}
         </div>
-        <main className="sm:col-span-3 block py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100 mainInternal">
+        <main className="sm:col-span-3 block  h-full overflow-y-auto  py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100 mainInternal">
           <div className="w-5/6 mx-auto mt-4">
-            <h1 className="text-2xl font-bold mb-4">Ask a Question</h1>
+            <h1 className="text-[40px] text-center font-bold mb-4">
+              Ask Radii A Question
+            </h1>
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {questions.map((question, index) => (
+                <Card
+                  key={index}
+                  title={question}
+                  onClick={() => handleCardClick(question)}
+                  className="h-20 w-full"
+                />
+              ))}
+            </div>
+          </div>
+          <div className="relative">
             <SearchBar
               value={inputValue}
               onChange={setInputValue}
@@ -883,27 +899,21 @@ const Insight: React.FC = () => {
               onDataSourceChange={setSelectedDataSource}
               remainingPrompts={remainingPrompts}
             />
-          </div>
-          {isLoading && (
-            <div className="flex justify-center items-center mt-4">
-              <Loader />
-            </div>
-          )}
-          {!isLoading && !showResult && (
-            <div className="w-5/6 mx-auto mt-4">
-              <h2 className="text-xl font-bold mb-4">Examples</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {questions.map((question, index) => (
-                  <Card
-                    key={index}
-                    title={question}
-                    onClick={() => handleCardClick(question)}
-                    className="h-20 w-full"
+            {isLoading && (
+              <div className="flex mt-4">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src="/i-logo.svg"
+                    alt="Radiis logo"
+                    width={22}
+                    height={22}
                   />
-                ))}
+                  <Loader />
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+
           {!isLoading && showResult && result && (
             <div className="w-5/6 mx-auto mt-4">
               <h2 className="text-xl font-bold mb-4">Result</h2>
