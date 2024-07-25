@@ -15,6 +15,7 @@ import { setToken, setOrgID } from "@/app/store/authSlice";
 import Cookies from "js-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
 import generateAxiosConfig from "@/app/config/axiosConfig";
+import Image from "next/image";
 
 interface FormData {
   email: string;
@@ -202,6 +203,22 @@ const Login: React.FC = () => {
       <section className={style.reg}>
         <div className={style.regWrapper}>
           <div className={style.regContent}>
+            <div className="flex gap-12 p-4 mb-8">
+              <Image
+                src="/LogoWhite.svg"
+                alt="logo"
+                className={style.regLogo}
+                width={30}
+                height={30}
+              />
+              <Image
+                src="/auth-img.svg"
+                alt="logo"
+                className={style.regLogo}
+                width={30}
+                height={30}
+              />
+            </div>
             <h1>Log in to start your search!</h1>
             <p>Welcome back! Log in to pick up where you left off</p>
             <div className={style.regIcons}>
