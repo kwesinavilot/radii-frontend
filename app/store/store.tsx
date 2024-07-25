@@ -57,6 +57,7 @@ import authReducer from "./authSlice";
 import navigationReducer from "./navigationSlice";
 import integrationReducer from "./integrationSlice";
 import insightReducer from "./insightSlice";
+// import chartsReducer from "./chartsSlice";
 
 const persistConfig = {
   key: "root",
@@ -71,6 +72,7 @@ const store = configureStore({
     auth: persistedAuthReducer,
     integration: integrationReducer,
     insight: insightReducer,
+    // charts: chartsReducer,
   },
 });
 
