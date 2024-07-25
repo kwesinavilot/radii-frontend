@@ -111,7 +111,7 @@ const ViewsByRadii: React.FC = () => {
     <div className="p-6">
       <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
       <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-sm px-8 mx-8">
-        <h1 className="text-2xl font-bold">Nova AI</h1>
+        <h1 className="text-2xl font-bold">Views by Radii</h1>
         <div className="flex items-center space-x-4 ">
           <button className="flex items-center p-1 text-black border border-[#000] rounded">
             <TbRefresh className="size-8" />
@@ -120,7 +120,7 @@ const ViewsByRadii: React.FC = () => {
             Edit
           </button>
           <button className="flex items-center px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
-            View Insights
+            Nova AI
           </button>
           <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
         </div>
