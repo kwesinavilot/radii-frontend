@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
 
   const { searchParams } = new URL(req.url);
   const code = searchParams.get("code");
+  const scope = searchParams.get("scope");
 
   if (!code) {
     return NextResponse.json(
@@ -27,7 +28,7 @@ export async function GET(req: NextRequest) {
   try {
     const response = await axios.post(
       "https://starfish-app-9ezx5.ondigitalocean.app/datasources/gdrive/",
-      { code },
+      { code, scope },
       {
         headers: {
           Authorization: `Token ${token?.value}`,
