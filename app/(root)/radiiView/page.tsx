@@ -19,6 +19,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Image from "next/image";
 
 Chart.register(
   ArcElement,
@@ -116,11 +117,18 @@ const ViewsByRadii: React.FC = () => {
           <button className="flex items-center p-1 text-black border border-[#000] rounded">
             <TbRefresh className="size-8" />
           </button>
-          <button className="flex items-center px-4 py-2 border border-[#000] text-[#000] rounded">
+          <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
             Edit
           </button>
-          <button className="flex items-center px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
-            Nova AI
+          <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
+            <Image
+              src="/IconWhite.svg"
+              alt="Logo"
+              width={10}
+              height={10}
+              className="flex items-center"
+            />
+            NOVA AI
           </button>
           <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
         </div>
