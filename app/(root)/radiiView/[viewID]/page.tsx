@@ -109,30 +109,30 @@
 //   };
 
 //   return (
-//     <div className="p-6">
-//       <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
-//       <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-sm px-8 mx-8">
-//         <h1 className="text-2xl font-bold">Views by Radii</h1>
-//         <div className="flex items-center space-x-4 ">
-//           <button className="flex items-center p-1 text-black border border-[#000] rounded">
-//             <TbRefresh className="size-8" />
-//           </button>
-//           <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
-//             Edit
-//           </button>
-//           <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
-//             <Image
-//               src="/IconWhite.svg"
-//               alt="Logo"
-//               width={10}
-//               height={10}
-//               className="flex items-center"
-//             />
-//             NOVA AI
-//           </button>
-//           <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
-//         </div>
-//       </div>
+// <div className="p-6">
+//   <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
+//   <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-sm px-8 mx-8">
+//     <h1 className="text-2xl font-bold">Views by Radii</h1>
+//     <div className="flex items-center space-x-4 ">
+//       <button className="flex items-center p-1 text-black border border-[#000] rounded">
+//         <TbRefresh className="size-8" />
+//       </button>
+//       <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
+//         Edit
+//       </button>
+//       <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
+//         <Image
+//           src="/IconWhite.svg"
+//           alt="Logo"
+//           width={10}
+//           height={10}
+//           className="flex items-center"
+//         />
+//         NOVA AI
+//       </button>
+//       <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
+//     </div>
+//   </div>
 
 //       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 px-8">
 //         <div className="border p-4 rounded-lg shadow-sm px-6 ">
@@ -406,6 +406,15 @@ import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import generateAxiosConfig from "@/app/config/axiosConfig";
+import Image from "next/image";
+import { PiUsersFill } from "react-icons/pi";
+import { SlGraph } from "react-icons/sl";
+import { RiBox3Fill } from "react-icons/ri";
+import { BsGraphUp } from "react-icons/bs";
+import { FaClockRotateLeft } from "react-icons/fa6";
+import { TbRefresh } from "react-icons/tb";
+import { HiDotsVertical } from "react-icons/hi";
+import { Doughnut, Bar } from "react-chartjs-2";
 
 interface View {
   id: string;
@@ -506,8 +515,8 @@ const RadiiView: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>View Details</h1>
+    <div className="p-6">
+      <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -515,68 +524,42 @@ const RadiiView: React.FC = () => {
       ) : view === null ? (
         <p>View not found</p>
       ) : (
-        <>
-          <h2>{view.name}</h2>
-          <p>{view.description}</p>
-          {charts.length === 0 ? (
-            <p>No chart has been added to the view yet</p>
-          ) : (
-            <div>
-              {charts.map((chart) => (
-                <div key={chart.chartID}>
-                  <h3>{chart.name}</h3>
-                  {/* Render your chart here */}
-                </div>
-              ))}
-            </div>
-          )}
-          <form onSubmit={(e) => e.preventDefault()}>
-            <h3>Add Chart</h3>
-            <input
-              type="text"
-              name="chartID"
-              placeholder="Chart ID"
-              value={newChart.chartID}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="number"
-              name="position_x"
-              placeholder="Position X"
-              value={newChart.position_x}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="number"
-              name="position_y"
-              placeholder="Position Y"
-              value={newChart.position_y}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="number"
-              name="width"
-              placeholder="Width"
-              value={newChart.width}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="number"
-              name="height"
-              placeholder="Height"
-              value={newChart.height}
-              onChange={handleChange}
-              required
-            />
-            <button type="button" onClick={handleAddChart}>
+        <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-sm px-8 mx-8">
+          <h1 className="text-2xl font-bold"> {view.name}</h1>
+          <div className="flex items-center space-x-4 ">
+            <button className="flex items-center p-1 text-black border border-[#000] rounded">
               Add Chart
             </button>
-          </form>
-        </>
+            <button className="flex items-center p-1 text-black border border-[#000] rounded">
+              <TbRefresh className="size-8" />
+            </button>
+            <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
+              Edit
+            </button>
+            <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
+              <Image
+                src="/IconWhite.svg"
+                alt="Logo"
+                width={10}
+                height={10}
+                className="flex items-center"
+              />
+              NOVA AI
+            </button>
+            <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
+          </div>
+        </div>
+      )}
+      {charts.length === 0 ? (
+        <p>No chart has been added to the view yet</p>
+      ) : (
+        <div>
+          {charts.map((chart) => (
+            <div key={chart.chartID}>
+              <h3>{chart.name}</h3>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
