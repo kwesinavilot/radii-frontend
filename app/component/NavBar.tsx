@@ -17,9 +17,9 @@ const Navbar: React.FC<NavbarProps> = ({ title, icon }) => {
   return (
     <div className="bg-white shadow p-4 flex items-center justify-between">
       <div className="flex items-center">
-        <Link href="/" className="text-[34px] font-bold text-gray-900">
-          {icon}
-        </Link>
+        {/* <Link href="/" className="text-[34px] font-bold text-gray-900"> */}
+        {icon}
+        {/* </Link> */}
         <h1 className="ml-4 text-[40px] font-bold">{title}</h1>
       </div>
       <div className="flex items-center">

@@ -639,6 +639,8 @@ import { truncateText } from "@/app/utils/truncateText";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import { setSearchID } from "@/app/store/insightSlice";
 import Image from "next/image";
+import { Chart } from "chart.js";
+import { EllipsisIcon } from "lucide-react";
 
 interface ChartData {
   chartType: string;
@@ -810,6 +812,8 @@ const Insight: React.FC = () => {
     }
   };
 
+
+
   const handleSaveChart = async (
     chartData: ChartData,
     chartType: string,
@@ -820,20 +824,19 @@ const Insight: React.FC = () => {
         "https://starfish-app-9ezx5.ondigitalocean.app/visuals/charts/",
         {
           chart_data: JSON.stringify(chartData),
-          name: `Chart ${new Date().toISOString()}`,
+          name: chartData.options.title,
           searchID: searchID,
           type: chartType,
         },
         generateAxiosConfig()
       );
       toast.success("Chart saved successfully");
-      console.log("Chart saved successfully:", response.data);
+      console.log("Chart saved successfully:", chartData);
     } catch (error) {
       console.error("Error saving chart:", error);
       toast.error("Error saving chart");
     }
   };
-
   return (
     <div className="bg-gray-100 h-screen overflow-y-auto">
       <Navbar title="Dashboard" icon="" />
@@ -851,11 +854,9 @@ const Insight: React.FC = () => {
                     className="text-sm truncate cursor-pointer"
                     onClick={() => handleLibraryItemClick(item)}
                   >
-                    {item.query}
-                  </p>
-                  <p className="text-xs text-gray-500 truncate">
                     {truncateText(item.query, 25)}
                   </p>
+
                   <button
                     className="absolute top-1 right-1 text-gray-500 hover:text-gray-700"
                     onClick={(e) => {
@@ -863,7 +864,7 @@ const Insight: React.FC = () => {
                       handleEllipsisClick(e, item);
                     }}
                   >
-                    ...
+                    <EllipsisIcon />
                   </button>
                 </div>
               ))}
@@ -873,6 +874,13 @@ const Insight: React.FC = () => {
           )}
         </div>
         <main className="sm:col-span-3 block  h-full overflow-y-auto  py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100 mainInternal">
+          {!isLoading && showResult && result && (
+            <div className="w-full mx-auto mt-4">
+              <h2 className="text-xl font-bold mb-4">Result</h2>
+              <SearchResult result={result} onSaveChart={handleSaveChart} />
+            </div>
+          )}
+
           <div className="w-5/6 mx-auto mt-4">
             <h1 className="text-[40px] text-center font-bold mb-4">
               Ask Radii A Question
@@ -913,13 +921,6 @@ const Insight: React.FC = () => {
               </div>
             )}
           </div>
-
-          {!isLoading && showResult && result && (
-            <div className="w-5/6 mx-auto mt-4">
-              <h2 className="text-xl font-bold mb-4">Result</h2>
-              <SearchResult result={result} onSaveChart={handleSaveChart} />
-            </div>
-          )}
         </main>
       </div>
       {popupItem && (

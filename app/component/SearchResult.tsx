@@ -420,7 +420,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ result, onSaveChart }) => {
     useSelector((state: RootState) => state.insight.searchID) || "";
 
   return (
-    <div className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow">
+    <div className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow w-full">
       <h2 className="text-2xl font-bold mb-4">
         {result.chart_data?.options?.title || "No Chart Available"}
       </h2>
