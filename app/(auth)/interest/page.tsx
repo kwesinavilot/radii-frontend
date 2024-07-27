@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 import style from "./Interest.module.css";
 import { FaLinkedin } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
-import { setOrgID, setToken } from "@/app/store/authSlice";
+import { setOrgID, setToken, setUserID } from "@/app/store/authSlice";
 import axios from "axios";
 import Image from "next/image";
+import Cookies from "js-cookie";
 
 const Interest: React.FC = () => {
   const [selectedInterest, setSelectedInterest] = useState<string>("");
@@ -48,12 +49,13 @@ const Interest: React.FC = () => {
           combinedData
         );
         toast.success("Form submitted successfully!");
+        const { token, user } = responseData;
+        toast.success("Form submitted successfully!");
         console.log("Registration successful:", responseData);
-        dispatch(setToken(responseData.token));
-
-        dispatch(setToken(responseData.token));
-        const orgID = responseData.user.orgID;
-        dispatch(setOrgID(orgID));
+        dispatch(setToken(token));
+        dispatch(setOrgID(user.orgID));
+        dispatch(setUserID(user.userID));
+        Cookies.set("auth_token", token);
 
         localStorage.removeItem("registerData");
         localStorage.removeItem("surveyData");

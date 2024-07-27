@@ -285,6 +285,122 @@
 
 // export default ViewsByRadii;
 
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import { useParams, useRouter } from "next/navigation";
+// import axios from "axios";
+// import generateAxiosConfig from "@/app/config/axiosConfig";
+
+// interface View {
+//   id: string;
+//   name: string;
+//   description: string;
+// }
+
+// interface ChartItem {
+//   chartID: string;
+//   chart_data: string;
+//   created_at: string;
+//   name: string;
+//   type: string;
+//   updated_at: string;
+//   user: string;
+//   organization: string;
+//   searchID: string;
+// }
+
+// const RadiiView: React.FC = () => {
+//   const router = useRouter();
+//   const { viewID } = useParams();
+//   const [view, setView] = useState<View | null>(null);
+//   const [charts, setCharts] = useState<ChartItem[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
+
+//   useEffect(() => {
+//     if (viewID) {
+//       fetchViewData();
+//       fetchCharts();
+//     }
+//   }, [viewID]);
+
+//   const fetchViewData = async () => {
+//     try {
+//       const response = await axios.get<View>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/`,
+//         generateAxiosConfig()
+//       );
+//       setView(response.data);
+//     } catch (error) {
+//       setError("Failed to fetch view data");
+//     }
+//   };
+
+//   const fetchCharts = async () => {
+//     try {
+//       const response = await axios.get<ChartItem[]>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/charts/?viewID=${viewID}`,
+//         generateAxiosConfig()
+//       );
+//       setCharts(response.data);
+//       console.log("Charts is fetched here:", response.data);
+//     } catch (error) {
+//       setError("Failed to fetch charts");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleAddChart = async () => {
+//     try {
+//       // Example of adding a chart, modify as needed
+//       const response = await axios.post(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+//         {
+//           // Add your chart data here
+//         },
+//         generateAxiosConfig()
+//       );
+//       setCharts([...charts, response.data]);
+//     } catch (error) {
+//       setError("Failed to add chart");
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h1>View Details</h1>
+//       {loading ? (
+//         <p>Loading...</p>
+//       ) : error ? (
+//         <p>{error}</p>
+//       ) : view === null ? (
+//         <p>View not found</p>
+//       ) : (
+//         <>
+//           <h2>{view.name}</h2>
+//           <p>{view.description}</p>
+//           {charts.length === 0 ? (
+//             <p>No chart has been added to the view yet</p>
+//           ) : (
+//             <div>
+//               {charts.map((chart) => (
+//                 <div key={chart.chartID}>
+//                   <h3>{chart.name}</h3>
+//                   {/* Render your chart here */}
+//                 </div>
+//               ))}
+//             </div>
+//           )}
+//           <button onClick={handleAddChart}>Add Chart</button>
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default RadiiView;
+
 "use client";
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -317,6 +433,14 @@ const RadiiView: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [newChart, setNewChart] = useState({
+    chartID: "",
+    position_x: 0,
+    position_y: 0,
+    width: 0,
+    height: 0,
+  });
+
   useEffect(() => {
     if (viewID) {
       fetchViewData();
@@ -343,7 +467,7 @@ const RadiiView: React.FC = () => {
         generateAxiosConfig()
       );
       setCharts(response.data);
-      console.log("Charts is fetched here:", response.data);
+      console.log("Charts are fetched here:", response.data);
     } catch (error) {
       setError("Failed to fetch charts");
     } finally {
@@ -353,18 +477,32 @@ const RadiiView: React.FC = () => {
 
   const handleAddChart = async () => {
     try {
-      // Example of adding a chart, modify as needed
+      const requestData = {
+        chartID: newChart.chartID,
+        position_x: newChart.position_x,
+        position_y: newChart.position_y,
+        width: newChart.width,
+        height: newChart.height,
+      };
+
+      console.log("Adding chart with data:", requestData);
+
       const response = await axios.post(
         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
-        {
-          // Add your chart data here
-        },
+        requestData,
         generateAxiosConfig()
       );
+
       setCharts([...charts, response.data]);
     } catch (error) {
+      console.error("Failed to add chart:", error);
       setError("Failed to add chart");
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewChart({ ...newChart, [name]: value });
   };
 
   return (
@@ -392,7 +530,52 @@ const RadiiView: React.FC = () => {
               ))}
             </div>
           )}
-          <button onClick={handleAddChart}>Add Chart</button>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <h3>Add Chart</h3>
+            <input
+              type="text"
+              name="chartID"
+              placeholder="Chart ID"
+              value={newChart.chartID}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="number"
+              name="position_x"
+              placeholder="Position X"
+              value={newChart.position_x}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="number"
+              name="position_y"
+              placeholder="Position Y"
+              value={newChart.position_y}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="number"
+              name="width"
+              placeholder="Width"
+              value={newChart.width}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="number"
+              name="height"
+              placeholder="Height"
+              value={newChart.height}
+              onChange={handleChange}
+              required
+            />
+            <button type="button" onClick={handleAddChart}>
+              Add Chart
+            </button>
+          </form>
         </>
       )}
     </div>
