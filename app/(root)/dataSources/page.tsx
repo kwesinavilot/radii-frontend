@@ -10,7 +10,7 @@ import axios, { AxiosError } from "axios";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import { format } from "date-fns";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { setIntegrationID } from "@/app/store/integrationSlice";
 
 interface FileItem {
@@ -163,14 +163,16 @@ const DataSourceTable: React.FC = () => {
   //   }
   // };
 
-  const handleDeleteFile = async (id: string) => {
+  const handleDeleteFile = async (SourceID: string) => {
     try {
       const response = await axios.delete(
-        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/${id}`,
+        `https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/${SourceID}`,
+
         {
           ...generateAxiosConfig(),
           params: {
             orgID: orgID,
+            sourceID: SourceID,
           },
         }
       );
@@ -408,6 +410,7 @@ const DataSourceTable: React.FC = () => {
 
   return (
     <>
+      <ToastContainer />
       <Navbar title={"Data Sources"} />
       <div className="m-4 flex justify-between">
         <h1 className="text-2xl font-bold text-gray-900">
