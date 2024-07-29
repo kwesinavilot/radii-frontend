@@ -62,6 +62,7 @@ const MyViews: React.FC = () => {
           generateAxiosConfig()
         );
         setCharts(response.data.reverse());
+        console.log("fetch chart:", response.data);
       } catch (error) {
         console.error("Error fetching charts:", error);
       }
@@ -150,18 +151,6 @@ const MyViews: React.FC = () => {
   const currentViews = views.slice(indexOfFirstView, indexOfLastView);
 
   const viewTotalPages = Math.ceil(views.length / viewsPerPage);
-
-  // const truncateName = (name: string) => {
-  //   const words = name.split(" ");
-  //   return words.length > 3 ? words.slice(0, 3).join(" ") + "..." : name;
-  // };
-
-  // const truncateText = (text: string, maxLength: number): string => {
-  //   if (text.length <= maxLength) {
-  //     return text;
-  //   }
-  //   return text.slice(0, maxLength) + "...";
-  // };
 
   return (
     <>

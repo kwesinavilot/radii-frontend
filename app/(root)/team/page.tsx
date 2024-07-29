@@ -312,7 +312,7 @@ const AccountSettings = () => {
                   disabled={!isButtonEnabled}
                   className={`w-full py-3 px-6 rounded-md text-white ${
                     isButtonEnabled
-                      ? "bg-blue-500"
+                      ? "bg-[#038C7F]"
                       : "bg-gray-400 cursor-not-allowed"
                   }`}
                 >

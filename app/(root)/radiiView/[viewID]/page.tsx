@@ -401,37 +401,805 @@
 
 // export default RadiiView;
 
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import { useParams, useRouter } from "next/navigation";
+// import axios from "axios";
+// import generateAxiosConfig from "@/app/config/axiosConfig";
+// import Image from "next/image";
+// import { PiUsersFill } from "react-icons/pi";
+// import { SlGraph } from "react-icons/sl";
+// import { RiBox3Fill } from "react-icons/ri";
+// import { BsGraphUp } from "react-icons/bs";
+// import { FaClockRotateLeft } from "react-icons/fa6";
+// import { TbRefresh } from "react-icons/tb";
+// import { HiDotsVertical } from "react-icons/hi";
+// import { Doughnut, Bar } from "react-chartjs-2";
+
+// interface View {
+//   id: string;
+//   name: string;
+//   description: string;
+// }
+
+// interface ChartItem {
+//   chartID: string;
+//   chart_data: string;
+//   created_at: string;
+//   name: string;
+//   type: string;
+//   updated_at: string;
+//   user: string;
+//   organization: string;
+//   searchID: string;
+// }
+
+// const RadiiView: React.FC = () => {
+//   const router = useRouter();
+//   const { viewID } = useParams();
+//   const [view, setView] = useState<View | null>(null);
+//   const [charts, setCharts] = useState<ChartItem[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
+
+//   const [newChart, setNewChart] = useState({
+//     chartID: "",
+//     position_x: 0,
+//     position_y: 0,
+//     width: 0,
+//     height: 0,
+//   });
+
+//   useEffect(() => {
+//     if (viewID) {
+//       fetchViewData();
+//       fetchCharts();
+//     }
+//   }, [viewID]);
+
+//   const fetchViewData = async () => {
+//     try {
+//       const response = await axios.get<View>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/`,
+//         generateAxiosConfig()
+//       );
+//       setView(response.data);
+//     } catch (error) {
+//       setError("Failed to fetch view data");
+//     }
+//   };
+
+//   const fetchCharts = async () => {
+//     try {
+//       const response = await axios.get<ChartItem[]>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/charts/?viewID=${viewID}`,
+//         generateAxiosConfig()
+//       );
+//       setCharts(response.data);
+//       console.log("Charts are fetched here:", response.data);
+//     } catch (error) {
+//       setError("Failed to fetch charts");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleAddChart = async () => {
+//     try {
+//       const requestData = {
+//         chartID: newChart.chartID,
+//         position_x: newChart.position_x,
+//         position_y: newChart.position_y,
+//         width: newChart.width,
+//         height: newChart.height,
+//       };
+
+//       console.log("Adding chart with data:", requestData);
+
+//       const response = await axios.post(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+//         requestData,
+//         generateAxiosConfig()
+//       );
+
+//       setCharts([...charts, response.data]);
+//     } catch (error) {
+//       console.error("Failed to add chart:", error);
+//       setError("Failed to add chart");
+//     }
+//   };
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const { name, value } = e.target;
+//     setNewChart({ ...newChart, [name]: value });
+//   };
+
+//   return (
+//     <div className="p-6">
+//       <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
+//       {loading ? (
+//         <p>Loading...</p>
+//       ) : error ? (
+//         <p>{error}</p>
+//       ) : view === null ? (
+//         <p>View not found</p>
+//       ) : (
+//         <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-sm px-8 mx-8">
+//           <h1 className="text-2xl font-bold"> {view.name}</h1>
+//           <div className="flex items-center space-x-4 ">
+//             <button className="flex items-center p-1 text-black border border-[#000] rounded">
+//               Add Chart
+//             </button>
+//     <button className="flex items-center p-1 text-black border border-[#000] rounded">
+//       <TbRefresh className="size-8" />
+//     </button>
+//     <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
+//       Edit
+//     </button>
+//     <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
+//       <Image
+//         src="/IconWhite.svg"
+//         alt="Logo"
+//         width={10}
+//         height={10}
+//         className="flex items-center"
+//       />
+//       NOVA AI
+//     </button>
+//     <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
+//   </div>
+// </div>
+//       )}
+//       {charts.length === 0 ? (
+//         <p>No chart has been added to the view yet</p>
+//       ) : (
+//         <div>
+//           {charts.map((chart) => (
+//             <div key={chart.chartID}></div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default RadiiView;
+
+// RadiiView.tsx
+
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import { useParams, useRouter } from "next/navigation";
+// import axios from "axios";
+// import generateAxiosConfig from "@/app/config/axiosConfig";
+// import Image from "next/image";
+// import { TbRefresh } from "react-icons/tb";
+// import { HiDotsVertical } from "react-icons/hi";
+// import ChartSelectorModal from "@/app/component/ChartSelectorModal";
+// import { ChartItem } from "@/app/types";
+
+// interface View {
+//   id: string;
+//   name: string;
+//   description: string;
+// }
+
+// const RadiiView: React.FC = () => {
+//   const router = useRouter();
+//   const { viewID } = useParams();
+//   const [view, setView] = useState<View | null>(null);
+//   const [charts, setCharts] = useState<ChartItem[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+
+//   const [newChart, setNewChart] = useState({
+//     chartID: "",
+//     position_x: 0,
+//     position_y: 0,
+//     width: 0,
+//     height: 0,
+//   });
+
+//   useEffect(() => {
+//     if (viewID) {
+//       fetchViewData();
+//       fetchCharts();
+//     }
+//   }, [viewID]);
+
+//   const fetchViewData = async () => {
+//     try {
+//       const response = await axios.get<View>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/`,
+//         generateAxiosConfig()
+//       );
+//       setView(response.data);
+//     } catch (error) {
+//       setError("Failed to fetch view data");
+//     }
+//   };
+
+//   const fetchCharts = async () => {
+//     try {
+//       const response = await axios.get<ChartItem[]>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/charts/?viewID=${viewID}`,
+//         generateAxiosConfig()
+//       );
+//       setCharts(response.data);
+//     } catch (error) {
+//       setError("Failed to fetch charts");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleAddChart = async (selectedCharts: ChartItem[]) => {
+//     try {
+//       const chartsToAdd = selectedCharts.map((chart) => ({
+//         chartID: chart.chartID,
+//         position_x: newChart.position_x,
+//         position_y: newChart.position_y,
+//         width: newChart.width,
+//         height: newChart.height,
+//       }));
+
+//       const responses = await Promise.all(
+//         chartsToAdd.map((chartData) =>
+//           axios.post(
+//             `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+//             chartData,
+//             generateAxiosConfig()
+//           )
+//         )
+//       );
+
+//       setCharts([...charts, ...responses.map((res) => res.data)]);
+//     } catch (error) {
+//       console.error("Failed to add chart:", error);
+//       setError("Failed to add chart");
+//     }
+//   };
+
+//   return (
+//     <div className="p-6">
+//       <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
+//       {loading ? (
+//         <p>Loading...</p>
+//       ) : error ? (
+//         <p>{error}</p>
+//       ) : view === null ? (
+//         <p>View not found</p>
+//       ) : (
+//         <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-lg bg-white">
+//           <div className="flex items-center">
+//             <div>
+//               <h3 className="text-xl font-semibold">{view.name}</h3>
+//             </div>
+//           </div>
+//           <div className="flex space-x-4">
+//             <button
+//               className="flex items-center p-1 text-black border border-[#000] rounded"
+//               onClick={() => setIsModalOpen(true)}
+//             >
+//               <span className="ml-2">Add Chart</span>
+//             </button>
+//             <button className="flex items-center p-1 text-black border border-[#000] rounded">
+//               <TbRefresh className="size-8" />
+//             </button>
+//             <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
+//               Edit
+//             </button>
+//             <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
+//               <Image
+//                 src="/IconWhite.svg"
+//                 alt="Logo"
+//                 width={10}
+//                 height={10}
+//                 className="flex items-center"
+//               />
+//               NOVA AI
+//             </button>
+//             <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
+//           </div>
+//         </div>
+//       )}
+//       <ChartSelectorModal
+//         isOpen={isModalOpen}
+//         onClose={() => setIsModalOpen(false)}
+//         onSelectCharts={handleAddChart}
+//       />
+//     </div>
+//   );
+// };
+
+// export default RadiiView;
+
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import { useParams, useRouter } from "next/navigation";
+// import axios from "axios";
+// import generateAxiosConfig from "@/app/config/axiosConfig";
+// import Image from "next/image";
+// import { TbRefresh } from "react-icons/tb";
+// import { HiDotsVertical } from "react-icons/hi";
+// import ChartSelectorModal from "@/app/component/ChartSelectorModal";
+// import ChartModal from "@/app/component/ChartModal";
+// import { ChartItem } from "@/app/types";
+// import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   BarElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+//   ArcElement,
+// } from "chart.js";
+
+// ChartJS.register(
+//   CategoryScale,
+//   LinearScale,
+//   BarElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+//   ArcElement
+// );
+
+// interface View {
+//   id: string;
+//   name: string;
+//   description: string;
+// }
+
+// const RadiiView: React.FC = () => {
+//   const router = useRouter();
+//   const { viewID } = useParams();
+//   const [view, setView] = useState<View | null>(null);
+//   const [charts, setCharts] = useState<ChartItem[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [selectedChart, setSelectedChart] = useState<ChartItem | null>(null);
+
+//   const [newChart, setNewChart] = useState({
+//     chartID: "",
+//     position_x: 0,
+//     position_y: 0,
+//     width: 0,
+//     height: 0,
+//   });
+
+//   useEffect(() => {
+//     if (viewID) {
+//       fetchViewData();
+//       fetchCharts();
+//     }
+//   }, [viewID]);
+
+//   const fetchViewData = async () => {
+//     try {
+//       const response = await axios.get<View>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/`,
+//         generateAxiosConfig()
+//       );
+//       setView(response.data);
+//     } catch (error) {
+//       setError("Failed to fetch view data");
+//     }
+//   };
+
+//   const fetchCharts = async () => {
+//     try {
+//       const response = await axios.get<ChartItem[]>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/charts/?viewID=${viewID}`,
+//         generateAxiosConfig()
+//       );
+//       setCharts(response.data);
+//     } catch (error) {
+//       setError("Failed to fetch charts");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleAddChart = async (selectedCharts: ChartItem[]) => {
+//     try {
+//       const chartsToAdd = selectedCharts.map((chart) => ({
+//         chartID: chart.chartID,
+//         position_x: newChart.position_x,
+//         position_y: newChart.position_y,
+//         width: newChart.width,
+//         height: newChart.height,
+//       }));
+
+//       const responses = await Promise.all(
+//         chartsToAdd.map((chartData) =>
+//           axios.post(
+//             `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+//             chartData,
+//             generateAxiosConfig()
+//           )
+//         )
+//       );
+
+//       setCharts([...charts, ...responses.map((res) => res.data)]);
+//     } catch (error) {
+//       console.error("Failed to add chart:", error);
+//       setError("Failed to add chart");
+//     }
+//   };
+
+//   const renderChart = (chart: ChartItem) => {
+//     const parsedData = JSON.parse(chart.chart_data);
+//     const chartOptions = {
+//       plugins: {
+//         title: {
+//           display: true,
+//           text: parsedData.options.title || "No Title Available",
+//         },
+//       },
+//       scales: {
+//         y: {
+//           beginAtZero: true,
+//         },
+//       },
+//     };
+
+//     switch (chart.type) {
+//       case "Bar":
+//         return <Bar data={parsedData.data} options={chartOptions} />;
+//       case "Line":
+//         return <Line data={parsedData.data} options={chartOptions} />;
+//       case "Pie":
+//         return <Pie data={parsedData.data} options={chartOptions} />;
+//       case "Doughnut":
+//         return <Doughnut data={parsedData.data} options={chartOptions} />;
+//       default:
+//         return null;
+//     }
+//   };
+
+//   return (
+//     <div className="p-6">
+//       <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
+//       {loading ? (
+//         <p>Loading...</p>
+//       ) : error ? (
+//         <p>{error}</p>
+//       ) : view === null ? (
+//         <p>View not found</p>
+//       ) : (
+//         <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-lg bg-white">
+//           <div className="flex items-center">
+//             <div>
+//               <h3 className="text-xl font-semibold">{view.name}</h3>
+//             </div>
+//           </div>
+//           <div className="flex space-x-4">
+//             <button
+//               className="flex items-center p-1 text-black border border-[#000] rounded"
+//               onClick={() => setIsModalOpen(true)}
+//             >
+//               <span className="ml-2">Add Chart</span>
+//             </button>
+//             <button className="flex items-center p-1 text-black border border-[#000] rounded">
+//               <TbRefresh className="size-8" />
+//             </button>
+//             <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
+//               Edit
+//             </button>
+//             <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
+//               <Image
+//                 src="/IconWhite.svg"
+//                 alt="Logo"
+//                 width={10}
+//                 height={10}
+//                 className="flex items-center"
+//               />
+//               NOVA AI
+//             </button>
+//             <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
+//           </div>
+//         </div>
+//       )}
+//       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+//         {charts.map((chart) => (
+//           <div
+//             key={chart.chartID}
+//             className="border p-4 rounded shadow-sm py-6"
+//             onClick={() => setSelectedChart(chart)}
+//           >
+//             <h3 className="font-bold mb-4">{chart.name}</h3>
+//             {renderChart(chart)}
+//           </div>
+//         ))}
+//       </div>
+//       <ChartSelectorModal
+//         isOpen={isModalOpen}
+//         onClose={() => setIsModalOpen(false)}
+//         onSelectCharts={handleAddChart}
+//       />
+//       {selectedChart && (
+//         <ChartModal
+//           isOpen={Boolean(selectedChart)}
+//           onClose={() => setSelectedChart(null)}
+//           chartData={selectedChart}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default RadiiView;
+
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import { useParams, useRouter } from "next/navigation";
+// import axios from "axios";
+// import generateAxiosConfig from "@/app/config/axiosConfig";
+// import Image from "next/image";
+// import { TbRefresh } from "react-icons/tb";
+// import { HiDotsVertical } from "react-icons/hi";
+// import ChartSelectorModal from "@/app/component/ChartSelectorModal";
+// import ChartModal from "@/app/component/ChartModal";
+// import { ChartItem } from "@/app/types";
+// import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   BarElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+//   ArcElement,
+//   PointElement,
+//   LineElement,
+// } from "chart.js";
+
+// ChartJS.register(
+//   CategoryScale,
+//   LinearScale,
+//   BarElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+//   ArcElement,
+//   PointElement,
+//   LineElement
+// );
+
+// interface View {
+//   id: string;
+//   name: string;
+//   description: string;
+// }
+
+// const RadiiView: React.FC = () => {
+//   const router = useRouter();
+//   const { viewID } = useParams();
+//   const [view, setView] = useState<View | null>(null);
+//   const [charts, setCharts] = useState<ChartItem[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [selectedChart, setSelectedChart] = useState<ChartItem | null>(null);
+
+//   const [newChart, setNewChart] = useState({
+//     chartID: "",
+//     position_x: 0,
+//     position_y: 0,
+//     width: 0,
+//     height: 0,
+//   });
+
+//   useEffect(() => {
+//     if (viewID) {
+//       fetchViewData();
+//       fetchCharts();
+//     }
+//   }, [viewID]);
+
+//   const fetchViewData = async () => {
+//     try {
+//       const response = await axios.get<View>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/`,
+//         generateAxiosConfig()
+//       );
+//       setView(response.data);
+//     } catch (error) {
+//       setError("Failed to fetch view data");
+//     }
+//   };
+
+//   const fetchCharts = async () => {
+//     try {
+//       const response = await axios.get<ChartItem[]>(
+//         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/charts/?viewID=${viewID}`,
+//         generateAxiosConfig()
+//       );
+//       setCharts(response.data);
+//     } catch (error) {
+//       setError("Failed to fetch charts");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleAddChart = async (selectedCharts: ChartItem[]) => {
+//     try {
+//       const chartsToAdd = selectedCharts.map((chart) => ({
+//         chartID: chart.chartID,
+//         position_x: newChart.position_x,
+//         position_y: newChart.position_y,
+//         width: newChart.width,
+//         height: newChart.height,
+//       }));
+
+//       const responses = await Promise.all(
+//         chartsToAdd.map((chartData) =>
+//           axios.post(
+//             `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+//             chartData.chartID,
+//             generateAxiosConfig()
+//           )
+//         )
+//       );
+
+//       setCharts([...charts, ...responses.map((res) => res.data)]);
+//     } catch (error) {
+//       console.error("Failed to add chart:", error);
+//       setError("Failed to add chart");
+//     }
+//   };
+
+//   const renderChart = (chart: ChartItem) => {
+//     const parsedData = JSON.parse(chart.chart_data);
+//     const chartOptions = {
+//       plugins: {
+//         title: {
+//           display: true,
+//           text: parsedData.options.title || "No Title Available",
+//         },
+//       },
+//       scales: {
+//         y: {
+//           beginAtZero: true,
+//         },
+//       },
+//     };
+
+//     switch (chart.type) {
+//       case "Bar":
+//         return <Bar data={parsedData.data} options={chartOptions} />;
+//       case "Line":
+//         return <Line data={parsedData.data} options={chartOptions} />;
+//       case "Pie":
+//         return <Pie data={parsedData.data} options={chartOptions} />;
+//       case "Doughnut":
+//         return <Doughnut data={parsedData.data} options={chartOptions} />;
+//       default:
+//         return null;
+//     }
+//   };
+
+//   return (
+//     <div className="p-6">
+//       <h2 className="mb-4 mx-8 text-[20px]">Overview</h2>
+//       {loading ? (
+//         <p>Loading...</p>
+//       ) : error ? (
+//         <p>{error}</p>
+//       ) : view === null ? (
+//         <p>View not found</p>
+//       ) : (
+//         <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-lg bg-white">
+//           <div className="flex items-center">
+//             <div>
+//               <h3 className="text-xl font-semibold">{view.name}</h3>
+//             </div>
+//           </div>
+//           <div className="flex space-x-4">
+//             <button
+//               className="flex items-center p-1 text-black border border-[#000] rounded"
+//               onClick={() => setIsModalOpen(true)}
+//             >
+//               <span className="ml-2">Add Chart</span>
+//             </button>
+//             <button className="flex items-center p-1 text-black border border-[#000] rounded">
+//               <TbRefresh className="size-8" />
+//             </button>
+//             <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
+//               Edit
+//             </button>
+//             <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
+//               <Image
+//                 src="/IconWhite.svg"
+//                 alt="Logo"
+//                 width={10}
+//                 height={10}
+//                 className="flex items-center"
+//               />
+//               NOVA AI
+//             </button>
+//             <HiDotsVertical className="text-[#000] text-[2.5rem] cursor-pointer" />
+//           </div>
+//         </div>
+//       )}
+//       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+//         {charts.map((chart) => (
+//           <div
+//             key={chart.chartID}
+//             className="border p-4 rounded shadow-sm py-6"
+//             onClick={() => setSelectedChart(chart)}
+//           >
+//             <h3 className="font-bold mb-4">{chart.name}</h3>
+//             {renderChart(chart)}
+//           </div>
+//         ))}
+//       </div>
+//       <ChartSelectorModal
+//         isOpen={isModalOpen}
+//         onClose={() => setIsModalOpen(false)}
+//         onSelectCharts={handleAddChart}
+//       />
+//       {selectedChart && (
+//         <ChartModal
+//           isOpen={Boolean(selectedChart)}
+//           onClose={() => setSelectedChart(null)}
+//           chartData={selectedChart}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default RadiiView;
+
 "use client";
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import Image from "next/image";
-import { PiUsersFill } from "react-icons/pi";
-import { SlGraph } from "react-icons/sl";
-import { RiBox3Fill } from "react-icons/ri";
-import { BsGraphUp } from "react-icons/bs";
-import { FaClockRotateLeft } from "react-icons/fa6";
 import { TbRefresh } from "react-icons/tb";
 import { HiDotsVertical } from "react-icons/hi";
-import { Doughnut, Bar } from "react-chartjs-2";
+import ChartSelectorModal from "@/app/component/ChartSelectorModal";
+import ChartModal from "@/app/component/ChartModal";
+import { ChartItem } from "@/app/types";
+import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  PointElement,
+  LineElement,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  PointElement,
+  LineElement
+);
 
 interface View {
   id: string;
   name: string;
   description: string;
-}
-
-interface ChartItem {
-  chartID: string;
-  chart_data: string;
-  created_at: string;
-  name: string;
-  type: string;
-  updated_at: string;
-  user: string;
-  organization: string;
-  searchID: string;
 }
 
 const RadiiView: React.FC = () => {
@@ -441,19 +1209,12 @@ const RadiiView: React.FC = () => {
   const [charts, setCharts] = useState<ChartItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const [newChart, setNewChart] = useState({
-    chartID: "",
-    position_x: 0,
-    position_y: 0,
-    width: 0,
-    height: 0,
-  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedChart, setSelectedChart] = useState<ChartItem | null>(null);
 
   useEffect(() => {
     if (viewID) {
       fetchViewData();
-      fetchCharts();
     }
   }, [viewID]);
 
@@ -466,52 +1227,58 @@ const RadiiView: React.FC = () => {
       setView(response.data);
     } catch (error) {
       setError("Failed to fetch view data");
-    }
-  };
-
-  const fetchCharts = async () => {
-    try {
-      const response = await axios.get<ChartItem[]>(
-        `https://starfish-app-9ezx5.ondigitalocean.app/visuals/charts/?viewID=${viewID}`,
-        generateAxiosConfig()
-      );
-      setCharts(response.data);
-      console.log("Charts are fetched here:", response.data);
-    } catch (error) {
-      setError("Failed to fetch charts");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleAddChart = async () => {
+  const handleAddChart = async (selectedCharts: ChartItem[]) => {
     try {
-      const requestData = {
-        chartID: newChart.chartID,
-        position_x: newChart.position_x,
-        position_y: newChart.position_y,
-        width: newChart.width,
-        height: newChart.height,
-      };
-
-      console.log("Adding chart with data:", requestData);
+      const chartsToAdd = selectedCharts.map((chart) => ({
+        chartID: chart.chartID,
+      }));
 
       const response = await axios.post(
         `https://starfish-app-9ezx5.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
-        requestData,
+        chartsToAdd,
         generateAxiosConfig()
       );
 
-      setCharts([...charts, response.data]);
+      setCharts([...charts, ...response.data]);
     } catch (error) {
       console.error("Failed to add chart:", error);
       setError("Failed to add chart");
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setNewChart({ ...newChart, [name]: value });
+  const renderChart = (chart: ChartItem) => {
+    const parsedData = JSON.parse(chart.chart_data);
+    const chartOptions = {
+      plugins: {
+        title: {
+          display: true,
+          text: parsedData.options.title || "No Title Available",
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    };
+
+    switch (chart.type) {
+      case "Bar":
+        return <Bar data={parsedData.data} options={chartOptions} />;
+      case "Line":
+        return <Line data={parsedData.data} options={chartOptions} />;
+      case "Pie":
+        return <Pie data={parsedData.data} options={chartOptions} />;
+      case "Doughnut":
+        return <Doughnut data={parsedData.data} options={chartOptions} />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -524,11 +1291,18 @@ const RadiiView: React.FC = () => {
       ) : view === null ? (
         <p>View not found</p>
       ) : (
-        <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-sm px-8 mx-8">
-          <h1 className="text-2xl font-bold"> {view.name}</h1>
-          <div className="flex items-center space-x-4 ">
-            <button className="flex items-center p-1 text-black border border-[#000] rounded">
-              Add Chart
+        <div className="flex justify-between items-center mb-6 border p-4 rounded-lg shadow-lg bg-white">
+          <div className="flex items-center">
+            <div>
+              <h3 className="text-xl font-semibold">{view.name}</h3>
+            </div>
+          </div>
+          <div className="flex space-x-4">
+            <button
+              className="flex items-center p-1 text-black border border-[#000] rounded"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <span className="ml-2">Add Chart</span>
             </button>
             <button className="flex items-center p-1 text-black border border-[#000] rounded">
               <TbRefresh className="size-8" />
@@ -551,15 +1325,32 @@ const RadiiView: React.FC = () => {
         </div>
       )}
       {charts.length === 0 ? (
-        <p>No chart has been added to the view yet</p>
+        <div>No charts have been added to this view yet.</div>
       ) : (
-        <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {charts.map((chart) => (
-            <div key={chart.chartID}>
-              <h3>{chart.name}</h3>
+            <div
+              key={chart.chartID}
+              className="border p-4 rounded shadow-sm py-6"
+              onClick={() => setSelectedChart(chart)}
+            >
+              <h3 className="font-bold mb-4">{chart.name}</h3>
+              {renderChart(chart)}
             </div>
           ))}
         </div>
+      )}
+      <ChartSelectorModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSelectCharts={handleAddChart}
+      />
+      {selectedChart && (
+        <ChartModal
+          isOpen={Boolean(selectedChart)}
+          onClose={() => setSelectedChart(null)}
+          chartData={selectedChart}
+        />
       )}
     </div>
   );
