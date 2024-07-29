@@ -1,4 +1,4 @@
-import { getServerSideToken } from "./GetServerSideToken";
+import { getServerSideToken } from "./getServerSideToken";
 
 const generateAxiosConfig = (token: any) => ({
   headers: {

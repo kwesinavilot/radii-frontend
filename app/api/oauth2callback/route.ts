@@ -61,8 +61,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
-import { getServerSideToken } from "@/app/utils/GetServerSideToken";
-import generateAxiosConfig from "@/app/utils/AxioConfig";
+import { getServerSideToken } from "@/app/utils/getServerSideToken";
+import generateAxiosConfig from "@/app/utils/axioConfig";
 // import { getServerSideToken } from "./utils/getServerSideToken";
 // import generateAxiosConfig from "./utils/axiosConfig";
 
