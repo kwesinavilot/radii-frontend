@@ -1896,6 +1896,8 @@ const RadiiView: React.FC = () => {
       );
 
       console.log("Add Chart Response:", response.data);
+      console.log("Charts:", charts);
+      console.log("response:", response);
 
       if (Array.isArray(response.data)) {
         setCharts([...charts, ...response.data]);
