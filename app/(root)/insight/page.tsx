@@ -812,8 +812,6 @@ const Insight: React.FC = () => {
     }
   };
 
-
-
   const handleSaveChart = async (
     chartData: ChartData,
     chartType: string,
@@ -839,7 +837,7 @@ const Insight: React.FC = () => {
   };
   return (
     <div className="bg-gray-100 h-screen overflow-y-auto">
-      <Navbar title="Dashboard" icon="" />
+      <Navbar title="Ask Radii A Question" icon="" />
       <div className="grid grid-cols-1 sm:grid-cols-4 p-2 py-4 h-full overflow-y-auto">
         <div className="block sm:col-span-1 h-full overflow-y-auto py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100">
           <h2 className="text-xl font-bold mb-4">Library</h2>
@@ -882,9 +880,6 @@ const Insight: React.FC = () => {
           )}
 
           <div className="w-5/6 mx-auto mt-4">
-            <h1 className="text-[40px] text-center font-bold mb-4">
-              Ask Radii A Question
-            </h1>
             <div className="grid grid-cols-2 gap-4 mb-8">
               {questions.map((question, index) => (
                 <Card

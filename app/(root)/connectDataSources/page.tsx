@@ -131,12 +131,12 @@ const ConnectDataSource: React.FC = () => {
                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
                     <Image
                       src="/snowflakes.png"
-                      alt="snowflakes"
+                      alt="snowflake"
                       width={32}
                       height={32}
                       className="mr-2"
                     />
-                    <span>Snowflakes</span>
+                    <span>Snowflake</span>
                   </div>
                 </div>
               </div>

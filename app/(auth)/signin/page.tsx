@@ -11,10 +11,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { setToken, setOrgID } from "@/app/store/authSlice";
+import { setToken, setOrgID, setUserID } from "@/app/store/authSlice";
 import Cookies from "js-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
-import generateAxiosConfig from "@/app/config/axiosConfig";
+
 import Image from "next/image";
 
 interface FormData {
@@ -58,13 +58,19 @@ const Login: React.FC = () => {
         "https://starfish-app-9ezx5.ondigitalocean.app/auth/login/",
         formData
       );
-      dispatch(setToken(response.data.token));
-      const orgID = response.data.user.orgID;
-      const token = response.data.token;
-      dispatch(setOrgID(orgID));
+      // dispatch(setToken(response.data.token));
+      // const orgID = response.data.user.orgID;
+      // const token = response.data.token;
+      // const userID = response.data.user.userID;
+      // dispatch(setUserID(userID));
+      // dispatch(setOrgID(orgID));
+      const { token, user } = response.data;
+      dispatch(setToken(token));
+      dispatch(setOrgID(user.orgID));
+      dispatch(setUserID(user.userID));
       Cookies.set("auth_token", token);
-      console.log("orgID:", orgID);
-      console.log("Token:", response.data.token);
+      Cookies.set("orgID", user.orgID);
+      Cookies.set("userID", user.userID);
       console.log("Login successful:", response.data);
       toast.success(response.data.message || "Login successful");
       router.push("/dashboard");
@@ -95,7 +101,6 @@ const Login: React.FC = () => {
         const profileData = profileResponse.data;
 
         try {
-          // Attempt to log in the user
           const loginResponse = await axios.post(
             "https://starfish-app-9ezx5.ondigitalocean.app/auth/login/",
             {
@@ -104,10 +109,17 @@ const Login: React.FC = () => {
             }
           );
 
-          dispatch(setToken(loginResponse.data.token));
-          const orgID = loginResponse.data.user.orgID;
-          dispatch(setOrgID(orgID));
-          Cookies.set("auth_token", loginResponse.data.token);
+          // dispatch(setToken(loginResponse.data.token));
+          // const orgID = loginResponse.data.user.orgID;
+          // dispatch(setOrgID(orgID));
+          // Cookies.set("auth_token", loginResponse.data.token);
+          // Cookies.set("google_token", response.access_token);
+
+          const { token, user } = loginResponse.data;
+          dispatch(setToken(token));
+          dispatch(setOrgID(user.orgID));
+          dispatch(setUserID(user.userID));
+          Cookies.set("auth_token", token);
           Cookies.set("google_token", response.access_token);
 
           console.log("Full Google login successful:", loginResponse.data);
@@ -118,7 +130,6 @@ const Login: React.FC = () => {
             axios.isAxiosError(loginError) &&
             loginError.response?.data?.error === "User does not exist"
           ) {
-            // Handle user does not exist: create a new user
             try {
               const registerResponse = await axios.post(
                 "https://starfish-app-9ezx5.ondigitalocean.app/auth/register/",
@@ -138,10 +149,17 @@ const Login: React.FC = () => {
                 }
               );
 
-              dispatch(setToken(loginAfterRegisterResponse.data.token));
-              const orgID = loginAfterRegisterResponse.data.user.orgID;
-              dispatch(setOrgID(orgID));
-              Cookies.set("auth_token", loginAfterRegisterResponse.data.token);
+              // dispatch(setToken(loginAfterRegisterResponse.data.token));
+              // const orgID = loginAfterRegisterResponse.data.user.orgID;
+              // dispatch(setOrgID(orgID));
+              // Cookies.set("auth_token", loginAfterRegisterResponse.data.token);
+              // Cookies.set("google_token", response.access_token);
+
+              const { token, user } = loginAfterRegisterResponse.data;
+              dispatch(setToken(token));
+              dispatch(setOrgID(user.orgID));
+              dispatch(setUserID(user.userID));
+              Cookies.set("auth_token", token);
               Cookies.set("google_token", response.access_token);
 
               console.log(
