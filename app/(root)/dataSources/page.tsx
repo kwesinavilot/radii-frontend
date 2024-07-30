@@ -100,6 +100,7 @@ const DataSourceTable: React.FC = () => {
 
       setDrive(response.data);
       console.log("Drive data fetched successfully:", response.data);
+      console.log("This is the token: ", generateAxiosConfig());
     } catch (error) {
       handleError(error, "Error fetching drive data");
     }
