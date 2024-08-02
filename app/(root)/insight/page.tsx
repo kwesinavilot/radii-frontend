@@ -886,7 +886,7 @@ const Insight: React.FC = () => {
                   key={index}
                   title={question}
                   onClick={() => handleCardClick(question)}
-                  className="h-20 w-full"
+                  className="h-30 flex flex-col flex-wrap w-full"
                 />
               ))}
             </div>

@@ -6,9 +6,9 @@ import Navbar from "@/app/component/NavBar";
 
 const NewUser: React.FC = () => {
   return (
-    <div className="bg-grey-bg min-h-screen overflow-hidden">
+    <div className="bg-grey-bg min-h-screen overflow-y-auto">
       <Navbar title="" icon="" />
-      <div className="grid grid-cols-1 sm:grid-cols-4 p-2 overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-4 p-2 h-full">
         <div className="sm:col-span-3 py-6 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
           <div className="mt-6">
             <h1 className="text-3xl font-semibold">Welcome To Radii</h1>
