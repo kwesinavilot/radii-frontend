@@ -40,7 +40,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
           value={value}
           onChange={handleInputChange}
           className="flex-grow pl-10 pr-10 py-2 border-none outline-none"
-          placeholder="I want to see the trends on my order"
         />
         <button
           className="ml-2 h-12 w-10 rounded-lg flex items-center justify-center bg-gray-500 text-white"
