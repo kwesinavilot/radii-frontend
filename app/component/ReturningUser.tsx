@@ -51,21 +51,25 @@ export default function ReturningUser({
               <h2 className="font-bold text-[18px] mb-2">Insights</h2>
               <ul className="text-[14px] list-disc px-4 ">
                 <li>
-                  The orders from Company XYZ has increased by 150% in the last
-                  2 weeks.
+                  There are 3 locations in Nigeria with highest number of
+                  businesses today
                 </li>
-                <li>Sales has dropped drastically in June.</li>
                 <li>
-                  Company XYZ has seen a remarkable surge in orders, showing a
-                  growth rate of 150% within the past two weeks.
+                  Lagos has the highest number of businesses with 30, followed
+                  by Kano with 21, and Enugu with 18.
+                </li>
+                <li>
+                  These locations may offer opportunities for growth and
+                  increased visibility.
                 </li>
               </ul>
               <h2 className="font-bold text-[18px] py-2">
                 Key Recommendations
               </h2>
               <p className="text-[14px]">
-                Increased by your orders by 150% in the next 2 weeks, which
-                should extend to a growth rate of 300% within the next month.
+                Conduct market research to determine the feasibility and
+                potential profitability of expanding or establishing a presence
+                in Lagos, Kano, or Enugu.
               </p>
 
               <div className="flex items-center justify-between mt-6">
