@@ -261,7 +261,7 @@ const ConnectDataSource: React.FC = () => {
                     className={`p-2 rounded ${
                       loading
                         ? "bg-gray-400"
-                        : "bg-orange-500 hover:bg-orange-700"
+                        : "bg-green-500 hover:bg-green-700"
                     } text-white`}
                     disabled={loading}
                     onClick={handleUploadFiles}
