@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { setIntegrationID } from "@/app/store/integrationSlice";
+import { useSearchParams } from "next/navigation";
 
 interface FileItem {
   sourceID: string;
