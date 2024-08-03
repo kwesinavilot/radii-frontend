@@ -700,7 +700,6 @@ const RadiiView: React.FC = () => {
       },
     };
 
-    // Customize chart colors here
     const colors = {
       backgroundColor: [
         "rgba(54, 162, 235, 0.2)",
@@ -714,7 +713,6 @@ const RadiiView: React.FC = () => {
       ],
     };
 
-    // Apply colors to chart data
     if (parsedData.data.datasets) {
       parsedData.data.datasets = parsedData.data.datasets.map(
         (dataset: any) => ({
@@ -789,11 +787,11 @@ const RadiiView: React.FC = () => {
       {charts.length === 0 ? (
         <div>No charts have been added to this view yet.</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 ">
           {charts.map((chart) => (
             <div
               key={chart.chartID}
-              className="border p-4 rounded shadow-sm relative"
+              className="border p-4 rounded shadow-sm relative  "
               style={{ maxWidth: "400px", margin: "auto" }}
               onClick={() => setSelectedChart(chart)}
             >

@@ -579,7 +579,7 @@ const MyViews: React.FC = () => {
       <div className="bg-gray-100 h-screen overflow-y-auto">
         <Navbar title="My Views" />
 
-        <div className="h-screen sm:col-span-3 py-4 m-4 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
+        <div className="h-full overflow-y-auto sm:col-span-3 py-4 m-4 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
           <div className="mb-4">
             <div className="flex justify-end items-end mb-4 w-4/5">
               <button
