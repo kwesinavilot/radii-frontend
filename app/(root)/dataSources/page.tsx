@@ -417,13 +417,20 @@ const DataSourceTable: React.FC = () => {
         <h1 className="text-2xl font-bold text-gray-900">
           Data Sources Dashboard
         </h1>
-        <div className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow bg-[#E58A13]">
-          <Link
-            href="/connectDataSources"
-            className=" flex justify-end items-end"
-          >
-            Add Source
-          </Link>
+        <div className=" flex gap-2">
+          <div className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow bg-[#E58A13]">
+            <Link
+              href="/connectDataSources"
+              className=" flex justify-end items-end mr-3"
+            >
+              Add Source
+            </Link>
+          </div>
+          <div className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow bg-[#038C7F]">
+            <Link href="/insight" className=" flex justify-end items-end">
+              Get Insights
+            </Link>
+          </div>
         </div>
       </div>
       <div className="m-4">

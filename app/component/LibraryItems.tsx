@@ -29,7 +29,7 @@ const LibraryItemPopup: React.FC<LibraryItemPopupProps> = ({
       className="absolute z-10 bg-white border rounded shadow px-4"
       style={{ top: position.top, left: position.left }}
     >
-      <button
+      {/* <button
         onClick={onDetails}
         className="w-full flex items-center text-left py-2"
       >
@@ -42,7 +42,7 @@ const LibraryItemPopup: React.FC<LibraryItemPopupProps> = ({
       >
         <FaEdit className="mr-2" />
         Edit
-      </button>
+      </button> */}
       <button
         onClick={onDelete}
         className="w-full flex items-center text-left py-2"
@@ -50,13 +50,13 @@ const LibraryItemPopup: React.FC<LibraryItemPopupProps> = ({
         <FaTrashAlt className="mr-2" />
         Delete
       </button>
-      <button
+      {/* <button
         onClick={onShare}
         className="w-full flex items-center text-left py-2"
       >
         <FaShareAlt className="mr-2" />
         Share
-      </button>
+      </button> */}
       <button
         onClick={onClose}
         className="w-full flex items-center text-left py-2 text-red-400"

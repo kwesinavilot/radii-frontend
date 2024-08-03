@@ -561,7 +561,7 @@ const Register = () => {
                         I agree to all the{" "}
                         <a
                           className="font-medium text-primary-600 text-[#038C7F] hover:underline dark:text-[#038C7F]"
-                          href="#"
+                          href="/privacyPolicy"
                         >
                           Terms, Privacy Policy and Fees.
                         </a>

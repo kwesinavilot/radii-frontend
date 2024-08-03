@@ -261,6 +261,7 @@ const Insight: React.FC = () => {
           )}
 
           <div className="w-5/6 mx-auto mt-4">
+            <h2 className="text-xl font-bold mb-4">Sample Prompt</h2>
             <div className="grid grid-cols-2 gap-4 mb-8">
               {questions.map((question, index) => (
                 <Card
