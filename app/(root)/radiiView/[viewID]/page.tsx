@@ -12,6 +12,7 @@ import ChartSelectorModal from "@/app/component/ChartSelectorModal";
 import ChartModal from "@/app/component/ChartModal";
 import { ChartItem } from "@/app/types";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+import { Rnd } from "react-rnd";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -77,12 +78,16 @@ const RadiiView: React.FC = () => {
       );
       setView(response.data);
 
-      const chartsData = response.data.charts.map(
+      const chartsData: ChartItem[] = response.data.charts.map(
         (chartItem: ChartResponse) => ({
           chartID: chartItem.chart.chartID,
           name: chartItem.chart.name,
           chart_data: chartItem.chart.chart_data,
           type: chartItem.chart.type,
+          height: 450,
+          width: 400,
+          position_x: 0,
+          position_y: 0,
         })
       );
       setCharts(chartsData);
@@ -99,7 +104,7 @@ const RadiiView: React.FC = () => {
         chartID: chart.chartID,
         position_x: 0,
         position_y: 0,
-        width: 400,
+        width: 300,
         height: 300,
       }));
 
@@ -160,24 +165,7 @@ const RadiiView: React.FC = () => {
       return <p>Invalid chart data.</p>;
     }
 
-    // const chartOptions = {
-    //   plugins: {
-    //     title: {
-    //       display: true,
-    //       text: parsedData.options?.title || "No Title Available",
-    //     },
-    //   },
-    //   scales: {
-    //     y: {
-    //       beginAtZero: true,
-    //     },
-    //   },
-    // };
-
     const chartOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      aspectRatio: 1,
       plugins: {
         title: {
           display: true,
@@ -214,7 +202,6 @@ const RadiiView: React.FC = () => {
         })
       );
     }
-
     switch (chart.type) {
       case "Bar":
         // return <Bar data={parsedData.data} options={chartOptions} />;
@@ -245,6 +232,22 @@ const RadiiView: React.FC = () => {
       default:
         return <p>Unsupported chart type.</p>;
     }
+  };
+
+  const updateChartPositionAndSize = (
+    chartID: string,
+    x: number,
+    y: number,
+    width: number,
+    height: number
+  ) => {
+    setCharts((prevCharts) =>
+      prevCharts.map((chart) =>
+        chart.chartID === chartID
+          ? { ...chart, position_x: x, position_y: y, width, height }
+          : chart
+      )
+    );
   };
 
   return (
@@ -298,22 +301,73 @@ const RadiiView: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           {charts.map((chart) => (
-            <div
+            // <Rnd
+            //   key={chart.chartID}
+            //   default={{
+            //     x: chart.position_x || 0,
+            //     y: chart.position_y || 0,
+            //     width: chart.width || 400,
+            //     height: chart.height || 450,
+            //   }}
+            //   onDragStop={(e, d) => {
+            //     updateChartPositionAndSize(
+            //       chart.chartID,
+            //       d.x,
+            //       d.y,
+            //       chart.width,
+            //       chart.height
+            //     );
+            //   }}
+            //   onResizeStop={(e, direction, ref, delta, position) => {
+            //     updateChartPositionAndSize(
+            //       chart.chartID,
+            //       position.x,
+            //       position.y,
+            //       ref.offsetWidth,
+            //       ref.offsetHeight
+            //     );
+            //   }}
+            //   className="border p-4 rounded shadow-sm relative bg-white"
+            //   style={{ maxWidth: "400px" }}
+            // >
+
+            <Rnd
               key={chart.chartID}
-              className="border p-4 rounded shadow-sm relative h-[450px] mb-12"
-              style={{ maxWidth: "400px" }}
-              onClick={() => setSelectedChart(chart)}
+              size={{ width: chart.width, height: chart.height }}
+              position={{ x: chart.position_x, y: chart.position_y }}
+              onDragStop={(e, d) => {
+                updateChartPositionAndSize(
+                  chart.chartID,
+                  d.x,
+                  d.y,
+                  chart.width,
+                  chart.height
+                );
+              }}
+              onResizeStop={(e, direction, ref, delta, position) => {
+                updateChartPositionAndSize(
+                  chart.chartID,
+                  position.x,
+                  position.y,
+                  ref.offsetWidth,
+                  ref.offsetHeight
+                );
+              }}
+              // bounds="parent"
+              className="border border-gray-300 rounded shadow-sm p-4 bg-white"
             >
-              <h3 className="font-bold mb-4">{chart.name}</h3>
-              {renderChart(chart)}
-              <MdDelete
-                className="absolute top-2 right-2 text-red-600 cursor-pointer"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDeleteChart(chart.chartID);
-                }}
-              />
-            </div>
+              <div onClick={() => setSelectedChart(chart)}>
+                <h3 className="font-bold mb-4">{chart.name}</h3>
+                {renderChart(chart)}
+                <MdDelete
+                  className="absolute top-2 right-2 text-red-600 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteChart(chart.chartID);
+                  }}
+                />
+              </div>
+            </Rnd>
           ))}
         </div>
       )}

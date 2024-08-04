@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaPlus, FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import {
@@ -10,6 +10,8 @@ import {
 } from "react-icons/io5";
 import Link from "next/link";
 import Navbar from "@/app/component/NavBar";
+import axios from "axios";
+import generateAxiosConfig from "../config/axiosConfig";
 
 interface RecentSearch {
   searchID: string;
@@ -27,6 +29,10 @@ type ReturningUserProps = {
   onRecentSearchClick: (searchID: string) => void;
 };
 
+interface FileType {
+  id: string;
+  type: string;
+}
 export default function ReturningUser({
   userQueries,
   data,
@@ -40,8 +46,31 @@ export default function ReturningUser({
     onRecentSearchClick(searchID);
   };
 
+  const [fileTypes, setFileTypes] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchFileTypes = async () => {
+      try {
+        const response = await axios.get(
+          "https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/",
+          generateAxiosConfig()
+        );
+        const files: FileType[] = response.data;
+
+        const uniqueFileTypes = Array.from(
+          new Set(files.map((file) => file.type))
+        );
+        setFileTypes(uniqueFileTypes);
+      } catch (error) {
+        console.error("Error fetching file types:", error);
+      }
+    };
+
+    fetchFileTypes();
+  }, []);
+
   return (
-    <div className="bg-grey-bg h-screen overflow-y-auto">
+    <div className=" h-screen overflow-y-auto">
       <Navbar title="Dashboard" icon="" />
       <div className="grid grid-cols-1 sm:grid-cols-4 p-2 py-4 h-full">
         <div className="sm:col-span-3 py-4 sm:px-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-300">
@@ -90,12 +119,6 @@ export default function ReturningUser({
                     <IoShareSocialOutline />
                   </p>
                 </div>
-
-                {/* <Link href="/radiiView" className="flex border-gray-400">
-                  <button className="text-white font-semi-bold py-2 px-4 rounded-lg border flex items-center gap-2 shadow  bg-[#E58A13]">
-                    My Views
-                  </button>
-                </Link> */}
               </div>
             </div>
           </div>
@@ -145,30 +168,19 @@ export default function ReturningUser({
                 <h2 className="text-sm font-bold">Sources Connected</h2>
 
                 <div className="py-2">
-                  <Image src="/pdf.png" alt="pdf" width={57} height={57} />
+                  <ul className="flex gap-2">
+                    {fileTypes.map((type, index) => (
+                      <li key={index}>{type}</li>
+                    ))}
+                  </ul>
+
+                  {/* <Image src="/pdf.png" alt="pdf" width={57} height={57} /> */}
                 </div>
               </div>
             </div>
           </div>
 
           <h1 className="text-[16px] font-bold">Recent Search</h1>
-          {/* {recentSearches.map((search, index) => (
-            <ul key={index}>
-              <li className="bg-[#F0F2F9] p-2 my-4 list-none rounded-md">
-                <span className="flex flex-col">
-                  <span
-                    onClick={() => handleUserQueriesClick(search.searchID)}
-                    className="text-[#E58A13] cursor-pointer"
-                  >
-                    {search.query}
-                  </span>
-                  <span className="text-[12px] text-gray-400">
-                    {new Date(search.updated_at).toLocaleDateString()}
-                  </span>
-                </span>
-              </li>
-            </ul>
-          ))} */}
 
           {recentSearches.map((item) => (
             <ul key={item.searchID}>
