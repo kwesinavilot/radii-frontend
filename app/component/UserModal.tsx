@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { RiTeamFill } from "react-icons/ri";
-import { IoIosLogOut } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
 import { FaFileInvoiceDollar } from "react-icons/fa";
 import Link from "next/link";

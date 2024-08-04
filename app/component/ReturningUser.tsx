@@ -170,7 +170,12 @@ export default function ReturningUser({
                 <div className="py-2">
                   <ul className="flex gap-2">
                     {fileTypes.map((type, index) => (
-                      <li key={index}>{type}</li>
+                      <li
+                        key={index}
+                        className="border border-gray-200 rounded-sm px-2 py-1 bg-[#F27405]  text-white"
+                      >
+                        {type}
+                      </li>
                     ))}
                   </ul>
 
