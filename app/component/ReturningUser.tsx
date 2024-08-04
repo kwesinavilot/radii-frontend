@@ -178,8 +178,6 @@ export default function ReturningUser({
                       </li>
                     ))}
                   </ul>
-
-                  {/* <Image src="/pdf.png" alt="pdf" width={57} height={57} /> */}
                 </div>
               </div>
             </div>
