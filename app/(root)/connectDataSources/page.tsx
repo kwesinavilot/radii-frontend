@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Navbar from "@/app/component/NavBar";
@@ -9,10 +9,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import DatabaseConnectionForm from "@/app/component/DataBaseForm";
 
 const ConnectDataSource: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+  const [showForm, setShowForm] = useState(false);
+
   const [selectedSources, setSelectedSources] = useState<string[]>([]);
   const userToken = Cookies.get("auth_token");
   const router = useRouter();
@@ -40,9 +43,21 @@ const ConnectDataSource: React.FC = () => {
       document.getElementById("fileInput")?.click();
     } else if (source === "gdrive") {
       connectToGoogleDrive();
+    }
+
+    if (
+      source === "postgresql" ||
+      source === "mysql" ||
+      source === "snowflake"
+    ) {
+      setShowForm(true);
     } else {
       toast.info(`Connecting to ${source.toUpperCase()}...`);
     }
+  };
+
+  const handleCloseForm = () => {
+    setShowForm(false);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +118,10 @@ const ConnectDataSource: React.FC = () => {
             <div className="col-span-1 sm:col-span-3">
               <h2 className="text-[18px] font-bold mb-4">Databases</h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="dataSourceBtn">
+                <div
+                  className="dataSourceBtn"
+                  onClick={() => handleDataSourceClick("postgresql")}
+                >
                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
                     <Image
                       src="/postgres.png"
@@ -115,7 +133,10 @@ const ConnectDataSource: React.FC = () => {
                     <span>PostgreSQL</span>
                   </div>
                 </div>
-                <div className="dataSourceBtn">
+                <div
+                  className="dataSourceBtn"
+                  onClick={() => handleDataSourceClick("mysql")}
+                >
                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
                     <Image
                       src="/mysql.png"
@@ -127,7 +148,10 @@ const ConnectDataSource: React.FC = () => {
                     <span>MySQL</span>
                   </div>
                 </div>
-                <div className="dataSourceBtn">
+                <div
+                  className="dataSourceBtn"
+                  onClick={() => handleDataSourceClick("snowflake")}
+                >
                   <div className="inner flex items-center justify-center rounded-lg shadow hover:bg-gray-50 p-4">
                     <Image
                       src="/snowflakes.png"
@@ -239,50 +263,30 @@ const ConnectDataSource: React.FC = () => {
               </div>
             </div>
           </div>
-          <ToastContainer />
+
           <input
-            type="file"
             id="fileInput"
-            className="hidden"
-            onChange={handleFileChange}
+            type="file"
             multiple
+            accept=".csv, .pdf, .doc, .docx"
+            onChange={handleFileChange}
+            className="hidden"
           />
-          {selectedFiles && (
-            <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-              <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
-                <h2 className="text-2xl font-semibold mb-4">Upload Files</h2>
-                <ul className="mb-4">
-                  {Array.from(selectedFiles).map((file, index) => (
-                    <li key={index}>{file.name}</li>
-                  ))}
-                </ul>
-                <div className="flex justify-end gap-2">
-                  <button
-                    className={`p-2 rounded ${
-                      loading
-                        ? "bg-gray-400"
-                        : "bg-green-500 hover:bg-green-700"
-                    } text-white`}
-                    disabled={loading}
-                    onClick={handleUploadFiles}
-                  >
-                    {loading ? "Uploading..." : "Upload"}
-                  </button>
-                  <button
-                    className="p-2 bg-red-500 text-white rounded hover:bg-red-700"
-                    onClick={() => {
-                      setSelectedFiles(null);
-                      setSelectedSources([]);
-                    }}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+        </div>
+
+        {showForm && <DatabaseConnectionForm onClose={handleCloseForm} />}
+
+        <div className="flex justify-end space-x-4">
+          <button
+            className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-blue-600"
+            onClick={handleUploadFiles}
+            disabled={loading}
+          >
+            {loading ? "Uploading..." : "Upload Files"}
+          </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

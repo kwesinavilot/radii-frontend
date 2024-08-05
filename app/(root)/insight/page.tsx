@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Navbar from "@/app/component/NavBar";
 import SearchBar from "@/app/component/SearchBar";
 import Card from "@/app/component/Card";
@@ -15,7 +15,7 @@ import { truncateText } from "@/app/utils/truncateText";
 import generateAxiosConfig from "@/app/config/axiosConfig";
 import { setSearchID } from "@/app/store/insightSlice";
 import Image from "next/image";
-import { Chart } from "chart.js";
+
 import { EllipsisIcon } from "lucide-react";
 
 interface ChartData {
@@ -217,6 +217,7 @@ const Insight: React.FC = () => {
   };
   return (
     <div className="bg-gray-100 h-screen overflow-y-auto">
+      <ToastContainer />
       <Navbar title="Ask Radii A Question" icon="" />
       <div className="grid grid-cols-1 sm:grid-cols-4 p-2 py-4 h-full overflow-y-auto">
         <div className="block sm:col-span-1 h-full overflow-y-auto py-4 px-8 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-100">
@@ -260,6 +261,7 @@ const Insight: React.FC = () => {
           )}
 
           <div className="w-5/6 mx-auto mt-4">
+            <h2 className="text-xl font-bold mb-4">Sample Prompt</h2>
             <div className="grid grid-cols-2 gap-4 mb-8">
               {questions.map((question, index) => (
                 <Card
