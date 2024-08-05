@@ -30,8 +30,8 @@ const PrivacyPolicy = () => {
         (collectively, “Services”) in any manner, you acknowledge that you
         accept the practices and policies outlined in this Privacy Policy, and
         you hereby consent that we will collect, use, and share your information
-        in the following ways. Remember that your use of Company’s Services is
-        at all times subject to the Terms and Conditions, which incorporates
+        in the following ways. Remember that your use of Company&quot;s Services
+        is at all times subject to the Terms and Conditions, which incorporates
         this Privacy Policy. Any terms we use in this Policy without defining
         them have the definitions given to them in the Terms and Conditions.
       </p>
@@ -41,33 +41,33 @@ const PrivacyPolicy = () => {
       </p>
       <p className="text-l lg:text-sm font-regular font-rubik">
         This Privacy Policy covers our treatment of personally identifiable
-        information ("Personal Information") that we gather when you are
-        accessing or using our Services, but not to the practices of companies
-        we don’t own or control, or people that we don’t manage. We gather
-        various types of Personal Information from our users, as explained in
-        more detail below, and we use this Personal Information internally in
-        connection with our Services, including to personalize, provide, and
-        improve our services, to allow you to set up a user account and profile,
-        to contact you and allow other users to contact you, to fulfill your
-        requests for certain products and services, and to analyze how you use
-        the Services. In certain cases, we may also share some Personal
-        Information with third parties, but only as described below.
+        information (Personal Information) that we gather when you are accessing
+        or using our Services, but not to the practices of companies we
+        don&quot;t own or control, or people that we don&quot;t manage. We
+        gather various types of Personal Information from our users, as
+        explained in more detail below, and we use this Personal Information
+        internally in connection with our Services, including to personalize,
+        provide, and improve our services, to allow you to set up a user account
+        and profile, to contact you and allow other users to contact you, to
+        fulfill your requests for certain products and services, and to analyze
+        how you use the Services. In certain cases, we may also share some
+        Personal Information with third parties, but only as described below.
       </p>{" "}
       <br />
       <p className="text-l lg:text-l font-bold font-rubik">
         Will Company ever change this Privacy Policy?
       </p>
       <p className="text-l lg:text-sm font-regular font-rubik">
-        We’re constantly trying to improve our Services, so we may need to
+        We&quot;re constantly trying to improve our Services, so we may need to
         change this Privacy Policy from time to time as well, but we will alert
         you to changes by placing a notice on http://www.getradii.com , by
         sending you an email, and/or by some other means. Please note that if
-        you’ve opted not to receive legal notice emails from us (or you haven’t
-        provided us with your email address), those legal notices will still
-        govern your use of the Services, and you are still responsible for
-        reading and understanding them. If you use the Services after any
-        changes to the Privacy Policy have been posted, that means you agree to
-        all of the changes.
+        you&quot;ve opted not to receive legal notice emails from us (or you
+        haven&quot;t provided us with your email address), those legal notices
+        will still govern your use of the Services, and you are still
+        responsible for reading and understanding them. If you use the Services
+        after any changes to the Privacy Policy have been posted, that means you
+        agree to all of the changes.
       </p>
       <br />
       <p className="text-l lg:text-l font-bold font-rubik">
@@ -80,12 +80,12 @@ const PrivacyPolicy = () => {
         example, we may collect Personal Information such as your name, email
         address, phone number. Certain information may be required to register
         with us or to take advantage of some of our features. We may communicate
-        with you if you’ve provided us the means to do so. For example, if
-        you’ve given us your email address, we may send you promotional email
-        offers on behalf of other businesses, or email you about your use of the
-        Services. Also, we may receive a confirmation when you open an email
-        from us. This confirmation helps us make our communications with you
-        more interesting and improve our services.
+        with you if you&quot;ve provided us the means to do so. For example, if
+        you&quot;ve given us your email address, we may send you promotional
+        email offers on behalf of other businesses, or email you about your use
+        of the Services. Also, we may receive a confirmation when you open an
+        email from us. This confirmation helps us make our communications with
+        you more interesting and improve our services.
         <br />
         <br />
         Information Collected Automatically:
@@ -93,26 +93,26 @@ const PrivacyPolicy = () => {
         Whenever you interact with our Services, we automatically receive and
         record information on our server logs from your browser or device, which
         may include your IP address, geolocation data, device identification,
-        “cookie” information, the type of browser and/or device you’re using to
-        access our Services, and the page or feature you requested. “Cookies”
-        are identifiers we transfer to your browser or device that allow us to
-        recognize your browser or device and tell us how and when pages and
-        features in our Services are visited and by how many people. You may be
-        able to change the preferences on your browser or device to prevent or
-        limit your device’s acceptance of cookies, but this may prevent you from
-        taking advantage of some of our features. If you click on a link to a
-        third party website or service, a third party may also transmit cookies
-        to you. Again, this Privacy Policy does not cover the use of cookies by
-        any third parties, and we aren’t responsible for their privacy policies
-        and practices. Please be aware that cookies placed by third parties may
-        continue to track your activities online even after you have left our
-        Services, and those third parties may not honor “Do Not Track” requests
-        you have set using your browser or device. We may use this data to
-        customize content for you that we think you might like, based on your
-        usage patterns. We may also use it to improve the Services – for
-        example, this data can tell us how often users use a particular feature
-        of the Services, and we can use that knowledge to make the Services
-        interesting to as many users as possible.
+        “cookie” information, the type of browser and/or device you&quot;re
+        using to access our Services, and the page or feature you requested.
+        “Cookies” are identifiers we transfer to your browser or device that
+        allow us to recognize your browser or device and tell us how and when
+        pages and features in our Services are visited and by how many people.
+        You may be able to change the preferences on your browser or device to
+        prevent or limit your device&quot;s acceptance of cookies, but this may
+        prevent you from taking advantage of some of our features. If you click
+        on a link to a third party website or service, a third party may also
+        transmit cookies to you. Again, this Privacy Policy does not cover the
+        use of cookies by any third parties, and we aren&quot;t responsible for
+        their privacy policies and practices. Please be aware that cookies
+        placed by third parties may continue to track your activities online
+        even after you have left our Services, and those third parties may not
+        honor “Do Not Track” requests you have set using your browser or device.
+        We may use this data to customize content for you that we think you
+        might like, based on your usage patterns. We may also use it to improve
+        the Services – for example, this data can tell us how often users use a
+        particular feature of the Services, and we can use that knowledge to
+        make the Services interesting to as many users as possible.
         <br />
         <br />
         Information Collected From Other Websites and Do Not Track Policy:
@@ -162,7 +162,7 @@ const PrivacyPolicy = () => {
       <br />
       <p className="text-l lg:text-sm font-regular font-rubik">
         <p className="text-l lg:text-l font-bold font-rubik">
-          - Information that’s been de-identified:
+          - Information that&quot;s been de-identified:
         </p>
         We may de-identify your Personal Information so that you are not
         identified as an individual, and provide that information to our
@@ -179,7 +179,7 @@ const PrivacyPolicy = () => {
         <p className="text-l lg:text-l font-bold font-rubik">
           - Affiliated Businesses:
         </p>
-        In certain situations, businesses or third party websites we’re
+        In certain situations, businesses or third party websites we&quot;re
         affiliated with may sell or provide products or services to you through
         or in connection with the Services (either alone or jointly with us).
         You can recognize when an affiliated business is associated with such a
@@ -189,7 +189,7 @@ const PrivacyPolicy = () => {
         practices of third party websites or businesses as to privacy or
         anything else, so if you choose to take part in any transaction or
         service relating to an affiliated website or business, please review all
-        such business’ or websites’ policies.
+        such business&quot; or websites&quot; policies.
         <br />
         <br />
         <p className="text-l lg:text-l font-bold font-rubik">
@@ -238,8 +238,8 @@ const PrivacyPolicy = () => {
       <p className="text-l lg:text-sm font-regular font-rubik">
         At Radii, we value your privacy and are committed to ensuring the
         protection and responsible use of the data we access through Google
-        Workspace APIs. To maintain transparency and compliance with Google's
-        policies, we affirm the following:
+        Workspace APIs. To maintain transparency and compliance with
+        Google&quot;s policies, we affirm the following:
         <br />
       </p>
       <br />
@@ -345,7 +345,7 @@ const PrivacyPolicy = () => {
       <p className="text-l lg:text-l font-bold font-rubik">Your Rights</p>
       <p className="text-l lg:text-sm font-regular font-rubik">
         You may access, and, in some cases, edit or delete the following
-        information you’ve provided to us:
+        information you&quot;ve provided to us:
         <ol>
           <li>
             - <b>Access:</b> You have the right to access your personal
@@ -375,7 +375,7 @@ const PrivacyPolicy = () => {
       </p>
       <p className="text-l lg:text-sm font-regular font-rubik">
         You may access, and, in some cases, edit or delete the following
-        information you’ve provided to us:
+        information you&quot;ve provided to us:
         <ol>
           <li>- name</li>
           <li>- email address</li>
@@ -427,7 +427,7 @@ const PrivacyPolicy = () => {
         <br />
       </p>
       <p className="text-l lg:text-l font-bold font-rubik">
-        Children's Privacy
+        Children&quot;s Privacy
       </p>
       <p className="text-l lg:text-sm font-regular font-rubik">
         Radii is not intended for children under the age of 18. We do not
