@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Image from "next/image";
 import Cookies from "js-cookie";
-import { setOrgID, setToken, setUserID } from "@/app/store/authSlice";
+import { setOrgID, setToken, setUserID } from "../../store/authSlice";
 
 const Interest: React.FC = () => {
   const [selectedInterest, setSelectedInterest] = useState<string>("");
