@@ -55,16 +55,16 @@ interface LibraryItem {
   updated_at: string;
 }
 
-const questions: string[] = [
-  // "What is the total traffic flow between Accra and Tema?",
-  // "Which locations have the highest customer traffic on Monday",
-  // "Compare the daily inbound and outbound traffic for Takoradi for q1 and q2",
-  "What are the top 3 businesses locations",
-  "What are the major industries the businesses belong to",
-  "What cities have the highest location of businesses",
-  "What are the top 5 businesses challenges",
-  // "Compare the top 5 days with the highest movement between Q1 and Q2",
-];
+// const questions: string[] = [
+//   // "What is the total traffic flow between Accra and Tema?",
+//   // "Which locations have the highest customer traffic on Monday",
+//   // "Compare the daily inbound and outbound traffic for Takoradi for q1 and q2",
+//   "What are the top 3 businesses locations",
+//   "What are the major industries the businesses belong to",
+//   "What cities have the highest location of businesses",
+//   "What are the top 5 businesses challenges",
+//   // "Compare the top 5 days with the highest movement between Q1 and Q2",
+// ];
 
 const Insight: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
@@ -77,6 +77,7 @@ const Insight: React.FC = () => {
   const [popupItem, setPopupItem] = useState<LibraryItem | null>(null);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const [selectedDataSource, setSelectedDataSource] = useState("folder");
+  const [questions, setQuestions] = useState<string[]>([]);
 
   const token = useSelector((state: RootState) => state.auth.token);
   const orgID = useSelector((state: RootState) => state.auth.orgID);
@@ -85,6 +86,10 @@ const Insight: React.FC = () => {
   );
 
   const dispatch = useDispatch();
+
+  const shuffleArray = (array: any[]) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
 
   const fetchLibraryItems = async () => {
     try {
@@ -103,9 +108,95 @@ const Insight: React.FC = () => {
     }
   };
 
+  // const fetchQuestions = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://starfish-app-9ezx5.ondigitalocean.app/insights/starters/",
+
+  //       generateAxiosConfig()
+  //     );
+  //     const shuffledQuestions = shuffleArray(response.data);
+  //     setQuestions(shuffledQuestions);
+  //     console.log("Questions fetched successfully:", shuffledQuestions);
+  //   } catch (error) {
+  //     console.error("Error fetching questions:", error);
+  //     toast.error("Error fetching questions");
+  //   }
+  // };
+
+  // const fetchQuestions = async (sourceType: string) => {
+  //   try {
+  //     const config = generateAxiosConfig();
+  //     const response = await axios.get(
+  // "https://starfish-app-9ezx5.ondigitalocean.app/insights/starters/",
+  //       {
+  //         ...config,
+  //         params: { source_type: sourceType },
+  //       }
+  //     );
+  //     const shuffledQuestions = shuffleArray(response.data);
+  //     setQuestions(shuffledQuestions);
+  //     console.log("Questions fetched successfully:", shuffledQuestions);
+  //   } catch (error) {
+  //     console.error("Error fetching questions:", error);
+  //     toast.error("Error fetching questions");
+  //   }
+  // };
+
+  // const fetchQuestions = async (sourceType: string) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://starfish-app-9ezx5.ondigitalocean.app/insights/starters/?source_type=${sourceType}`,
+  //       generateAxiosConfig()
+  //     );
+  //     const shuffledQuestions = shuffleArray(response.data);
+  //     setQuestions(shuffledQuestions);
+  //     console.log("Questions fetched successfully:", shuffledQuestions);
+  //   } catch (error) {
+  //     console.error("Error fetching questions:", error);
+  //     toast.error("Error fetching questions");
+  //   }
+  // };
+
+  const fetchQuestions = async () => {
+    try {
+      let payload: any = {
+        sourceType: selectedDataSource === "drive" ? "gdrive" : "folder",
+        folderID: selectedDataSource === "folder" ? "static" : undefined,
+      };
+
+      if (selectedDataSource === "drive") {
+        payload.integrationID = integrationID;
+      }
+
+      console.log(integrationID);
+
+      const config = {
+        ...generateAxiosConfig(),
+        params: payload, // Add payload as query parameters
+      };
+
+      const response = await axios.get(
+        "https://starfish-app-9ezx5.ondigitalocean.app/insights/starters/",
+        config
+      );
+
+      const shuffledQuestions = shuffleArray(response.data);
+      setQuestions(shuffledQuestions);
+      console.log("Questions fetched successfully:", shuffledQuestions);
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+      toast.error("Error fetching questions");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (token && orgID) {
       fetchLibraryItems();
+      fetchQuestions();
+      // fetchQuestions(selectedDataSource);
     }
   }, [orgID, token]);
 
