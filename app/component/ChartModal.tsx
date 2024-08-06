@@ -1,5 +1,5 @@
 import React from "react";
-import { ChartItem } from "@/app/types";
+import { ChartItem } from "../../app/types";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js";
 

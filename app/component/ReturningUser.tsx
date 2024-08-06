@@ -9,7 +9,7 @@ import {
   IoShareSocialOutline,
 } from "react-icons/io5";
 import Link from "next/link";
-import Navbar from "@/app/component/NavBar";
+import Navbar from "../../app/component/NavBar";
 import axios from "axios";
 import generateAxiosConfig from "../config/axiosConfig";
 

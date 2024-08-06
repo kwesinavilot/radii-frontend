@@ -412,14 +412,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
-import generateAxiosConfig from "@/app/config/axiosConfig";
+import generateAxiosConfig from "../../../../app/config/axiosConfig";
 import Image from "next/image";
 import { TbRefresh } from "react-icons/tb";
 import { HiDotsVertical } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
-import ChartSelectorModal from "@/app/component/ChartSelectorModal";
-import ChartModal from "@/app/component/ChartModal";
-import { ChartItem } from "@/app/types";
+import ChartSelectorModal from "../../../../app/component/ChartSelectorModal";
+import ChartModal from "../../../../app/component/ChartModal";
+import { ChartItem } from "../../../../app/types";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,

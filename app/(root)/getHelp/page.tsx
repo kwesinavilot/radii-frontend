@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "@/app/component/NavBar";
+import Navbar from "../../../app/component/NavBar";
 import { useRef, useState, FormEvent } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

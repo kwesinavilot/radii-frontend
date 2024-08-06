@@ -4,7 +4,7 @@ import { RiTeamFill } from "react-icons/ri";
 import { CiSettings } from "react-icons/ci";
 import { FaFileInvoiceDollar } from "react-icons/fa";
 import Link from "next/link";
-import Logout from "@/app/component/Logout";
+import Logout from "../../app/component/Logout";
 interface UserModalProps {
   onClose: () => void;
   onLogoutSuccess: () => void;

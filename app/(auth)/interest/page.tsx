@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import style from "./Interest.module.css";
 import { FaLinkedin } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
-// import { setOrgID, setToken, setUserID } from "@/app/store/authSlice";
 import axios from "axios";
 import Image from "next/image";
 import Cookies from "js-cookie";

@@ -3,7 +3,7 @@ import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import generateAxiosConfig from "@/app/config/axiosConfig";
+import generateAxiosConfig from "../../app/config/axiosConfig";
 import { useRouter } from "next/navigation";
 import { IoIosLogOut } from "react-icons/io";
 
