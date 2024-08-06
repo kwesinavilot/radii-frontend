@@ -74,10 +74,10 @@
 // export default Logout;
 
 "use client";
-import Logout from "@/app/component/Logout";
 // import Logout from "@/app/component/Logout";
 import React from "react";
 import { toast } from "react-toastify";
+import Logout from "../../component/Logout";
 
 const LogOutPage: React.FC = () => {
   const handleLogoutSuccess = () => {

@@ -2,10 +2,12 @@
 "use client";
 
 import React from "react";
-// import { Button } from "@/components/ui/button";
+
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+
+import { Button } from "../../../components/ui/button";
 
 const PrivacyPolicy = () => {
   return (
