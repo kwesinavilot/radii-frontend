@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import generateAxiosConfig from "@/app/config/axiosConfig";
+import generateAxiosConfig from "../../app/config/axiosConfig";
 import { FaChartPie, FaChartBar, FaChartLine } from "react-icons/fa";
-import { ChartItem } from "@/app/types";
+import { ChartItem } from "../../app/types";
 
 interface ChartSelectorModalProps {
   isOpen: boolean;

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import Navbar from "@/app/component/NavBar";
+import Navbar from "../../../app/component/NavBar";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

@@ -15,12 +15,12 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import axios from "axios";
-import generateAxiosConfig from "@/app/config/axiosConfig";
-import ChartModal from "@/app/component/ChartModal";
-import Navbar from "@/app/component/NavBar";
+import generateAxiosConfig from "../../../app/config/axiosConfig";
+import ChartModal from "../../../app/component/ChartModal";
+import Navbar from "../../../app/component/NavBar";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { truncateText } from "@/app/utils/truncateText";
+import { truncateText } from "../../../app/utils/truncateText";
 import {
   Chart as ChartJS,
   CategoryScale,

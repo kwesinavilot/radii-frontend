@@ -1,9 +1,9 @@
 "use client";
-import Navbar from "@/app/component/NavBar";
+import Navbar from "../../../app/component/NavBar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { RootState } from "@/app/store/store";
+import { RootState } from "../../..//app/store/store";
 
 const AccountSettings = () => {
   const [userDetails, setUserDetails] = useState({

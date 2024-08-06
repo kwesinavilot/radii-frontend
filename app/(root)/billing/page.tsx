@@ -1,4 +1,4 @@
-import Navbar from "@/app/component/NavBar";
+import Navbar from "../../../app/component/NavBar";
 import React from "react";
 
 const Billing = () => {

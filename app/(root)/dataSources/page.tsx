@@ -1,17 +1,17 @@
 "use client";
 
-import Navbar from "@/app/component/NavBar";
-import { RootState } from "@/app/store/store";
+import Navbar from "../../../app/component/NavBar";
+import { RootState } from "../../../app/store/store";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import axios, { AxiosError } from "axios";
-import generateAxiosConfig from "@/app/config/axiosConfig";
+import generateAxiosConfig from "../../..//app/config/axiosConfig";
 import { format } from "date-fns";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
-import { setIntegrationID } from "@/app/store/integrationSlice";
+import { setIntegrationID } from "../../../app/store/integrationSlice";
 import { useSearchParams } from "next/navigation";
 
 interface FileItem {

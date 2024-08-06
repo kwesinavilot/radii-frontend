@@ -2,7 +2,7 @@ import React from "react";
 import { FaPlus } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/app/component/NavBar";
+import Navbar from "../../app/component/NavBar";
 
 const NewUser: React.FC = () => {
   return (
