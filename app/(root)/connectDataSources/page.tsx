@@ -9,7 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import DatabaseConnectionForm from "@/app/component/DataBaseForm";
+import DatabaseConnectionForm from "../../component/DataBaseForm";
 
 const ConnectDataSource: React.FC = () => {
   const [loading, setLoading] = useState(false);

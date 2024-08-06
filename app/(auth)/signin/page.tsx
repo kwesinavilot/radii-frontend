@@ -11,7 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { setToken, setOrgID, setUserID } from "@/app/store/authSlice";
+// import { setToken, setOrgID, setUserID } from "@/app/store/authSlice";
+import { setToken, setOrgID, setUserID } from "../../../app/store/authSlice";
 import Cookies from "js-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
 
