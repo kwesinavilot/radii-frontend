@@ -104,7 +104,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
+      {/* <head>
         <Script type="text/javascript" id="clarity">
           {`
       (function(c,l,a,r,i,t,y){
@@ -115,7 +115,7 @@ export default function RootLayout({
       
       `}
         </Script>
-      </head>
+      </head> */}
       <body className={`${inter.variable} ${ibmPlexSerif.variable}`}>
         <GoogleOAuthProvider clientId="75800942170-6uk0kinmmo3a308dscul4mk72g7uavr9.apps.googleusercontent.com">
           <Providers>{children}</Providers>
