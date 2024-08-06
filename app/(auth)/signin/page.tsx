@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import style from "./Login.module.css";
+// import style from "./Login.module.css";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 import Link from "next/link";
@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { setToken, setOrgID, setUserID } from "../../../app/store/authSlice";
 import Cookies from "js-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
+import style from "../signin/Login.module.css";
 
 import Image from "next/image";
 
