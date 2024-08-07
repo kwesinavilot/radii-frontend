@@ -55,16 +55,12 @@ interface LibraryItem {
   updated_at: string;
 }
 
-// const questions: string[] = [
-//   // "What is the total traffic flow between Accra and Tema?",
-//   // "Which locations have the highest customer traffic on Monday",
-//   // "Compare the daily inbound and outbound traffic for Takoradi for q1 and q2",
-//   "What are the top 3 businesses locations",
-//   "What are the major industries the businesses belong to",
-//   "What cities have the highest location of businesses",
-//   "What are the top 5 businesses challenges",
-//   // "Compare the top 5 days with the highest movement between Q1 and Q2",
-// ];
+const placeholderQuestions: string[] = [
+  "Show me different product categories with the highest sales at different locations.",
+  "What locations have the highest sales in home appliances and electronics?",
+  "Top 5 selling products at Rasta Bus Stop, Top 3 selling products at American House.",
+  "Compare the Q1 and Q2 sales at Rasta Bus Stop and Q1 and Q2 sales at American House.",
+];
 
 const Insight: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
@@ -77,7 +73,7 @@ const Insight: React.FC = () => {
   const [popupItem, setPopupItem] = useState<LibraryItem | null>(null);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const [selectedDataSource, setSelectedDataSource] = useState("folder");
-  const [questions, setQuestions] = useState<string[]>([]);
+  const [questions, setQuestions] = useState<string[]>(placeholderQuestions);
 
   const token = useSelector((state: RootState) => state.auth.token);
   const orgID = useSelector((state: RootState) => state.auth.orgID);
@@ -108,20 +104,20 @@ const Insight: React.FC = () => {
     }
   };
 
-  const fetchQuestions = async (sourceType: string) => {
-    try {
-      const response = await axios.get(
-        `https://starfish-app-9ezx5.ondigitalocean.app/insights/starters/?source_type=${sourceType}`,
-        generateAxiosConfig()
-      );
-      const shuffledQuestions = shuffleArray(response.data);
-      setQuestions(shuffledQuestions);
-      console.log("Questions fetched successfully:", shuffledQuestions);
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-      toast.error("Error fetching questions");
-    }
-  };
+  // const fetchQuestions = async (sourceType: string) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://starfish-app-9ezx5.ondigitalocean.app/insights/starters/?source_type=${sourceType}`,
+  //       generateAxiosConfig()
+  //     );
+  //     const shuffledQuestions = shuffleArray(response.data);
+  //     setQuestions(shuffledQuestions);
+  //     console.log("Questions fetched successfully:", shuffledQuestions);
+  //   } catch (error) {
+  //     console.error("Error fetching questions:", error);
+  //     toast.error("Error fetching questions");
+  //   }
+  // };
 
   // const fetchQuestions = async () => {
   //   try {
@@ -179,7 +175,7 @@ const Insight: React.FC = () => {
   useEffect(() => {
     if (token && orgID) {
       fetchLibraryItems();
-      fetchQuestions(selectedDataSource);
+      // fetchQuestions(selectedDataSource);
       // fetchQuestions(selectedDataSource);
     }
   }, [orgID, token]);
