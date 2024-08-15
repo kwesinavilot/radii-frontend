@@ -52,7 +52,7 @@ export default function ReturningUser({
     const fetchFileTypes = async () => {
       try {
         const response = await axios.get(
-          "https://starfish-app-9ezx5.ondigitalocean.app/datasources/files/",
+          "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/datasources/files/",
           generateAxiosConfig()
         );
         const files: FileType[] = response.data;

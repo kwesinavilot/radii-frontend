@@ -28,7 +28,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://starfish-app-9ezx5.ondigitalocean.app/insights/library/",
+          "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/library/",
           generateAxiosConfig()
         );
 
