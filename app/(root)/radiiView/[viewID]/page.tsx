@@ -419,6 +419,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
 import ChartSelectorModal from "../../../../app/component/ChartSelectorModal";
 import ChartModal from "../../../../app/component/ChartModal";
+import NovaAIModal from "../../../../app/component/NovaAIModal"; // Import the new NovaAIModal component
 import { ChartItem } from "../../../../app/types";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 import {
@@ -470,6 +471,7 @@ const RadiiView: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isNovaAIModalOpen, setIsNovaAIModalOpen] = useState(false);  // State for NovaAIModal
   const [selectedChart, setSelectedChart] = useState<ChartItem | null>(null);
 
   useEffect(() => {
@@ -673,7 +675,10 @@ const RadiiView: React.FC = () => {
             <button className="flex items-center justify-center px-4 py-2 border border-[#000] text-[#000] rounded">
               Edit
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded">
+            <button
+              className="flex items-center gap-2 px-4 py-2 border text-[18px] bg-[#038C7F] text-[#fff] rounded"
+              onClick={() => setIsNovaAIModalOpen(true)} // Open NovaAIModal on click
+            >
               <Image
                 src="/IconWhite.svg"
                 alt="Logo"
@@ -723,6 +728,13 @@ const RadiiView: React.FC = () => {
           chartData={selectedChart}
         />
       )}
+
+      {/* PLACE NOVAAI IN THE DOME SOMEWHERE */}
+      <NovaAIModal
+        isOpen={isNovaAIModalOpen}
+        onClose={() => setIsNovaAIModalOpen(false)}
+        viewID={viewID as string} // Pass viewID to NovaAIModal
+      />
     </div>
   );
 };
