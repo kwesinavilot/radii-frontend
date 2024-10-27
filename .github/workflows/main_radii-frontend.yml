@@ -19,11 +19,11 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: '20.x'
 
       - name: npm install, build, and test
         run: |
-          npm install --legacy-peer-deps
+          npm install
           npm run build --if-present
           npm run test --if-present
 
@@ -31,7 +31,7 @@ jobs:
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: release.zip
@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: node-app
 
@@ -55,15 +55,15 @@ jobs:
         run: unzip release.zip
       
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_28933571880B4D2BACD4E13CA3E53276 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_31AFE0C65B1746C2AA02CD9136850ED0 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_27DDF65C1C8443279E9E0D71B573BA57 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_903CE757A53C45ACAD0705CCBB19AE80 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BC7EC01E0FCD419E97261D87C37B64CB }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D4CDA0FE4B65499CBAA90A92660113E2 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'radii-frontend'
           slot-name: 'Production'
