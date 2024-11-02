@@ -73,7 +73,7 @@
 //   const fetchViewData = async () => {
 //     try {
 //       const response = await axios.get<View>(
-// `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/`,
+// `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/`,
 //         generateAxiosConfig()
 //       );
 //       setView(response.data);
@@ -109,7 +109,7 @@
 //       }));
 
 //       const response = await axios.post(
-// `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+// `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
 //         { charts: chartsToAdd },
 //         generateAxiosConfig()
 //       );
@@ -136,7 +136,7 @@
 //     console.log("Deleting chart with ID:", chartID);
 //     try {
 //       await axios.post(
-//         `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/remove_chart/`,
+//         `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/remove_chart/`,
 //         {
 //           charts: [chartID],
 //         },
@@ -483,7 +483,7 @@ const RadiiView: React.FC = () => {
   const fetchViewData = async () => {
     try {
       const response = await axios.get<View>(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/`,
         generateAxiosConfig()
       );
       setView(response.data);
@@ -519,7 +519,7 @@ const RadiiView: React.FC = () => {
       }));
 
       const response = await axios.post(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
         { charts: chartsToAdd },
         generateAxiosConfig()
       );
@@ -546,7 +546,7 @@ const RadiiView: React.FC = () => {
     console.log("Deleting chart with ID:", chartID);
     try {
       await axios.post(
-        ` https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/remove_chart/`,
+        ` https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/remove_chart/`,
         {
           charts: [chartID],
         },
@@ -817,7 +817,7 @@ export default RadiiView;
 //   const fetchViewData = async () => {
 //     try {
 //       const response = await axios.get<View>(
-//         `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/`,
+//         `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/`,
 //         generateAxiosConfig()
 //       );
 //       setView(response.data);
@@ -853,7 +853,7 @@ export default RadiiView;
 //       }));
 
 //       const response = await axios.post(
-//         `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+//         `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
 //         { charts: chartsToAdd },
 //         generateAxiosConfig()
 //       );
@@ -880,7 +880,7 @@ export default RadiiView;
 //   const handleDeleteChart = async (chartID: string) => {
 //     try {
 //       await axios.post(
-//         `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/remove_chart/`,
+//         `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/remove_chart/`,
 //         { charts: [chartID] },
 //         generateAxiosConfig()
 //       );
@@ -1161,7 +1161,7 @@ export default RadiiView;
 //   const fetchViewData = async () => {
 //     try {
 //       const response = await axios.get<View>(
-//         `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/`,
+//         `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/`,
 //         generateAxiosConfig()
 //       );
 //       setView(response.data);
@@ -1201,7 +1201,7 @@ export default RadiiView;
 //       }));
 
 //       const response = await axios.post(
-//         `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
+//         `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/add_chart/`,
 //         { charts: chartsToAdd },
 //         generateAxiosConfig()
 //       );
@@ -1233,7 +1233,7 @@ export default RadiiView;
 //     console.log("Deleting chart with ID:", chartID);
 //     try {
 //       await axios.post(
-//         `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/${viewID}/remove_chart/`,
+//         `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/${viewID}/remove_chart/`,
 //         {
 //           charts: [chartID],
 //         },

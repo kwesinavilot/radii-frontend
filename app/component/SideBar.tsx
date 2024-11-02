@@ -33,7 +33,7 @@ const Sidebar = () => {
       const fetchUsername = async () => {
         try {
           const response = await axios.get(
-            `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/accounts/users/${userID}/`,
+            `https://hammerhead-app-zjkr8.ondigitalocean.app/accounts/users/${userID}/`,
             {
               headers: {
                 Authorization: `Token ${token}`,

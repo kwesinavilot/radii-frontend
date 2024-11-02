@@ -56,7 +56,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/auth/login/",
+        "https://hammerhead-app-zjkr8.ondigitalocean.app/auth/login/",
         formData
       );
       // dispatch(setToken(response.data.token));
@@ -103,7 +103,7 @@ const Login: React.FC = () => {
 
         try {
           const loginResponse = await axios.post(
-            "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/auth/login/",
+            "https://hammerhead-app-zjkr8.ondigitalocean.app/auth/login/",
             {
               email: profileData.email,
               password: `${profileData.given_name} ${profileData.sub}`,
@@ -133,7 +133,7 @@ const Login: React.FC = () => {
           ) {
             try {
               const registerResponse = await axios.post(
-                "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/auth/register/",
+                "https://hammerhead-app-zjkr8.ondigitalocean.app/auth/register/",
                 {
                   email: profileData.email,
                   password: `${profileData.given_name} ${profileData.sub}`,
@@ -143,7 +143,7 @@ const Login: React.FC = () => {
               );
 
               const loginAfterRegisterResponse = await axios.post(
-                "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/auth/login/",
+                "https://hammerhead-app-zjkr8.ondigitalocean.app/auth/login/",
                 {
                   email: profileData.email,
                   password: `${profileData.given_name} ${profileData.sub}`,

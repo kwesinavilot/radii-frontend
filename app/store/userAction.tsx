@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 export const fetchUser = (userID: string) => async (dispatch: Dispatch) => {
   try {
     const response = await fetch(
-      `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/accounts/users/${userID}/`
+      `https://hammerhead-app-zjkr8.ondigitalocean.app/accounts/users/${userID}/`
     );
     if (!response.ok) {
       throw new Error("Failed to fetch user data");

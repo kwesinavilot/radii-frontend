@@ -69,7 +69,7 @@
 //       formData.append("source", JSON.stringify(selectedSources));
 
 //       const response = await axios.post(
-//         `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/datasources/files/`,
+//         `https://hammerhead-app-zjkr8.ondigitalocean.app/datasources/files/`,
 //         formData,
 //         {
 //           headers: {
@@ -371,7 +371,7 @@ const ConnectDataSource: React.FC = () => {
       formData.append("source", JSON.stringify(selectedSources));
 
       const response = await axios.post(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/datasources/files/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/datasources/files/`,
         formData,
         {
           headers: {

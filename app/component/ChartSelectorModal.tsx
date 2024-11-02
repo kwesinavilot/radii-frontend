@@ -25,7 +25,7 @@ const ChartSelectorModal: React.FC<ChartSelectorModalProps> = ({
   const fetchAvailableCharts = async () => {
     try {
       const response = await axios.get<ChartItem[]>(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/charts/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/charts/`,
         generateAxiosConfig()
       );
       setCharts(response.data);

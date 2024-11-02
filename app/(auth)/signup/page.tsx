@@ -44,7 +44,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/auth/account-exists/",
+//         "https://hammerhead-app-zjkr8.ondigitalocean.app/auth/account-exists/",
 //         {
 //           email: formData.email,
 //         }
@@ -330,7 +330,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/auth/account-exists/",
+        "https://hammerhead-app-zjkr8.ondigitalocean.app/auth/account-exists/",
         {
           email: formData.email,
         }

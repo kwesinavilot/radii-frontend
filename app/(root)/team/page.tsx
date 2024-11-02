@@ -47,7 +47,7 @@ const AccountSettings = () => {
   const fetchUserDetails = async () => {
     try {
       const response = await axios.get(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/accounts/users/${userID}/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/accounts/users/${userID}/`,
         {
           headers: { Authorization: `Token ${token}` },
         }
@@ -65,7 +65,7 @@ const AccountSettings = () => {
   const fetchOrgDetails = async () => {
     try {
       const response = await axios.get(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/accounts/orgs/${orgID}/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/accounts/orgs/${orgID}/`,
         {
           headers: { Authorization: `Token ${token}` }, // Adjust based on backend requirement
         }
@@ -100,7 +100,7 @@ const AccountSettings = () => {
     try {
       if (isUserTab) {
         await axios.put(
-          `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/accounts/users/${userID}/`,
+          `https://hammerhead-app-zjkr8.ondigitalocean.app/accounts/users/${userID}/`,
           userDetails,
           {
             headers: { Authorization: `Token ${token}` },
@@ -108,7 +108,7 @@ const AccountSettings = () => {
         );
       } else {
         await axios.put(
-          `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/accounts/orgs/${orgID}/`,
+          `https://hammerhead-app-zjkr8.ondigitalocean.app/accounts/orgs/${orgID}/`,
           orgDetails,
           {
             headers: { Authorization: `Token ${token}` },

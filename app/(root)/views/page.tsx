@@ -98,7 +98,7 @@ const MyViews: React.FC = () => {
     const fetchCharts = async () => {
       try {
         const response = await axios.get(
-          "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/charts/",
+          "https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/charts/",
           generateAxiosConfig()
         );
         setCharts(response.data.reverse());
@@ -111,7 +111,7 @@ const MyViews: React.FC = () => {
     const fetchViews = async () => {
       try {
         const response = await axios.get(
-          "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/",
+          "https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/",
           generateAxiosConfig()
         );
         setViews(response.data.reverse() || []);
@@ -137,7 +137,7 @@ const MyViews: React.FC = () => {
   const handleDelete = async (chartID: string) => {
     try {
       await axios.delete(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/charts/${chartID}/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/charts/${chartID}/`,
         generateAxiosConfig()
       );
       setCharts((prevCharts) =>
@@ -157,7 +157,7 @@ const MyViews: React.FC = () => {
     }
     try {
       const response = await axios.post(
-        "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/views/",
+        "https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/views/",
         {
           name: newViewName,
           description: newViewDescription,

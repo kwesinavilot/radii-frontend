@@ -93,7 +93,7 @@ const Insight: React.FC = () => {
         throw new Error("orgID is required");
       }
       const response = await axios.get(
-        "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/library/",
+        "https://hammerhead-app-zjkr8.ondigitalocean.app/insights/library/",
         generateAxiosConfig()
       );
       setLibraryItems(response.data);
@@ -107,7 +107,7 @@ const Insight: React.FC = () => {
   // const fetchQuestions = async (sourceType: string) => {
   //   try {
   //     const response = await axios.get(
-  //       `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/starters/?source_type=${sourceType}`,
+  //       `https://hammerhead-app-zjkr8.ondigitalocean.app/insights/starters/?source_type=${sourceType}`,
   //       generateAxiosConfig()
   //     );
   //     const shuffledQuestions = shuffleArray(response.data);
@@ -138,7 +138,7 @@ const Insight: React.FC = () => {
   //     };
 
   //     const response = await axios.get(
-  //       "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/starters/",
+  //       "https://hammerhead-app-zjkr8.ondigitalocean.app/insights/starters/",
   //       config
   //     );
 
@@ -158,7 +158,7 @@ const Insight: React.FC = () => {
   //   try {
   //     const config = generateAxiosConfig();
   //     const response = await axios.post(
-  //       "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/starters/",
+  //       "https://hammerhead-app-zjkr8.ondigitalocean.app/insights/starters/",
   //       { source_type: sourceType },
   //       config
   //     );
@@ -205,7 +205,7 @@ const Insight: React.FC = () => {
         console.log(integrationID);
 
         const response = await axios.post(
-          "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/internal/",
+          "https://hammerhead-app-zjkr8.ondigitalocean.app/insights/internal/",
           payload,
           generateAxiosConfig()
         );
@@ -227,7 +227,7 @@ const Insight: React.FC = () => {
   const handleLibraryItemClick = async (item: LibraryItem) => {
     try {
       const response = await axios.get(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/library/${item.searchID}/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/insights/library/${item.searchID}/`,
         generateAxiosConfig()
       );
       setResult(response.data);
@@ -251,7 +251,7 @@ const Insight: React.FC = () => {
   const handleDelete = async (searchID: string) => {
     try {
       await axios.delete(
-        `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/library/${searchID}/`,
+        `https://hammerhead-app-zjkr8.ondigitalocean.app/insights/library/${searchID}/`,
         generateAxiosConfig()
       );
       toast.success("Library item deleted successfully");
@@ -270,7 +270,7 @@ const Insight: React.FC = () => {
   ) => {
     try {
       const response = await axios.post(
-        "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/charts/",
+        "https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/charts/",
         {
           chart_data: JSON.stringify(chartData),
           name: chartData.options.title,
@@ -494,7 +494,7 @@ export default Insight;
 //         throw new Error("orgID is required");
 //       }
 //       const response = await axios.get(
-//         "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/library/",
+//         "https://hammerhead-app-zjkr8.ondigitalocean.app/insights/library/",
 //         generateAxiosConfig()
 //       );
 //       setLibraryItems(response.data);
@@ -536,7 +536,7 @@ export default Insight;
 //         console.log(integrationID);
 
 //         const response = await axios.post(
-//           "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/internal/",
+//           "https://hammerhead-app-zjkr8.ondigitalocean.app/insights/internal/",
 //           payload,
 //           generateAxiosConfig()
 //         );
@@ -558,7 +558,7 @@ export default Insight;
 //   const handleLibraryItemClick = async (item: LibraryItem) => {
 //     try {
 //       const response = await axios.get(
-//         ` https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/library/${item.searchID}/`,
+//         ` https://hammerhead-app-zjkr8.ondigitalocean.app/insights/library/${item.searchID}/`,
 //         generateAxiosConfig()
 //       );
 //       setResult(response.data);
@@ -582,7 +582,7 @@ export default Insight;
 //   const handleDelete = async (searchID: string) => {
 //     try {
 //       await axios.delete(
-//         ` https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/library/${searchID}/`,
+//         ` https://hammerhead-app-zjkr8.ondigitalocean.app/insights/library/${searchID}/`,
 //         generateAxiosConfig()
 //       );
 //       toast.success("Library item deleted successfully");
@@ -601,7 +601,7 @@ export default Insight;
 //   ) => {
 //     try {
 //       const response = await axios.post(
-//         "https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/visuals/charts/",
+//         "https://hammerhead-app-zjkr8.ondigitalocean.app/visuals/charts/",
 //         {
 //           chart_data: JSON.stringify(chartData),
 //           name: chartData.options.title,

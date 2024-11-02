@@ -33,7 +33,7 @@ const NovaAIModal: React.FC<NovaAIModalProps> = ({ isOpen, onClose, viewID }) =>
 
         try {
             const response = await axios.get(
-                `https://raoyanmo-frogs-app-ki8xj.ondigitalocean.app/insights/nova?viewID=${viewID}`,
+                `https://hammerhead-app-zjkr8.ondigitalocean.app/insights/nova?viewID=${viewID}`,
                 generateAxiosConfig()
             );
 
